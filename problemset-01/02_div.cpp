@@ -1,15 +1,22 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
-	unsigned long long a = 0, b = 0;
-	unsigned int counter = 0;
+	long long a = 0, b = 0;
+	int sign = 1, counter = 0;
 
 	printf("Enter the dividend:\n  a = ");
-	scanf("%d", &a);
+	scanf("%lld", &a);
 
 	printf("Enter the divisor:\n  b = ");
-	scanf("%d", &b);
+	scanf("%lld", &b);
+
+	if ((a > 0 && b < 0) || (a < 0 && b > 0))
+		sign *= -1;
+
+	a = abs(a);
+	b = abs(b);
 
 	while (a >= b)
 	{
@@ -17,5 +24,5 @@ int main()
 		counter++;
 	}
 
-	printf("The result of integer division:\n  %d", counter);
+	printf("The result of integer division:\n  %d", sign * counter);
 }

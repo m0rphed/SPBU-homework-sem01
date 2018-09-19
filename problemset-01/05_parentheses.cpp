@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h> // strchr()
 
-#define max_size 512
+const int maxSize = 512;
 
 // handles input
 void getInput(char *str)
@@ -9,7 +9,7 @@ void getInput(char *str)
 	char *newline = nullptr;
 
 	// using fgets() instead of gets() to avoid buffer overflow
-	fgets(str, max_size, stdin);
+	fgets(str, maxSize, stdin);
 
 	// using 'newline' as a pointer to '\n'
 	if ((newline = strchr(str, '\n')) != nullptr)
@@ -20,7 +20,7 @@ void getInput(char *str)
 int main()
 {
 	int flag = 0;
-	char str[max_size];
+	char str[maxSize];
 
 	printf("Enter the string with the parentheses for the test:\n");
 	getInput(str);
@@ -39,7 +39,8 @@ int main()
 	if (flag == 0)
 	{
 		printf("Your input is OK!\n");
-	} else
+	}
+	else
 	{
 		printf("Invalid input\n");
 	}
