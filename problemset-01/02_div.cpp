@@ -25,4 +25,5 @@ int main()
 	}
 
 	printf("The result of integer division:\n  %d", sign * counter);
+	return 0;
 }
