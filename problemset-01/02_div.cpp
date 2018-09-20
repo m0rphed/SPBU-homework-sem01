@@ -15,7 +15,7 @@ int main()
 
 	if (b == 0)
 	{
-		printf("Error: devision by 0\n");
+		printf("Error: division by 0\n");
 		return 0;
 	}
 
