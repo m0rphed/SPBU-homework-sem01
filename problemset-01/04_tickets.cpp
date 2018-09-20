@@ -1,9 +1,13 @@
 #include <stdio.h>
 
+// Length of the array = 28 = (27 + 1)
+// because this is the number of all possible sums
+// in the first 3 digits of the ticket.
+const int arrSize = 28;
+
 int main()
 {
-
-	int array[28]{};
+	int array[arrSize]{};
 	int sum = 0;
 
 	for (int i = 0; i < 10; i++)
