@@ -20,7 +20,7 @@ void reverseArrPart(int *arr, int beg, int end)
 	// middle index of array range
 	int middle = ((beg + end) / 2) + 1;
 
-	for (int i = beg, temp = 0; i < middle; i++)
+	for (int i = beg, tmp = 0; i < middle; i++)
 	{
 		tmp = arr[i];
 		arr[i] = arr[beg + end - i];
