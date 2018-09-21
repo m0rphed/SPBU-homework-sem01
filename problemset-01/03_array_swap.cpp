@@ -6,7 +6,7 @@ void getInput(int *arr, int len)
 	printf("Enter an array:\n");
 	for (int i = 0; i < len; ++i)
 	{
-		scanf("%d", arr + i);
+		scanf("%d", &arr[i]);
 	}
 }
 
@@ -19,14 +19,12 @@ void reverseArrPart(int *arr, int beg, int end)
 
 	// middle index of array range
 	int middle = ((beg + end) / 2) + 1;
-	int tmp = 0;
 
-	for (int i = beg; i < middle; i++)
+	for (int i = beg, temp = 0; i < middle; i++)
 	{
 		tmp = arr[i];
 		arr[i] = arr[beg + end - i];
 		arr[beg + end - i] = tmp;
-
 	}
 }
 
@@ -49,7 +47,7 @@ int main()
 		return 0;
 	}
 
-	int array[m + n];
+	auto *array = new int[m + n];
 
 	getInput(array, n + m);
 
@@ -63,10 +61,12 @@ int main()
 	reverseArrPart(array, 1, m + n);
 
 	printf("Result:\n");
-	for (auto elem : array)
+
+	for (int i = 0; i < m + n; ++i)
 	{
-		printf("%d ", elem);
+		printf("%d ", array[i]);
 	}
 
+	delete[] array;
 	return 0;
 }
