@@ -10,21 +10,21 @@ void getInput(int *arr, int len)
 	}
 }
 
-// function reverses the array from position 'beg' to position 'end' inclusive
-void reverseArrPart(int *arr, int beg, int end)
+// function reverses the array from position 'begin' to position 'end' inclusive
+void reverseArrPart(int *arr, int begin, int end)
 {
 	// fix arr indices
-	beg--;
+	begin--;
 	end--;
 
 	// middle index of array range
-	int middle = ((beg + end) / 2) + 1;
+	int middle = ((begin + end) / 2) + 1;
 
-	for (int i = beg, tmp = 0; i < middle; i++)
+	for (int i = begin, tmp = 0; i < middle; i++)
 	{
 		tmp = arr[i];
-		arr[i] = arr[beg + end - i];
-		arr[beg + end - i] = tmp;
+		arr[i] = arr[begin + end - i];
+		arr[begin + end - i] = tmp;
 	}
 }
 

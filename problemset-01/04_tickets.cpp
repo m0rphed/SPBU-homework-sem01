@@ -10,11 +10,11 @@ int main()
 	int array[arrSize]{};
 	int sum = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; ++i)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 10; ++j)
 		{
-			for (int k = 0; k < 10; k++)
+			for (int k = 0; k < 10; ++k)
 			{
 				++array[i + j + k];
 			}
@@ -25,6 +25,6 @@ int main()
 		sum += elem * elem;
 	}
 
-	printf("Number of lucky tickets: %d", sum);
+	printf("Number of lucky tickets: %d\n", sum);
 	return 0;
 }
