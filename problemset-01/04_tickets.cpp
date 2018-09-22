@@ -20,6 +20,7 @@ int main()
 			}
 		}
 	}
+	
 	for (auto elem : array)
 	{
 		sum += elem * elem;

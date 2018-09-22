@@ -10,6 +10,7 @@ void getInput(int *arr, int len)
 	}
 }
 
+
 // function reverses the array from position 'begin' to position 'end' inclusive
 void reverseArrPart(int *arr, int begin, int end)
 {
@@ -27,6 +28,7 @@ void reverseArrPart(int *arr, int begin, int end)
 		arr[begin + end - i] = tmp;
 	}
 }
+
 
 int main()
 {
