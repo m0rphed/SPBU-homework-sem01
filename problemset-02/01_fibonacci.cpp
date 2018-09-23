@@ -12,7 +12,7 @@ long long recursiveFib(long long fibLast, long long fibNow, int n)
 }
 
 
-// using loop
+// using wile loop
 long long iterativeFib(int n)
 {
 	long long last = 0;
