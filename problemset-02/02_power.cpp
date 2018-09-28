@@ -1,7 +1,7 @@
 // expected complexity of the algorithm: O(n)
 long long simplePow(long long value, unsigned exponent)
 {
-	// any number raised to the power of zero equal 1
+	// any number raised to the matrixPower of zero equal 1
 	if (!exponent)
 	{
 		return 1;
@@ -17,7 +17,8 @@ long long simplePow(long long value, unsigned exponent)
 	return result * value;
 }
 
-// expected complexity of the algorithm: О(log(n))
+
+// expected time complexity of the algorithm: О(log(n))
 long long binaryPow(long long value, int exponent)
 {
 	long long result = 1;
