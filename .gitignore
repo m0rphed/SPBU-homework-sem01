@@ -1,11 +1,10 @@
 *.[oa]
 *~
 *.txt
-*.idea/*
+.idea/workspace.xml
+.idea/spbu-homework.iml
 *some_tasks/
 *cmake*
 *CMake*
 *Makefile*
 executeTests
-problemset-02/03_*
-problemset-02/04_*
