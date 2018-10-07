@@ -1,9 +1,44 @@
+# Objects and archives, anywhere in the tree
 *.[oa]
 *~
+
+# .idea files (CLion)
+*.idea/workspace.xml
+*.idea/spbu-homework.[ix]ml
+
+# Ignore .txt notes 
 *.txt
-*.idea/*
-*some_tasks/
+
+# All cmake files (used by CLion)
 *cmake*
 *CMake*
+
+# Makefiles (Linux)
 *Makefile*
+
+# Useless binary -> executeTests
 executeTests
+
+# Build results (VS)
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Other VS files
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
