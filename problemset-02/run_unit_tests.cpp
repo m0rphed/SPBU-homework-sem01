@@ -19,7 +19,7 @@
 ::testing::AssertionResult strangeSortTestFunc(int *testArray, const int size)
 {
 	bool success = true;
-
+	
 	for (int i = 2; i < size; i++)
 	{
 		if (testArray[i - 1] >= testArray[0])
@@ -30,7 +30,7 @@
 			}
 		}
 	}
-
+	
 	if (success)
 	{
 		return ::testing::AssertionSuccess();
@@ -51,7 +51,7 @@ TEST(fibonacciTest, basicTests)
 	                             {10, 55},
 	                             {37, 24157817},
 	                             {45, 1134903170}};
-
+	
 	for (const auto valuePair : testValues)
 	{
 		// Test different implementations
@@ -60,7 +60,7 @@ TEST(fibonacciTest, basicTests)
 		ASSERT_EQ(valuePair[1], analyticFib(valuePair[0]));
 		ASSERT_EQ(valuePair[1], matrixFib(valuePair[0]));
 	}
-
+	
 	puts("\n\tAll tests for task 'fibonacci' -- passed!\n");
 }
 
@@ -69,7 +69,7 @@ TEST(raisedToThePowerTest, basicTests)
 {
 	int powerValues[] = {0, 1, 9, 10};
 	int testValues[] = {0, -1, 1, -2, 2, -3, 3};
-
+	
 	// Let's do some tests!
 	for (const auto testCase : testValues)
 	{
@@ -87,36 +87,36 @@ TEST(bubbleSortTest, randomArrayTests)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));
-
+	
 	// set the size of arrays
 	const int size = 15;
-
+	
 	// set the number of tests
 	const int numOfTests = 5;
-
+	
 	int testArrays[numOfTests][size] = {};
 	int expectedArrays[numOfTests][size] = {};
-
+	
 	for (auto testArr : testArrays)
 	{
 		// fill every element of testArrays with random values
 		fillArray(testArr, size);
 	}
-
+	
 	for (int i = 0; i < numOfTests; ++i)
 	{
 		copyArray(expectedArrays[i], testArrays[i], size);
-
+		
 		// and then sort every element using qsort()
 		qsort(expectedArrays[i], size, sizeof(int), compareIncreasing);
 	}
-
+	
 	for (int i = 0; i < numOfTests; ++i)
 	{
 		bubbleSort(testArrays[i], size);
 		ASSERT_THAT(testArrays[i], testing::ElementsAreArray(expectedArrays[i]));
 	}
-
+	
 	puts("\n\tAll tests for function 'bubbleSort' -- passed!\n");
 }
 
@@ -125,40 +125,40 @@ TEST(countingSortTest, randomArrTest)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));
-
+	
 	// set the size of arrays
 	const int size = 15;
-
+	
 	// set the number of tests
 	const int numOfTests = 5;
-
+	
 	// set the range for values of arrays
 	const int minVal = 0;
 	const int maxVal = 1000;
-
+	
 	int testArrays[numOfTests][size] = {};
 	int expectedArrays[numOfTests][size] = {};
-
+	
 	for (auto testArr : testArrays)
 	{
 		// fill every element of testArrays with random values
 		fillArray(testArr, size, minVal, maxVal);
 	}
-
+	
 	for (int i = 0; i < numOfTests; ++i)
 	{
 		copyArray(expectedArrays[i], testArrays[i], size);
-
+		
 		// and then sort every element using qsort()
 		qsort(expectedArrays[i], size, sizeof(int), compareIncreasing);
 	}
-
+	
 	for (int i = 0; i < numOfTests; ++i)
 	{
 		countingSort(testArrays[i], size);
 		ASSERT_THAT(testArrays[i], testing::ElementsAreArray(expectedArrays[i]));
 	}
-
+	
 	puts("\n\tAll tests for function 'countingSort' -- passed!\n");
 }
 
@@ -167,26 +167,26 @@ TEST(strangeSort, randomArraysTest)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));
-
+	
 	// set the size of arrays
 	const int size = 15;
-
+	
 	// set the number of tests
 	const int numOfTests = 5;
-
+	
 	int testArrays[numOfTests][size] = {};
-
+	
 	for (auto array : testArrays)
 	{
 		fillArray(array, size);
 	}
-
+	
 	for (auto array : testArrays)
 	{
 		strangeSort(array, size);
 		EXPECT_TRUE(strangeSortTestFunc(array, size));
 	}
-
+	
 	puts("\n\tAll tests for task 'strangeSort' -- passed!\n");
 }
 
@@ -195,11 +195,11 @@ int main(int argc, char **argv)
 {
 	// inti gtest framework
 	testing::InitGoogleTest(&argc, argv);
-
+	
 	// Force print tests times
 	testing::GTEST_FLAG(print_time) = true;
-
+	
 	puts("\nRunning main() from run_unit_test.cpp\n");
-
+	
 	return RUN_ALL_TESTS();
 }
