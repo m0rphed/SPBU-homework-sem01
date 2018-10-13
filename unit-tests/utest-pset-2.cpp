@@ -1,19 +1,17 @@
 #include <gtest/gtest.h> // Google Test Framework
-#include <gmock/gmock.h> /* Google Mock
-							Google Mock works seamlessly with Google Test.
-							It comes with a copy of Google Test bundled. */
+#include <gmock/gmock.h> // Google Mock. Google Mock works seamlessly with Google Test.
 
 #include <stdio.h>       // puts()
 #include <stdlib.h>      // qsort(), srand()
 
 // using arrayHelpers.h for more efficient array initialization etc.
-#include "arrayHelpers.h"
+#include "../problemsets/problemset-02/arrayHelpers.h"
 
 // include all solutions from problemset-02
-#include "task_01_fibonacci.h"
-#include "task_02_power.h"
-#include "task_03_counting_bubbles.h"
-#include "task_04_sort_rand_array.h"
+#include "../problemsets/problemset-02/task-21-fibonacci.h"
+#include "../problemsets/problemset-02/task-22-power.h"
+#include "../problemsets/problemset-02/task-23-counting-bubbles.h"
+#include "../problemsets/problemset-02/task-24-sort-rand-array.h"
 
 
 ::testing::AssertionResult strangeSortTestFunc(int *testArray, const int size)
@@ -188,6 +186,7 @@ TEST(strangeSort, randomArraysTest)
 	}
 	
 	puts("\n\tAll tests for task 'strangeSort' -- passed!\n");
+<<<<<<< HEAD:problemset-02/run_unit_tests.cpp
 }
 
 
@@ -203,3 +202,6 @@ int main(int argc, char **argv)
 	
 	return RUN_ALL_TESTS();
 }
+=======
+}
+>>>>>>> overload-v2.0:unit-tests/utest-pset-2.cpp
