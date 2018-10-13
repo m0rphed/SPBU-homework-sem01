@@ -24,10 +24,19 @@ void compareArrayOfBoolNum(bool *first, bool *second)
 	}
 }
 
+
 int main()
 {
+	int arraySize = 8;
 	bool first[8] = {0, 0, 0, 1, 0, 0, 0, 1};
 	bool second[8] = {0, 1, 0, 0, 0, 0, 0, 0};
+	
+	void rebuildAnArray(int decimal)
+	{
+	
+	}
+	
+	printf("Let's do some tests:\n");
 	
 	compareArrayOfBoolNum(first, second);
 }

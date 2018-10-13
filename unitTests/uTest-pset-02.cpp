@@ -189,17 +189,3 @@ TEST(strangeSort, randomArraysTest)
 
 	puts("\n\tAll tests for task 'strangeSort' -- passed!\n");
 }
-
-
-int main(int argc, char **argv)
-{
-	// inti gtest framework
-	testing::InitGoogleTest(&argc, argv);
-
-	// Force print tests times
-	testing::GTEST_FLAG(print_time) = true;
-
-	puts("\nRunning main() from run_unit_test.cpp\n");
-
-	return RUN_ALL_TESTS();
-}
