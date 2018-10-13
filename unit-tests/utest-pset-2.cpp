@@ -186,22 +186,4 @@ TEST(strangeSort, randomArraysTest)
 	}
 	
 	puts("\n\tAll tests for task 'strangeSort' -- passed!\n");
-<<<<<<< HEAD:problemset-02/run_unit_tests.cpp
 }
-
-
-int main(int argc, char **argv)
-{
-	// inti gtest framework
-	testing::InitGoogleTest(&argc, argv);
-	
-	// Force print tests times
-	testing::GTEST_FLAG(print_time) = true;
-	
-	puts("\nRunning main() from run_unit_test.cpp\n");
-	
-	return RUN_ALL_TESTS();
-}
-=======
-}
->>>>>>> overload-v2.0:unit-tests/utest-pset-2.cpp
