@@ -1,6 +1,7 @@
 #include "task-24-sort-rand-array.h"
 #include "arrayHelpers.h"
 
+
 void strangeSort(int *array, const int size)
 {
 	int pos = 1;

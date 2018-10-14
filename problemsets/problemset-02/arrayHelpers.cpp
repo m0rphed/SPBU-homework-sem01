@@ -1,6 +1,5 @@
 #include <stdio.h>   // puts()
 #include <stdlib.h>  // srand(), rand()
-#include <time.h>    // time()
 #include "arrayHelpers.h"
 
 
