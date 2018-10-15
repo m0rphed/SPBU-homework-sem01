@@ -1,7 +1,7 @@
 #include <gtest/gtest.h> // Google Test Framework
 #include <gmock/gmock.h> // Google Mock. Google Mock works seamlessly with Google Test.
 
-#include <time.h>
+#include <time.h>        // time()
 #include <stdio.h>       // puts()
 #include <stdlib.h>      // qsort(), srand()
 
@@ -12,7 +12,7 @@
 #include "../problemsets/problemset-02/task-23-counting-bubbles.h"
 
 
-TEST(bubbleSortTest, randomArrayTests)
+TEST(problemset02, bubbleSortTest)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));
@@ -50,7 +50,7 @@ TEST(bubbleSortTest, randomArrayTests)
 }
 
 
-TEST(countingSortTest, randomArrTest)
+TEST(problemset02, countingSortTest)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));

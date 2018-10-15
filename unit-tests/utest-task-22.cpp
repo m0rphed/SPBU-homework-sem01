@@ -7,7 +7,7 @@
 #include "../problemsets/problemset-02/task-22-power.h"
 
 
-TEST(raisedToThePowerTest, basicTests)
+TEST(problemset02, raisedToThePowerTest)
 {
 	int powerValues[] = {0, 1, 9, 10};
 	int testValues[] = {0, -1, 1, -2, 2, -3, 3};

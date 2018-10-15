@@ -7,7 +7,7 @@
 #include "../problemsets/problemset-02/task-21-fibonacci.h"
 
 
-TEST(fibonacciTest, basicTests)
+TEST(problemset02, fibonacciTest)
 {
 	// The first value of the pair — the number of the element of the Fibonacci sequence.
 	// The second value of the pair — expected value.
