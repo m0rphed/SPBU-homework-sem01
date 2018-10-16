@@ -6,8 +6,11 @@
 *.idea/workspace.xml
 *.idea/spbu-homework.[ix]ml
 
-# Ignore .txt notes 
+# Ignore .txt notes
 *.txt
+
+# Don't ignore CMakeLists.txt
+!CMakeLists.txt
 
 # All cmake files (used by CLion)
 *cmake*
