@@ -34,6 +34,7 @@ long long binaryPow(long long value, int exponent)
 		{
 			result *= value;
 		}
+
 		value *= value;
 		exponent >>= 1;
 	}

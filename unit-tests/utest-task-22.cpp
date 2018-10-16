@@ -21,5 +21,6 @@ TEST(problemset02, raisedToThePowerTest)
 			ASSERT_EQ(pow(testCase, power), simplePow(testCase, power));
 		}
 	}
+	
 	puts("\n\tAll tests for task 'power' -- passed!\n");
 }
