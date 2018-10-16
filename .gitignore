@@ -13,8 +13,9 @@
 !CMakeLists.txt
 
 # All cmake files (used by CLion)
-*cmake*
-*CMake*
+cmake-build-debug/
+CMakeFiles/
+cmake_install.cmake
 
 # Makefiles (Linux)
 *Makefile*
