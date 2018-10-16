@@ -2,9 +2,10 @@
 #include "arrayHelpers.h"
 
 
-void strangeSort(int *array, const int size)
+void strangeSort(int *array, int size)
 {
 	int pos = 1;
+	
 	for (int i = 1; i < size; ++i)
 	{
 		// If current element smaller than first,

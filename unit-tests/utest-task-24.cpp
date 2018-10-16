@@ -14,27 +14,17 @@
 
 ::testing::AssertionResult strangeSortTestFunc(int *testArray, const int size)
 {
-	bool success = true;
-	
 	for (int i = 2; i < size; i++)
 	{
 		if (testArray[i - 1] >= testArray[0])
 		{
 			if (testArray[i] < testArray[0])
 			{
-				success = false;
+				return ::testing::AssertionFailure();
 			}
 		}
 	}
-	
-	if (success)
-	{
-		return ::testing::AssertionSuccess();
-	}
-	else
-	{
-		return ::testing::AssertionFailure();
-	}
+	return ::testing::AssertionSuccess();
 }
 
 
@@ -42,10 +32,10 @@ TEST(problemset02, strangeSortTest)
 {
 	// use current time as seed for random generator
 	srand(time(nullptr));
-
+	
 	// set the size of arrays
 	const int size = 15;
-
+	
 	// set the number of tests
 	const int numOfTests = 5;
 	

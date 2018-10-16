@@ -2,7 +2,7 @@
 #define SPBU_HOMEWORK_TASK_04_SORT_RAND_ARRAY_H
 
 
-void strangeSort(int *array, const int size);
+void strangeSort(int *array, int size);
 
 
 #endif //SPBU_HOMEWORK_TASK_04_SORT_RAND_ARRAY_H
