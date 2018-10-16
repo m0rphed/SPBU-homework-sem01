@@ -73,9 +73,9 @@ void matrixPower(int first[2][2], int n)
 {
 	if (n == 0 || n == 1)
 	{
-		return;
+		return; // if power = 0 || 1
+				// then exit.
 	}
-	
 	int second[2][2] = {{1, 1},
 	                    {1, 0}};
 	

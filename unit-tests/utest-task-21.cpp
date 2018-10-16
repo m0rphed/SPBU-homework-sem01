@@ -25,6 +25,5 @@ TEST(problemset02, fibonacciTest)
 		ASSERT_EQ(valuePair[1], analyticFib(valuePair[0]));
 		ASSERT_EQ(valuePair[1], matrixFib(valuePair[0]));
 	}
-	
 	puts("\n\tAll tests for task 'fibonacci' -- passed!\n");
 }
