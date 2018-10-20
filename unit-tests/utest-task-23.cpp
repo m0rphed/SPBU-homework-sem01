@@ -37,7 +37,7 @@ TEST(problemset02, bubbleSortTest)
 		copyArray(expectedArrays[i], testArrays[i], size);
 
 		// and then sort every element using qsort()
-		qsort(expectedArrays[i], size, sizeof(int), compareIncreasing);
+		qsort(expectedArrays[i], size, sizeof(int), isIncreasing);
 	}
 	
 	for (int i = 0; i < numOfTests; ++i)
@@ -79,7 +79,7 @@ TEST(problemset02, countingSortTest)
 		copyArray(expectedArrays[i], testArrays[i], size);
 
 		// and then sort every element using qsort()
-		qsort(expectedArrays[i], size, sizeof(int), compareIncreasing);
+		qsort(expectedArrays[i], size, sizeof(int), isIncreasing);
 	}
 	
 	for (int i = 0; i < numOfTests; ++i)
