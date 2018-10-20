@@ -1,5 +1,6 @@
-#include <stdlib.h>
-#include <math.h>
+#include <math.h> // abs()
+
+// include declarations
 #include "task-31-quicksort.h"
 
 
@@ -9,11 +10,13 @@ void insertionSort(int *array, int size)
 	{
 		int current = array[i];
 		int j = i;
+		
 		while (j > 0 && array[j - 1] > current)
 		{
 			array[j] = array[j - 1];
 			--j;
 		}
+		
 		array[j] = current;
 	}
 }
@@ -22,8 +25,7 @@ void insertionSort(int *array, int size)
 // Partition by pivot
 int partition(int *array, int start, int end)
 {
-	int pivot_id = rand() % (end - start) + 1;
-	int pivot = array[pivot_id];
+	int pivot = array[end];
 	
 	int i = start - 1;
 	int temp = 0;
@@ -39,6 +41,7 @@ int partition(int *array, int start, int end)
 			array[j] = temp;
 		}
 	}
+	
 	temp = array[i + 1];
 	array[i + 1] = array[end];
 	array[end] = temp;
@@ -50,16 +53,20 @@ int partition(int *array, int start, int end)
 // Quick Sort
 void quickSort(int *array, int start, int end)
 {
-	if (abs(start + end) < 10)
+	int const size = abs(end - size + 1);
+	
+	if (size < 10)
 	{
-		insertionSort(array, abs(start + end));
+		insertionSort(array, size);
 	}
-
-	if (start < end)
+	else
 	{
-		int q = partition(array, start, end);
-		
-		quickSort(array, start, q - 1);
-		quickSort(array, q + 1, end);
+		if (start < end)
+		{
+			int q = partition(array, start, end);
+			
+			quickSort(array, start, q - 1);
+			quickSort(array, q + 1, end);
+		}
 	}
 }
