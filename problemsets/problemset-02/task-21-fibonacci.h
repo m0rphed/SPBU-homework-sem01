@@ -4,7 +4,7 @@
 
 int matrixFib(int n);
 // Function calculates Fibonacci numbers using power of the matrix {{1,1}, {1,0}}
-// expected time complexity: O(Log n)
+// expected time complexity: O(log n)
 
 
 void matrixMultiply(int firstMatrix[2][2], int secondMatrix[2][2]);
