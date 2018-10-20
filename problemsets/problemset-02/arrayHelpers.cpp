@@ -1,9 +1,10 @@
-#include <stdio.h>   // puts()
-#include <stdlib.h>  // srand(), rand()
+#include <stdio.h>   // printf()
+#include <stdlib.h>  // rand()
+
 #include "arrayHelpers.h"
 
 
-void fillArray(int myArray[], int size, int min, int max, bool isRandom)
+void fillArray(int *myArray, int size, int min, int max, bool isRandom)
 {
 	if (isRandom)
 	{
@@ -36,7 +37,7 @@ void fillArray(int myArray[], int size, int min, int max, bool isRandom)
 }
 
 
-void copyArray(int arrayCopy[], int originalArray[], int size) // 'size' is the same for both arrays.
+void copyArray(int *arrayCopy, int *originalArray, int size) // 'size' is the same for both arrays.
 {
 	for (int i = 0; i < size; ++i)
 	{
@@ -45,7 +46,7 @@ void copyArray(int arrayCopy[], int originalArray[], int size) // 'size' is the 
 }
 
 
-void randomizeArray(int myArray[], int size, int min, int max)
+void randomizeArray(int *myArray, int size, int min, int max)
 {
 	for (int i = 0; i < size; ++i)
 	{
@@ -55,13 +56,13 @@ void randomizeArray(int myArray[], int size, int min, int max)
 }
 
 
-int compareIncreasing(const void *first, const void *second)
+int isIncreasing(const void *first, const void *second)
 {
 	return (*(const int *) first > *(const int *) second) - (*(const int *) first < *(const int *) second);
 }
 
 
-void findMinMax(int const *array, int size, int &min, int &max)
+void findMinMax(const int *array, int size, int &min, int &max)
 {
 	for (int i = 0; i < size; ++i)
 	{
@@ -74,4 +75,49 @@ void findMinMax(int const *array, int size, int &min, int &max)
 			max = array[i];
 		}
 	}
+}
+
+
+void printArray(int *array, const int arrayLength)
+{
+	// start printing array from a new line
+	printf("\n[ ");
+	
+	for (int i = 0; i < arrayLength; ++i)
+	{
+		if (i == arrayLength - 1)
+		{
+			printf("%d", array[i]);
+		}
+		else
+		{
+			printf("%d, ", array[i]);
+		}
+	}
+	// mark end of an array
+	printf(" ]\n");
+}
+
+
+void printArrayTilZeros(int *array, const int arrayLength)
+{
+	// start printing array from a new line
+	printf("\n[ ");
+	
+	int index = 0;
+	while (index < arrayLength && array[index] != 0)
+	{
+		if (index == arrayLength - 1)
+		{
+			printf("%d", array[index]);
+		}
+		else
+		{
+			printf("%d, ", array[index]);
+		}
+		++index;
+	}
+	
+	// mark end of an array
+	printf(" ]\n");
 }
