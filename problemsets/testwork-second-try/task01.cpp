@@ -15,37 +15,47 @@ int sumOfDigit(int number)
 	return sum;
 }
 
+int findMaxSum(int *array, const int size)
+{
+	int temp = 0;
+	int maxSum = 0;
+	
+	// find maxSum of Array
+	for (int i = 0; i < size; ++i)
+	{
+		temp = sumOfDigit(array[i]);
+		if (temp >= maxSum)
+		{
+			maxSum = temp;
+		}
+	}
+	
+	return maxSum;
+}
+
 
 int main()
 {
 	int const size = 10;
-	int tempSum = 0;
 	int maxSum = 0;
 	
 	int arrayOfMaximums[size] = {};
-	
 	int testArray[size] = {};
 	
+	// Input data for test
 	for (auto &item : testArray)
 	{
 		std::cin >> item;
 	}
 	
+	// next line pls!
 	std::cout << std::endl;
 	
-	// find maxSum of Array
-	for (auto item : testArray)
-	{
-		tempSum = sumOfDigit(item);
-		if (tempSum > maxSum)
-		{
-			maxSum = tempSum;
-		}
-	}
+	maxSum = findMaxSum(testArray, size);
+	
 	
 	int index = 0;
-	
-	for(int i = 0; i < size; ++i)
+	for (int i = 0; i < size; ++i)
 	{
 		if (sumOfDigit(testArray[i]) == maxSum)
 		{
@@ -55,8 +65,14 @@ int main()
 		
 	}
 	
+	
+	// Output
 	for (auto item : arrayOfMaximums)
 	{
+		if (item == 0)
+		{
+			break;
+		}
 		std::cout << item << " ";
 	}
 	
