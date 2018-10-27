@@ -6,16 +6,14 @@ add_definitions(-std=gnu++0x)
 # Set C++11 standart
 set(CMAKE_CXX_STANDARD 11)
 
-## Locate GTest
+# Locate GTest
 #find_package(GTest REQUIRED)
 #include_directories(${GTEST_INCLUDE_DIRS})
 
 # Locate solutions for problemsets
-#include_directories(problemsets)
-#
-#set(    SOURCE_FILES
-#        problemsets/testwork-second-try/task01.cpp)
+include_directories(problemsets/testwork-second-try)
 
+#set(    SOURCE_FILES
 #        problemsets/problemset-02/arrayHelpers.cpp
 #        problemsets/problemset-02/task-21-fibonacci.cpp
 #        problemsets/problemset-02/task-22-power.cpp
@@ -34,6 +32,7 @@ set(CMAKE_CXX_STANDARD 11)
 # Link current run-configuration with what we want to test and the GTest and pthread library
 # (spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
 # target_link_libraries(spbuHomeWork)
+
 add_executable(task02 problemsets/testwork-second-try/task02.cpp)
 add_executable(task01 problemsets/testwork-second-try/task01.cpp)
 add_executable(task03 problemsets/testwork-second-try/task03.cpp)

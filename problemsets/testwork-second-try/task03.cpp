@@ -1,53 +1,65 @@
-#include <iostream>
+#include <string>
 #include <fstream>
 #include <vector>
+#include <iostream>
+
 
 using namespace std;
 
-void readBuffer(vector<string> &mainText, ifstream &myFile)
+
+void readBuffer(vector<string> &captured, ifstream &file)
 {
-	while (!myFile.eof())
+	while (!file.eof())
 	{
-		string textPart;
-		myFile >> textPart;
-		mainText.push_back(textPart);
+		string buffer;
+		getline(file, buffer);
+		captured.push_back(buffer);
 	}
 }
 
+
+void findComments(vector<string> const &captured, vector<string> &output)
+{
+	for (string const &line : captured)
+	{
+		if (line.find(';') != string::npos)
+		{
+			size_t pos = line.find(';');
+			output.push_back(line.substr(pos));
+		}
+		
+	}
+	
+}
+
+
+void printOutput(vector<string> const &output)
+{
+	for (string const &str : output)
+	{
+		cout << str << endl;
+	}
+}
+
+
 int main()
 {
-	ifstream myFile("someText.txt", ios::in);
+	ifstream file("textFile.txt", ios::in);
 	
-	if (myFile.is_open())
+	if (file.is_open())
 	{
-		vector<string> mainText;
-		readBuffer(mainText, myFile);
+		vector<string> captured;
+		vector<string> output;
 		
-		myFile.close();
+		readBuffer(captured, file);
+		file.close();
 		
-		for (string const &line : mainText)
-		{
-			unsigned long length = line.length();
-			int index = 0;
-			
-			while (line[index] != ';' && index < length - 1)
-			{
-				++index;
-			}
-			
-			if (index < length - 1)
-			{
-				for (int j = index; j < length - 1; ++j)
-				{
-					cout << line[j];
-				}
-				cout << endl;
-			}
-		}
+		findComments(captured, output);
+		printOutput(output);
 	}
 	else
 	{
-		cout << "No such myFile in the directory" << endl;
+		cout << "No such file in the directory" << endl;
 		return 1;
 	}
 	
