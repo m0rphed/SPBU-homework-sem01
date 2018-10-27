@@ -11,6 +11,7 @@
 
 # Don't ignore CMakeLists.txt
 !CMakeLists.txt
+!/problemsets/testwork-second-try/textFile.txt
 
 # All cmake files (used by CLion)
 cmake-build-debug/
