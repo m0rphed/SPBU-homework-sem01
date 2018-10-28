@@ -2,20 +2,22 @@
 #define SPBU_HOMEWORK_TASK_41_SUM_BIN_DEC_H
 
 
-struct Number
+namespace magicNumber
 {
-	int value = 0;
-	unsigned int mask = 0;
-};
-
-
-void getNumberFromConsole(int &value);
-
-unsigned int getBitMask(int number);
-
-void printBinary(Number *n);
-
-void initializeNumber(Number *n, int decimalValue);
+	struct Number;
+	
+	
+	void getNumberFromConsole(int &value);
+	
+	
+	unsigned int getBitMask(int number);
+	
+	
+	void printBinary(Number *n);
+	
+	
+	void initializeNumber(Number *n, int decimalValue);
+}
 
 
 #endif //SPBU_HOMEWORK_TASK_41_SUM_BIN_DEC_H

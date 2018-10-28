@@ -1,12 +1,20 @@
 #include "task-41-twos-complement.h"
 
+
 #include <stdio.h>
 #include <math.h>
 #include <locale.h>
 
 
+struct magicNumber::Number
+{
+	int value = 0;
+	unsigned int mask = 0;
+};
+
+
 // Function provides input from console
-void getNumberFromConsole(int &value)
+void magicNumber::getNumberFromConsole(int &value)
 {
 	printf("\nВведите целое число:\n");
 	scanf("%d", &value);
@@ -14,7 +22,7 @@ void getNumberFromConsole(int &value)
 
 
 // Function returns a bit mask for a number
-unsigned int getBitMask(const int number)
+unsigned int magicNumber::getBitMask(const int number)
 {
 	if (number >= 0)
 	{
@@ -37,7 +45,7 @@ unsigned int getBitMask(const int number)
 }
 
 
-void printBinary(Number *n)
+void magicNumber::printBinary(Number *n)
 {
 	// Make a copy of bit mask
 	unsigned int mask = n->mask;
@@ -51,7 +59,7 @@ void printBinary(Number *n)
 }
 
 
-void initializeNumber(Number *n, int decimalValue)
+void magicNumber::initializeNumber(Number *n, int decimalValue)
 {
 	n->value = decimalValue;
 	n->mask = getBitMask(n->value);
@@ -65,22 +73,22 @@ int main()
 	
 	int inputValue = 0;
 	
-	Number first;
-	getNumberFromConsole(inputValue);
-	initializeNumber(&first, inputValue);
+	magicNumber::Number first;
+	magicNumber::getNumberFromConsole(inputValue);
+	magicNumber::initializeNumber(&first, inputValue);
 	printf("\n %d в двоичном представлениии:\n", first.value);
-	printBinary(&first);
+	magicNumber::printBinary(&first);
 	
-	Number second;
-	getNumberFromConsole(inputValue);
-	initializeNumber(&second, inputValue);
+	magicNumber::Number second;
+	magicNumber::getNumberFromConsole(inputValue);
+	magicNumber::initializeNumber(&second, inputValue);
 	printf("\n %d в двоичном представлениии:\n", second.value);
-	printBinary(&second);
+	magicNumber::printBinary(&second);
 	
-	Number sum;
-	initializeNumber(&sum, first.value + second.value);
+	magicNumber::Number sum;
+	magicNumber::initializeNumber(&sum, first.value + second.value);
 	printf("\nCумма в двоичном представлениии:gi\n");
-	printBinary(&sum);
+	magicNumber::printBinary(&sum);
 	
 	printf("\nCумма в десятичном представлениии:\n%d\n", sum.value);
 	return 0;
