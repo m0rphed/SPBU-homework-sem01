@@ -4,7 +4,7 @@
 #include <stdio.h>       // puts()
 
 // include solution from problemset-02
-#include "../problemsets/problemset-02/task-22-power.h"
+#include "problemset-02/tasks/task-22-power.h"
 
 
 TEST(problemset02, raisedToThePowerTest)
