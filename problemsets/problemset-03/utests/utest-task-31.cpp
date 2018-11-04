@@ -2,10 +2,10 @@
 #include <gmock/gmock.h>
 
 // using arrayHelpers.h for more efficient array initialization etc.
-#include "../problemsets/problemset-02/arrayHelpers.h"
+#include "problemset-02/tasks/arrayHelpers.h"
 
 // include solution from problemset-03
-#include "../problemsets/problemset-03/task-31-quicksort.h"
+#include "problemset-03/tasks/task-31-quicksort.h"
 
 
 ::testing::AssertionResult isAscendingArray(int *testArray, const int size)
