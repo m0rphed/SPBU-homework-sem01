@@ -9,7 +9,6 @@ void insertionSort(int *array, int size)
 	{
 		int current = array[i];
 		int j = i;
-		
 		while (j > 0 && array[j - 1] > current)
 		{
 			array[j] = array[j - 1];
@@ -23,7 +22,8 @@ void insertionSort(int *array, int size)
 // Partition by pivot
 int partition(int *array, int start, int end)
 {
-	int pivot = array[end];
+	int pivot_id = rand() % (end - start) + 1;
+	int pivot = array[pivot_id];
 	
 	int i = start - 1;
 	int temp = 0;
@@ -48,22 +48,18 @@ int partition(int *array, int start, int end)
 
 
 // Quick Sort
-// Attention! Parameters 'start', 'end' -- indices of an array
 void quickSort(int *array, int start, int end)
 {
-	int const size = abs(start + end + 1);
-	
-	if (size < 10)
+	if (abs(start + end) < 10)
 	{
-		insertionSort(array, size);
+		insertionSort(array, abs(start + end));
 	}
-	else
+
+	if (start < end)
 	{
-		if (start < end)
-		{
-			int q = partition(array, start, end);
-			quickSort(array, start, q - 1);
-			quickSort(array, q + 1, end);
-		}
+		int q = partition(array, start, end);
+		
+		quickSort(array, start, q - 1);
+		quickSort(array, q + 1, end);
 	}
 }
