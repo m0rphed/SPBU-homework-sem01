@@ -10,7 +10,7 @@
 *.txt
 
 # Don't ignore CMakeLists.txt
-!CMakeLists.txt
+!*CMakeLists.txt
 
 # All cmake files (used by CLion)
 cmake-build-debug/

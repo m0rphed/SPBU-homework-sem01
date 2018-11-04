@@ -46,6 +46,7 @@ void countingSort(int *array, int size)
 	}
 	
 	int currentIndex = 0;
+	
 	for (int i = 0; i < max - min + 1; ++i)
 	{
 		while (tempArray[i] > 0)
