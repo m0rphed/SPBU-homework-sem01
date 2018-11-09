@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
+# Locate solutions for testwork-third-try
+add_subdirectory(problemsets/testwork-third-try)
+
 ## Locate solutions for problemsets-01
 #add_subdirectory(problemsets/problemset-01)
 #
@@ -31,9 +34,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 ## Locate solutions for problemsets-07
 #add_subdirectory(problemsets/problemset-07)
 
-set(SOURCE_FILES init_gtest.cpp)
-add_executable(spbuHomeWork ${SOURCE_FILES})
+#set(SOURCE_FILES init_gtest.cpp)
+#add_executable(spbuHomeWork ${SOURCE_FILES})
 
-# Link current run-configuration with what we want to test and the GTest and pthread library
-target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
+## Link current run-configuration with what we want to test and the GTest and pthread library
+#target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
 
