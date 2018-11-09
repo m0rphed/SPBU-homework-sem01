@@ -24,7 +24,7 @@ TEST(isPalindromeTest, rusWordsTestCppVersion)
 	
 	for (string &word : russianPalindromes)
 	{
-		ASSERT_TRUE(isPalindromeCpp(word));
+		EXPECT_TRUE(isPalindromeCpp(word));
 	}
 	
 	for (string &word : russianWords)
@@ -37,7 +37,7 @@ TEST(isPalindromeTest, rusWordsTestCppVersion)
 
 TEST(isPalindromeTest, engWordsTestCppVersion)
 {
-	vector<string> engPalindromes = {"weew", "zooz"};
+	vector<string> engPalindromes = {"weew", "zooz", "ABA ABA"};
 	for (string &word : engPalindromes)
 	{
 		ASSERT_TRUE(isPalindromeCpp(word));

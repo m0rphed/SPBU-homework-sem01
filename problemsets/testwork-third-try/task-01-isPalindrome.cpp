@@ -5,7 +5,7 @@
 #include <string.h> // strlen()
 #include <locale.h> // allow Russian in console
 
-// For C++ version
+// For C++ version`
 #include <string>
 #include <iostream>
 #include <algorithm>
