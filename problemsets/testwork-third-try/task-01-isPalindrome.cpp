@@ -1,6 +1,7 @@
 #include "task-01-isPalindrome.h"
 #include <stdio.h>
 #include <string.h> // strlen()
+#include <locale.h> // allow Russian in console
 
 // Проверить, является ли строка палиндромом - то есть, читается ли она одинаково в обоих направлениях.
 // Заглавные и строчные буквы считаются разными,
@@ -51,8 +52,18 @@ void sanitizeString(char *myString)
 // Lets test it!
 int main()
 {
+	setlocale(LC_ALL, "Russian");
 	isPalindrome("abba");
 	isPalindrome("abbccbba");
 	isPalindrome("geeks");
+	isPalindrome("я иду с мечем судия");
+	char test01[] = "я иду с мечем судия";
+	sanitizeString(test01);
+	isPalindrome(test01);
+	isPalindrome("яидусмечемсудия");
+	isPalindrome("яидусмеемсудия");
+	isPalindrome("to p ot");
+	isPalindrome("топот");
+	
 	return 0;
 }
