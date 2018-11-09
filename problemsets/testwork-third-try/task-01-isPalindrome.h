@@ -1,9 +1,9 @@
-//
-// Created by vic on 11/9/18.
-//
+#include <string>
 
 #pragma once
 
-void isPalindrome(char myString[]);
+bool isPalindrome(char myString[]);
 
 void sanitizeString(char *myString);
+
+bool isPalindromeCpp(std::string &myString);

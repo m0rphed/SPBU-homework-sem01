@@ -1,7 +1,16 @@
 #include "task-01-isPalindrome.h"
-#include <stdio.h>
+
+// For C version
+#include <stdio.h>  // printf()
 #include <string.h> // strlen()
 #include <locale.h> // allow Russian in console
+
+// For C++ version
+#include <string>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
 
 // Проверить, является ли строка палиндромом - то есть, читается ли она одинаково в обоих направлениях.
 // Заглавные и строчные буквы считаются разными,
@@ -13,7 +22,7 @@
 // использовать функцию strlen из string.h.
 
 
-void isPalindrome(char myString[])
+bool isPalindrome(char myString[])
 {
 	int leftIndex = 0;
 	int rightIndex = strlen(myString) - 1;
@@ -22,13 +31,14 @@ void isPalindrome(char myString[])
 	{
 		if (myString[leftIndex] != myString[rightIndex])
 		{
-			printf("%s => This is not a palindrome\n", myString);
-			return;
+			printf("\n\t%s => This is not a palindrome\n", myString);
+			return false;
 		}
 		leftIndex++;
 		rightIndex--;
 	}
-	printf("%s => This is a palindrome! Hell Yeah!\n", myString);
+	printf("\n\t%s => This is a palindrome! Hell Yeah!\n", myString);
+	return true;
 }
 
 
@@ -49,21 +59,17 @@ void sanitizeString(char *myString)
 }
 
 
-// Lets test it!
-int main()
+// C++ version
+bool isPalindromeCpp(string &myString)
 {
-	setlocale(LC_ALL, "Russian");
-	isPalindrome("abba");
-	isPalindrome("abbccbba");
-	isPalindrome("geeks");
-	isPalindrome("я иду с мечем судия");
-	char test01[] = "я иду с мечем судия";
-	sanitizeString(test01);
-	isPalindrome(test01);
-	isPalindrome("яидусмечемсудия");
-	isPalindrome("яидусмеемсудия");
-	isPalindrome("to p ot");
-	isPalindrome("топот");
+	// sanitize string with the help of iterator
+	string::iterator endingPosition = remove(myString.begin(), myString.end(), ' ');
+	myString.erase(endingPosition, myString.end());
 	
-	return 0;
+	if (equal(myString.begin(), myString.begin() + myString.size() / 2, myString.rbegin()))
+	{
+		return true;
+	}
+	
+	return false;
 }
