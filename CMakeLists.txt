@@ -7,8 +7,8 @@ add_definitions(-std=gnu++0x)
 set(CMAKE_CXX_STANDARD 11)
 
 # Locate GTest
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+#find_package(GTest REQUIRED)
+#include_directories(${GTEST_INCLUDE_DIRS})
 
 ## Locate solutions for problemsets-01
 #add_subdirectory(problemsets/problemset-01)
@@ -35,6 +35,9 @@ set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
 add_executable(task-51-linked-list problemsets/problemset-05/task-51-linked-list.cpp)
+add_executable(task02 problemsets/testwork-second-try/task02.cpp)
+add_executable(task01 problemsets/testwork-second-try/task01.cpp)
+add_executable(task03 problemsets/testwork-second-try/task03.cpp)
 
 # Link current run-configuration with what we want to test and the GTest and pthread library
 target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
