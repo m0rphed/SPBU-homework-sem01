@@ -34,6 +34,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
+add_executable(task-51-linked-list problemsets/problemset-05/task-51-linked-list.cpp)
+
 # Link current run-configuration with what we want to test and the GTest and pthread library
 target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
-
