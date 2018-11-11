@@ -1,6 +1,4 @@
-#ifndef SPBU_HOMEWORK_TASK_32_MOST_FREQUENT_ELEMENT_H
-#define SPBU_HOMEWORK_TASK_32_MOST_FREQUENT_ELEMENT_H
+#pragma once
 
-// nothing here yet :(
 
-#endif //SPBU_HOMEWORK_TASK_32_MOST_FREQUENT_ELEMENT_H
+void mostFrequentElement();

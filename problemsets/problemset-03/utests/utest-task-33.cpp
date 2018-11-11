@@ -4,5 +4,5 @@
 
 TEST(problemset03, task33)
 {
-	ASSERT_TRUE(true);
+	ASSERT_TRUE(false);
 }
