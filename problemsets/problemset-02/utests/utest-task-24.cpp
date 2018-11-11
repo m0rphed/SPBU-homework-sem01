@@ -6,10 +6,10 @@
 #include <stdlib.h>      // srand()
 
 // using arrayHelpers.h for more efficient array initialization etc.
-#include "../problemsets/problemset-02/arrayHelpers.h"
+#include "problemset-02/tasks/arrayHelpers.h"
 
 // include solution from problemset-02
-#include "../problemsets/problemset-02/task-24-sort-rand-array.h"
+#include "problemset-02/tasks/task-24-sort-rand-array.h"
 
 
 ::testing::AssertionResult strangeSortTestFunc(int *testArray, const int size)

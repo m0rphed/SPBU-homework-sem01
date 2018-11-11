@@ -4,7 +4,7 @@
 #include <stdio.h>       // puts()
 
 // include solution from problemset-02
-#include "../problemsets/problemset-02/task-22-power.h"
+#include "problemset-02/tasks/task-22-power.h"
 
 
 TEST(problemset02, raisedToThePowerTest)
@@ -21,5 +21,6 @@ TEST(problemset02, raisedToThePowerTest)
 			ASSERT_EQ(pow(testCase, power), simplePow(testCase, power));
 		}
 	}
+	
 	puts("\n\tAll tests for task 'power' -- passed!\n");
 }
