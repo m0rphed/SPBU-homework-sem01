@@ -4,11 +4,11 @@
 
 float polynomial(float x)
 {
-	printf("Value of x: %f\n", x);
+	printf("\nValue of x: %f", x);
 	
 	float squareX = x * x;
 	float result = (squareX + x) * (squareX + 1) + 1;
 	
-	printf("\nx^4 + x^3 + x^2 + x + 1 = %f\n", result);
+	printf("\n\tx^4 + x^3 + x^2 + x + 1 = %f\n", result);
 	return result;
 }

@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.12)
 project(spbu-homework)
 
-add_definitions(-std=gnu++0x)
-
 # Set C++11 standart
 set(CMAKE_CXX_STANDARD 11)
+
+enable_testing()
 
 # Let's CONFIGURE GTEST
 # Download and unpack googletest at configure time
@@ -28,9 +28,9 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 # Add googletest directly to our build. This defines
 # the gtest and gtest_main targets.
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-        ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-        EXCLUDE_FROM_ALL)
+add_subdirectory(   ${CMAKE_CURRENT_BINARY_DIR}/googletest-src
+                    ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
+                    EXCLUDE_FROM_ALL)
 
 # The gtest/gtest_main targets carry header search path
 # dependencies automatically when using CMake 2.8.11 or
@@ -63,10 +63,10 @@ add_subdirectory(problemsets/problemset-07)
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
-add_executable(task-51-linked-list problemsets/problemset-05/task-51-linked-list.cpp)
-add_executable(task02 problemsets/testwork-second-try/task02.cpp)
-add_executable(task01 problemsets/testwork-second-try/task01.cpp)
-add_executable(task03 problemsets/testwork-second-try/task03.cpp)
+#add_executable(task-51-linked-list problemsets/problemset-05/task-51-linked-list.cpp)
+#add_executable(task02 problemsets/testwork-second-try/task02.cpp)
+#add_executable(task01 problemsets/testwork-second-try/task01.cpp)
+#add_executable(task03 problemsets/testwork-second-try/task03.cpp)
 
 # Link current run-configuration with what we want to test and the GTest and pthread library
 target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
