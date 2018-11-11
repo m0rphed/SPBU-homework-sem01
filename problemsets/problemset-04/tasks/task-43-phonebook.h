@@ -1,6 +1,4 @@
-#ifndef SPBU_HOMEWORK_TASK_43_PHONEBOOK_H
-#define SPBU_HOMEWORK_TASK_43_PHONEBOOK_H
+#pragma once
 
-// nothing here yet
 
-#endif //SPBU_HOMEWORK_TASK_43_PHONEBOOK_H
+void phoneBookHandler();

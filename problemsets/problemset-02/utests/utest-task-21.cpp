@@ -4,7 +4,7 @@
 #include <stdio.h>       // puts()
 
 // include solution from problemset-02
-#include "problemset-02/tasks/task-21-fibonacci.h"
+#include "../tasks/task-21-fibonacci.h"
 
 
 TEST(problemset02, fibonacciTest)

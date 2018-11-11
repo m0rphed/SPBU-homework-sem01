@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 
 
-TEST(someTest, basicTests4)
+TEST(problemset04, task41)
 {
-	ASSERT_TRUE(true);
+	ASSERT_TRUE(false);
 }

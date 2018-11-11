@@ -1,5 +1,5 @@
 #include "task-23-counting-bubbles.h"
-#include "arrayHelpers.h" // findMinMax()
+#include "../../HelperFunctions/arrayHelpers.h" // findMinMax()
 
 
 // Classic implementation of bubble sort algorithm

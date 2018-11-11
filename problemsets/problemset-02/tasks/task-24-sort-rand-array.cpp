@@ -1,5 +1,5 @@
 #include "task-24-sort-rand-array.h"
-#include "arrayHelpers.h"
+#include "../../HelperFunctions/arrayHelpers.h"
 
 
 void strangeSort(int *array, const int size)

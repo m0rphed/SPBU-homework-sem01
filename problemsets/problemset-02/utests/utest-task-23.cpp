@@ -6,10 +6,10 @@
 #include <stdlib.h>      // qsort(), srand()
 
 // using arrayHelpers.h for more efficient array initialization etc.
-#include "problemset-02/tasks/arrayHelpers.h"
+#include "../../HelperFunctions/arrayHelpers.h"
 
 // include solution from problemset-02
-#include "problemset-02/tasks/task-23-counting-bubbles.h"
+#include "../tasks/task-23-counting-bubbles.h"
 
 
 TEST(problemset02, bubbleSortTest)

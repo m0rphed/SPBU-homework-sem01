@@ -1,6 +1,7 @@
+#include "task-31-quicksort.h"
+
 #include <stdlib.h>
 #include <math.h>
-#include "task-31-quicksort.h"
 
 
 void insertionSort(int *array, int size)
