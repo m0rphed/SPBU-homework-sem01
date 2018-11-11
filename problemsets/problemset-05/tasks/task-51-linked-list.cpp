@@ -218,7 +218,7 @@ void LinkedList::startDialogLoop(Node *&head)
 }
 
 
-int main()
+int polynomial()
 {
 	setlocale(LC_ALL, "Russian");
 	LinkedList::Node *list = nullptr;

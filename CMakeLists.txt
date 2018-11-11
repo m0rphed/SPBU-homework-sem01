@@ -60,13 +60,14 @@ add_subdirectory(problemsets/problemset-06)
 # Locate solutions for problemsets-07
 add_subdirectory(problemsets/problemset-07)
 
+# Locate solutions for problemsets-08
+add_subdirectory(problemsets/problemset-08)
+
+# Locate solutions for TestWorks
+add_subdirectory(problemsets/TestWorks/testwork-second-try)
+
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
-#add_executable(task-51-linked-list problemsets/problemset-05/task-51-linked-list.cpp)
-#add_executable(task02 problemsets/testwork-second-try/task02.cpp)
-#add_executable(task01 problemsets/testwork-second-try/task01.cpp)
-#add_executable(task03 problemsets/testwork-second-try/task03.cpp)
-
 # Link current run-configuration with what we want to test and the GTest and pthread library
-target_link_libraries(spbuHomeWork ${GTEST_LIBRARIES} gtest_main pthread)
+target_link_libraries(spbuHomeWork gmock gtest_main pthread)
