@@ -4,7 +4,7 @@
 
 # .idea files (CLion)
 *.idea/workspace.xml
-*.idea/spbu-homework.[ix]ml
+!*.idea/spbu-homework.[ix]ml
 
 # Ignore .txt notes
 *.txt
