@@ -1,7 +1,7 @@
 #include "task-31-quicksort.h"
 
 #include <stdlib.h>
-#include <math.h>
+#include <math.h> // abs()
 
 
 void insertionSort(int *array, int size)
@@ -16,6 +16,7 @@ void insertionSort(int *array, int size)
 			array[j] = array[j - 1];
 			--j;
 		}
+		
 		array[j] = current;
 	}
 }
