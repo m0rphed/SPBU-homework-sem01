@@ -75,3 +75,14 @@ void findMinMax(int const *array, int size, int &min, int &max)
 		}
 	}
 }
+
+
+void printArray(int const *array, int size)
+{
+	printf("\t\t[ ");
+	for (int i = 0; i < size; ++i)
+	{
+		printf(" %d,", array[i]);
+	}
+	printf(" ]\n");
+}

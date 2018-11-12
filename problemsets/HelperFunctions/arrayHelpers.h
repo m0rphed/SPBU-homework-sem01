@@ -25,4 +25,9 @@ void randomizeArray(int myArray[], int size, int min = 0, int max = 1000);
 int compareIncreasing(const void *first, const void *second);
 
 
-void findMinMax(int const *array, int size, int &min, int &max); // find smallest 'min' and highest 'max'
+// Func. finds smallest 'min' and highest 'max'
+void findMinMax(int const *array, int size, int &min, int &max);
+
+
+// Func. simply prints array to console
+void printArray(int const *array, int size);
