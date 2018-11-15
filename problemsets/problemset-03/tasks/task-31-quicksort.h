@@ -1,10 +1,10 @@
 #pragma once
 
 
-void insertionSort(int *array, int size);
+// Attention! Parameters 'start', 'end' -- indices of an array
+void insertionSort(int *array, int start, int end);
 
 
-int partition(int *array, int start, int end); // function is a part of quickSort implementation
-
-
+// Quick Sort
+// Attention! Parameters 'start', 'end' -- indices of an array
 void quickSort(int *array, int start, int end);

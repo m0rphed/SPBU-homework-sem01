@@ -4,9 +4,10 @@
 #include <math.h> // abs()
 
 
-void insertionSort(int *array, int size)
+// Attention! Parameters 'start', 'end' -- indices of an array
+void insertionSort(int *array, int start, int end)
 {
-	for (int i = 1; i < size; ++i)
+	for (int i = start - 1; i <= end; ++i)
 	{
 		int current = array[i];
 		int j = i;
@@ -23,6 +24,7 @@ void insertionSort(int *array, int size)
 
 
 // Partition by pivot
+// function is a part of quickSort implementation
 int partition(int *array, int start, int end)
 {
 	int pivot = array[end];
@@ -57,7 +59,7 @@ void quickSort(int *array, int start, int end)
 	
 	if (size < 10)
 	{
-		insertionSort(array, size);
+		insertionSort(array, start, end);
 	}
 	else
 	{
