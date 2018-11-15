@@ -70,7 +70,7 @@ TEST(problemset03, insertionSortTest)
 	
 	for (auto &array : testArrays)
 	{
-		insertionSort(array, size);
+		insertionSort(array, 0, size - 1);
 		EXPECT_TRUE(isAscendingArray(array, size)) << "\nInsertionSort: Array is sorted incorrectly!" << std::endl;
 	}
 	
