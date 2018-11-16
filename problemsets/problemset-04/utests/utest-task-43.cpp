@@ -4,5 +4,5 @@
 
 TEST(problemset04, phonebookTest)
 {
-	ASSERT_TRUE(false);
+	FAIL();
 }
