@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 # Define all source files
 set(TASKS_SRCS  tasks/task-41-twos-complement.cpp
+                tasks/task-42-numbers-from-file.cpp
                 tasks/task-43-phonebook.cpp)
 
 # Define all tests
