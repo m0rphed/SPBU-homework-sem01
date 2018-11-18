@@ -1,31 +1,18 @@
-#include "task-41-twos-complement.h"
+#include "task-41-bitwise-operations.h"
 
-#include <math.h>
 #include <iostream>
-#include <locale>
-
-using namespace std;
 
 
 // Function handles console input
-void magicNumber::getInput(int &inputNumber, bool isAutomatic, int value)
+void bitwise::getInput(int &inputNumber)
 {
-	if (isAutomatic)
-	{
-		inputNumber = value;
-		cout << "\nАвтоматически введено целое число: " << value << endl;
-	}
-	else
-	{
-		cout << "\nВведите целое число:" << endl;
-		cin >> inputNumber;
-		
-	}
+	std::cout << "\nВведите целое число:" << std::endl;
+	std::cin >> inputNumber;
 }
 
 
 // Function returns a bit mask for a number
-unsigned int magicNumber::getBitMask(const int number)
+unsigned int bitwise::genBitMask(const int number)
 {
 	if (number >= 0)
 	{
@@ -48,14 +35,14 @@ unsigned int magicNumber::getBitMask(const int number)
 }
 
 
-void magicNumber::printBinary(Number *n)
+void bitwise::printBinary(Number *number)
 {
 	// Make a copy of bit mask
-	unsigned int mask = n->mask;
+	unsigned int mask = number->mask;
 	
 	while (mask)
 	{
-		printf((n->value & mask) ? "1" : "0");
+		printf((number->value & mask) ? "1" : "0");
 		mask >>= 1;
 	}
 	printf("\n");
