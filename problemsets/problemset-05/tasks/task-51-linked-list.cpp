@@ -3,32 +3,24 @@
 #include <iostream> // cin, cout, endl
 #include <locale>   // setlocale(LC_ALL, "Russian")
 
-
 using namespace std;
-
-
-struct LinkedList::Node
-{
-	int data = 0;
-	Node *next = nullptr;
-};
 
 
 int LinkedList::length(Node *head)
 {
-	int len = 0;
+	int length = 0;
 	while (head)
 	{
-		len++;
+		length++;
 		head = head->next;
 	}
-	return len;
+	return length;
 }
 
 
 void LinkedList::shift(Node *&head, int data)
 {
-	auto *newNode = new LinkedList::Node;
+	auto *newNode = new LinkedList::Node(0, nullptr);
 	newNode->data = data;
 	newNode->next = head;
 	head = newNode;
@@ -37,7 +29,7 @@ void LinkedList::shift(Node *&head, int data)
 
 void LinkedList::smartInsert(Node *&head, int data)
 {
-	auto *newNode = new LinkedList::Node;
+	auto *newNode = new LinkedList::Node(0, nullptr);
 	newNode->data = data;
 	
 	// previous node of linked list
@@ -72,6 +64,7 @@ void LinkedList::smartInsert(Node *&head, int data)
 			};
 			return;
 		}
+
 		previous = current;
 		current = current->next;
 	}
@@ -184,7 +177,7 @@ void LinkedList::startDialogLoop(Node *&head)
 		cin >> key;
 		cout << endl;
 		
-		// The dialog mode allows the following operations:
+		// The dialog mode provides the following operations:
 		switch (key)
 		{
 			case 0:
@@ -215,29 +208,4 @@ void LinkedList::startDialogLoop(Node *&head)
 		}
 		
 	} while (key != 0);
-}
-
-
-int polynomial()
-{
-	setlocale(LC_ALL, "Russian");
-	LinkedList::Node *list = nullptr;
-	startDialogLoop(list);
-	
-	// test LinkedList::length() function
-	cout << "\nДлина списка: " << LinkedList::length(list) << endl;
-	LinkedList::printList(list);
-	
-	// test LinkedList::shift() function
-	cout << "Добавим 100 в начало" << endl;
-	LinkedList::shift(list, 100);
-	LinkedList::printList(list);
-	
-	// test LinkedList::reverse() function
-	cout << "Развернём лист:" << endl;
-	LinkedList::reverse(list);
-	LinkedList::printList(list);
-	
-	LinkedList::deleteList(list);
-	return 0;
 }
