@@ -22,11 +22,13 @@ long long iterativeFib(int n)
 	long long next = 1;
 	long long tmp = 0;
 	
-	while (--n > 0)
+	n -= 1;
+	while (n > 0)
 	{
 		tmp = last + next;
 		last = next;
 		next = tmp;
+		n -= 1;
 	}
 	return next;
 }
