@@ -33,15 +33,15 @@ int compare(const void *a, const void *b)
 
 TEST_F(ListFixture, insertedValuesTest)
 {
-	const int arrayLength = 10;
-	auto *testArray = new int[arrayLength]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+	const int length = 10;
+	auto *testArray = new int[length]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	
-	ListFixture::insertTestValues(testArray, arrayLength);
+	ListFixture::insertTestValues(testArray, length);
 	
-	qsort(testArray, arrayLength, sizeof(int), compare);
+	qsort(testArray, length, sizeof(int), compare);
 	
 	// ::testing::AssertionSuccess() <=> true
-	ASSERT_TRUE(ListFixture::checkList(testArray, arrayLength));
+	ASSERT_TRUE(ListFixture::checkList(testArray, length));
 	
 	cout << endl;
 	LinkedList::printList(listHead);
@@ -50,20 +50,64 @@ TEST_F(ListFixture, insertedValuesTest)
 }
 
 
-TEST_F(ListFixture, dialogLoopTest)
+TEST_F(ListFixture, simpleDialogLoopTest)
 {
 	// Enable Russian in console
 	setlocale(LC_ALL, "Russian");
 	
-	const int arrayLength = 10;
-	auto *testArray = new int[arrayLength]{1, 1, 1, 2, 1, 3, 1, 4, 3, 0};
+	const int length = 10;
+	auto *testArray = new int[length]{1, 1, 1, 2, 1, 3, 1, 4, 3, 0};
 	
 	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
-	testDialogLoop(testArray, arrayLength);
+	simulateDialogLoop(testArray, length);
 	
-	cout << "Длина списка: " << LinkedList::length(listHead);
-	ASSERT_EQ(LinkedList::length(listHead), 4);
+	cout << "Длина списка: " << LinkedList::length(listHead) << endl;
+	GTEST_ASSERT_EQ(LinkedList::length(listHead), 4);
 	
-	SUCCEED();
 	delete[] testArray;
+}
+
+
+TEST_F(ListFixture, complicatedDialogLoopTest)
+{
+	// Enable Russian in console
+	setlocale(LC_ALL, "Russian");
+	
+	const int length = 26;
+	auto *testArray = new int[length]{1, 1, 1, 3, 1, 3, 1, 7, 2, 3, 2, 3, 2,
+	                                  3, 3, 666, 1, 42, 3, 2, 1, 2, 42, 3, 0};
+	
+	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
+	simulateDialogLoop(testArray, length);
+	
+	cout << "Длина списка: " << LinkedList::length(listHead) << endl;
+	GTEST_ASSERT_EQ(LinkedList::length(listHead), 1);
+	GTEST_ASSERT_EQ(listHead->data, 7);
+	
+	delete[] testArray;
+}
+
+
+TEST_F(ListFixture, insertThenDeleteOddElements)
+{
+	const int length = 10;
+	
+	auto *testArray = new int[length]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+	auto *testCommands = new int[length]{2, 9, 2, 7, 2, 5, 2, 3, 2, 1};
+	auto *onlyOddElements = new int[5]{2, 4, 6, 8, 10};
+	
+	ListFixture::insertTestValues(testArray, length);
+	
+	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
+	simulateDialogLoop(testCommands, length);
+	
+	// ::testing::AssertionSuccess() <=> true
+	ASSERT_TRUE(ListFixture::checkList(onlyOddElements, 5));
+	
+	cout << endl;
+	LinkedList::printList(listHead);
+	
+	delete[] testArray;
+	delete[] testCommands;
+	delete[] onlyOddElements;
 }

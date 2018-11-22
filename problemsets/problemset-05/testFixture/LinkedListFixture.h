@@ -8,7 +8,7 @@ class ListFixture : public ::testing::Test
 {
 public:
 	
-	void testDialogLoop(int *commands, int length);
+	void simulateDialogLoop(int *commands, int length);
 	
 	void insertTestValues(int *array, int size);
 	

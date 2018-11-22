@@ -52,7 +52,7 @@ void ListFixture::insertTestValues(int *array, const int size)
 
 
 // Test fixture method
-void ListFixture::testDialogLoop(int *commands, const int length)
+void ListFixture::simulateDialogLoop(int *commands, int length)
 {
 	// Enable Russian in console -- we always test startDialogLoop() in Russian
 	setlocale(LC_ALL, "Russian");

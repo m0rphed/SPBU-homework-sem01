@@ -64,7 +64,7 @@ void LinkedList::smartInsert(Node *&head, int data)
 			};
 			return;
 		}
-
+		
 		previous = current;
 		current = current->next;
 	}
@@ -76,6 +76,7 @@ void LinkedList::smartInsert(Node *&head, int data)
 void LinkedList::smartDelete(Node *&head, int data)
 {
 	bool deleted = false;
+	
 	// previous node of linked list
 	LinkedList::Node *previous = nullptr;
 	
@@ -100,9 +101,17 @@ void LinkedList::smartDelete(Node *&head, int data)
 			}
 			else // when previous do not exist
 			{
-				// The list should be empty
-				head = nullptr;
-				cout << "Удалён последний элемент." << endl;
+				// Case 1: current is the last element in list
+				if (LinkedList::length(current) == 1) // => Check if length == 1
+				{
+					// Then, the list should be empty
+					head = nullptr;
+					cout << "Удалён последний элемент." << endl;
+				}
+				else
+				{
+					head = current->next;
+				}
 			};
 			
 			delete (current);
