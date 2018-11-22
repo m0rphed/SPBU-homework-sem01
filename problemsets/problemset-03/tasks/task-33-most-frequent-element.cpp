@@ -45,8 +45,9 @@ int smartSolution::findMostFrequent(int *array, const int size)
 	}
 	catch (exception &error)
 	{
-		cout << "There are some problems with sorting an array: quickSort() -- failed!" << endl;
-		cout << error.what() << endl;
+		cerr << "ERROR: Error sorting an array" << endl;
+		cerr << error.what() << endl;
+		throw "\tFunction quickSort() -- failed!";
 	}
 	
 	int counter = 0;

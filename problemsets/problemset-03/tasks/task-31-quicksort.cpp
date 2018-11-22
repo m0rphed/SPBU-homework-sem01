@@ -7,7 +7,7 @@
 // Attention! Parameters 'start', 'end' -- indices of an array
 void insertionSort(int *array, int start, int end)
 {
-	for (int i = start - 1; i <= end; ++i)
+	for (int i = start + 1; i <= end; ++i)
 	{
 		int current = array[i];
 		int j = i;
@@ -25,7 +25,7 @@ void insertionSort(int *array, int start, int end)
 
 // Partition by pivot
 // function is a part of quickSort implementation
-int partition(int *array, int start, int end)
+int partition(int *array, const int start, const int end)
 {
 	int pivot = array[end];
 	
@@ -65,9 +65,9 @@ void quickSort(int *array, int start, int end)
 	{
 		if (start < end)
 		{
-			int q = partition(array, start, end);
-			quickSort(array, start, q - 1);
-			quickSort(array, q + 1, end);
+			const int pivot = partition(array, start, end);
+			quickSort(array, start, pivot - 1);
+			quickSort(array, pivot + 1, end);
 		}
 	}
 }

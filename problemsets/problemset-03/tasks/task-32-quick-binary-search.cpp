@@ -8,13 +8,14 @@
 
 int binarySearch(int *array, const int length, int item)
 {
+	// non-const variables
 	int low = 0;
 	int high = length;
 	
 	while (low <= high)
 	{
-		int mid = (low + high) / 2;
-		int guess = array[mid];
+		const int mid = (low + high) / 2;
+		const int guess = array[mid];
 		
 		if (guess == item)
 		{
