@@ -1,12 +1,11 @@
+#include "../testFixture/LinkedListFixture.h"
+#include "../tasks/task-51-linked-list.h"
+
 #include <gtest/gtest.h> // Google Test Framework
-#include <gmock/gmock.h>
 
 #include <cstdlib>
 #include <iostream> // cin, cout, endl
 #include <locale>   // setlocale(LC_ALL, "Russian")
-
-#include "../testFixture/LinkedListFixture.h"
-#include "../tasks/task-51-linked-list.h"
 
 using namespace std;
 
