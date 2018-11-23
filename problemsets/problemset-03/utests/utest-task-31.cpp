@@ -1,12 +1,10 @@
+#include "../../HelperFunctions/arrayHelpers.h" // using arrayHelpers.h for more efficient array initialization etc.
+#include "../tasks/task-31-quicksort.h" // include solution from problemset-03
+
 #include <gtest/gtest.h> // Google Test Framework
 #include <gmock/gmock.h>
 
-// using arrayHelpers.h for more efficient array initialization etc.
-#include "../../HelperFunctions/arrayHelpers.h"
-
-// include solution from problemset-03
-#include "../tasks/task-31-quicksort.h"
-
+#include <iostream> // for sending error messages
 
 ::testing::AssertionResult isAscendingArray(int *testArray, const int size)
 {
@@ -17,6 +15,8 @@
 			return ::testing::AssertionFailure();
 		}
 	}
+	printf("\n\tSorted Array:\n");
+	printArray(testArray, size);
 	return ::testing::AssertionSuccess();
 }
 
@@ -35,18 +35,18 @@ TEST(problemset03, quickSortTest)
 	
 	int testArrays[numOfTests][size] = {};
 	
-	for (auto array : testArrays)
+	for (auto &array : testArrays)
 	{
 		fillArray(array, size);
 	}
 	
-	for (auto array : testArrays)
+	for (auto &array : testArrays)
 	{
 		quickSort(array, 0, lastIndex);
-		EXPECT_TRUE(isAscendingArray(array, size));
+		EXPECT_TRUE(isAscendingArray(array, size)) << "\nQSort: Array is sorted incorrectly!" << std::endl;
 	}
 	
-	puts("\n\tAll tests for function 'quickSort' -- passed!\n");
+	puts("\n\tAll tests for function 'quickSort' -- passed!\n\n");
 }
 
 
@@ -63,16 +63,16 @@ TEST(problemset03, insertionSortTest)
 	
 	int testArrays[numOfTests][size] = {};
 	
-	for (auto array : testArrays)
+	for (auto &array : testArrays)
 	{
 		fillArray(array, size);
 	}
 	
-	for (auto array : testArrays)
+	for (auto &array : testArrays)
 	{
-		insertionSort(array, size);
-		EXPECT_TRUE(isAscendingArray(array, size));
+		insertionSort(array, 0, size - 1);
+		EXPECT_TRUE(isAscendingArray(array, size)) << "\nInsertionSort: Array is sorted incorrectly!" << std::endl;
 	}
 	
-	puts("\n\tAll tests for function 'insertionSort' -- passed!\n");
+	puts("\n\tAll tests for function 'insertionSort' -- passed!\n\n");
 }

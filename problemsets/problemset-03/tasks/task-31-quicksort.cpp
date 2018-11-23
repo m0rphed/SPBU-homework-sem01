@@ -1,12 +1,13 @@
 #include "task-31-quicksort.h"
 
 #include <stdlib.h>
-#include <math.h>
+#include <math.h> // abs()
 
 
-void insertionSort(int *array, int size)
+// Attention! Parameters 'start', 'end' -- indices of an array
+void insertionSort(int *array, int start, int end)
 {
-	for (int i = 1; i < size; ++i)
+	for (int i = start + 1; i <= end; ++i)
 	{
 		int current = array[i];
 		int j = i;
@@ -16,13 +17,15 @@ void insertionSort(int *array, int size)
 			array[j] = array[j - 1];
 			--j;
 		}
+		
 		array[j] = current;
 	}
 }
 
 
 // Partition by pivot
-int partition(int *array, int start, int end)
+// function is a part of quickSort implementation
+int partition(int *array, const int start, const int end)
 {
 	int pivot = array[end];
 	
@@ -56,15 +59,15 @@ void quickSort(int *array, int start, int end)
 	
 	if (size < 10)
 	{
-		insertionSort(array, size);
+		insertionSort(array, start, end);
 	}
 	else
 	{
 		if (start < end)
 		{
-			int q = partition(array, start, end);
-			quickSort(array, start, q - 1);
-			quickSort(array, q + 1, end);
+			const int pivot = partition(array, start, end);
+			quickSort(array, start, pivot - 1);
+			quickSort(array, pivot + 1, end);
 		}
 	}
 }

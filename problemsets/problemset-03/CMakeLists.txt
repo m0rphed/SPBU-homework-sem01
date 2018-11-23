@@ -5,6 +5,7 @@ set(HELPERS ../HelperFunctions/arrayHelpers.cpp)
 
 # Define all source files
 set(TASKS_SRCS  tasks/task-31-quicksort.cpp
+                tasks/task-32-quick-binary-search.cpp
                 tasks/task-33-most-frequent-element.cpp)
 
 # Define all tests
