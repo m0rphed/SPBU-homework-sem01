@@ -1,6 +1,6 @@
 #include "LinkedListFixture.h"
 
-#include "../tasks/task-51-linked-list.h" // Testing LinkedList
+#include "../tasks/LinkedList/task-51-linked-list.h" // Testing LinkedList
 
 #include <iostream>  // Printing error messages
 #include <locale>    // Printing Russian messages in console

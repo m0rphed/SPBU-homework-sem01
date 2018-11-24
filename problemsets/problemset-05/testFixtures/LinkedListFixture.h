@@ -1,7 +1,9 @@
 #pragma once
 
-#include "../tasks/task-51-linked-list.h"
+
+#include "../tasks/LinkedList/task-51-linked-list.h"
 #include <gtest/gtest.h>
+
 
 // Abstract Test Class <=> Test Fixture
 class ListFixture : public ::testing::Test

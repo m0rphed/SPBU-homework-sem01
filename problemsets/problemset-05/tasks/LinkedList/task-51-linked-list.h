@@ -28,7 +28,7 @@ namespace LinkedList
 	void smartDelete(Node *&head, int data);
 	
 	// I was not asked to do this function,
-	// so it is not a part of the task.
+	// so it is not a part of the task :)
 	// Func. reverse whole list
 	void reverse(Node *&head);
 	
