@@ -4,35 +4,47 @@
 #include <exception>
 
 using namespace std;
+using namespace CircularList;
 
 
-CircularList::Node::Node(int value)
+// Constructor for initializing node of a circular list
+Node::Node(int value)
 {
 	data = value;
 	next = this;
 }
 
 
-CircularList::LinkedList::LinkedList(int headValue)
+// Init constructor of the class
+LinkedList::LinkedList(int headValue)
 {
 	listHead = new Node(headValue);
 }
 
 
-CircularList::LinkedList::~LinkedList()
+// Init destructor of the class
+LinkedList::~LinkedList()
 {
 	deleteList();
 }
 
 
-bool CircularList::LinkedList::isHead(CircularList::Node *element)
+// Returns TRUE if given 'element' = HEAD
+bool LinkedList::isHead(Node *element)
 {
 	return (listHead == element);
 }
 
 
-void CircularList::LinkedList::shift()
+// Shifting head
+void LinkedList::shift()
 {
+	if (this->length() == 1)
+	{
+		cout << "\nCould not shift list with only one element!" << endl;
+		return;
+	}
+	
 	auto *previous = listHead;
 	auto *current = listHead->next;
 	
@@ -42,23 +54,27 @@ void CircularList::LinkedList::shift()
 		current = current->next;
 	}
 	
-	cout << "\nDelete listHead with key: " << current->data << endl;
+	cout << "\nDelete head of the list with key: " << current->data << endl;
+	
 	previous->next = current->next;
 	listHead = current->next;
+	
+	// destroy current element
 	delete current;
 }
 
 
-int CircularList::LinkedList::length()
+int LinkedList::length()
 {
-	int counter = 0;
+	// Case: an empty list.
 	if (listHead == nullptr)
 	{
 		cout << "\nCircular list is empty (or do not exist)." << endl;
-		return counter;
+		return 0;
 	}
 	
-	auto *current = listHead->next;
+	int counter = 0;
+	auto *current = listHead;
 	
 	do
 	{
@@ -71,9 +87,21 @@ int CircularList::LinkedList::length()
 }
 
 
-void CircularList::LinkedList::insert(const int key)
+void LinkedList::insert(const int key)
 {
-	Node *newElement = new CircularList::Node(key);
+	Node *newElement = new Node(key);
+	
+	// Case 1: list is empty.
+	// We need to insert HEAD
+	if (this->length() == 0)
+	{
+		cout << "\t => New head element: " << key << endl;
+		listHead = newElement;
+		return;
+	}
+	
+	// Case 2: circular list is not empty
+	
 	newElement->next = listHead;
 	
 	// make a copy of listHead and listHead->next
@@ -90,13 +118,27 @@ void CircularList::LinkedList::insert(const int key)
 }
 
 
-void CircularList::LinkedList::kill(int key)
+// Deletes element by given key
+void LinkedList::kill(int key)
 {
-	if (listHead->data == key)
+	// Case 1: killing HEAD of the list <- must be done very carefully!
+	
+	// Case 1a: list has only one element <=> HEAD,
+	// so we need to destroy the list.
+	if (listHead->data == key && this->length() == 1)
+	{
+		cout << "\nHead element of the list was deleted!" << endl;
+		listHead = nullptr;
+		return;
+	}
+		// Case 1b: list have more than one element <-- we need to shift HEAD
+	else if (listHead->data == key)
 	{
 		shift();
 		return;
 	}
+	
+	// Case 2: killing any other element by the 'key'
 	
 	// make a copy of listHead and listHead->next
 	auto *previous = listHead;
@@ -122,7 +164,7 @@ void CircularList::LinkedList::kill(int key)
 }
 
 
-void CircularList::LinkedList::print()
+void LinkedList::print()
 {
 	cout << listHead->data << "-->";
 	
@@ -138,8 +180,15 @@ void CircularList::LinkedList::print()
 }
 
 
-void CircularList::LinkedList::deleteList()
+void LinkedList::deleteList()
 {
+	// Empty list case
+	if (!listHead)
+	{
+		delete listHead;
+		return;
+	}
+	
 	auto *current = listHead->next;
 	
 	while (!isHead(current))

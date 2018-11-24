@@ -54,8 +54,7 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 		};
 	}
 	
-	// current length of the list is 1, but there ara still 2 soldiers left
-	cout << "\nI am sorry, old friend...\nR.I.P. soldier N: " << previous->data << endl;
+	// current length of the list is 1
 	theList->listHead = current->next;
 	theList->listHead->next = current->next;
 

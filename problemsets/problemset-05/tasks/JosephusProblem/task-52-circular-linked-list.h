@@ -22,6 +22,7 @@ namespace CircularList
 		// Destroys list with every element in it
 		void deleteList();
 		
+		// function is private
 		void shift();
 	
 	public:

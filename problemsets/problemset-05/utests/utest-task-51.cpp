@@ -53,11 +53,11 @@ TEST_F(ListFixture, simpleDialogLoopTest)
 {
 	// Enable Russian in console
 	setlocale(LC_ALL, "Russian");
+	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	
 	const int length = 10;
 	auto *testArray = new int[length]{1, 1, 1, 2, 1, 3, 1, 4, 3, 0};
 	
-	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	simulateDialogLoop(testArray, length);
 	
 	cout << "Длина списка: " << LinkedList::length(listHead) << endl;
@@ -71,12 +71,12 @@ TEST_F(ListFixture, complicatedDialogLoopTest)
 {
 	// Enable Russian in console
 	setlocale(LC_ALL, "Russian");
+	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	
 	const int length = 26;
 	auto *testArray = new int[length]{1, 1, 1, 3, 1, 3, 1, 7, 2, 3, 2, 3, 2,
 	                                  3, 3, 666, 1, 42, 3, 2, 1, 2, 42, 3, 0};
 	
-	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	simulateDialogLoop(testArray, length);
 	
 	cout << "Длина списка: " << LinkedList::length(listHead) << endl;
@@ -89,15 +89,17 @@ TEST_F(ListFixture, complicatedDialogLoopTest)
 
 TEST_F(ListFixture, insertThenDeleteOddElements)
 {
-	const int length = 10;
+	// Enable Russian in console
+	setlocale(LC_ALL, "Russian");
+	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	
+	const int length = 10;
 	auto *testArray = new int[length]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	auto *testCommands = new int[length]{2, 9, 2, 7, 2, 5, 2, 3, 2, 1};
 	auto *onlyOddElements = new int[5]{2, 4, 6, 8, 10};
 	
 	ListFixture::insertTestValues(testArray, length);
 	
-	cout << "\n\t\t<=== Начать тестирование последовательности комманд ===>" << endl;
 	simulateDialogLoop(testCommands, length);
 	
 	// ::testing::AssertionSuccess() <=> true

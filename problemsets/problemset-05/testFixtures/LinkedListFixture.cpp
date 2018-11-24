@@ -68,7 +68,7 @@ void ListFixture::simulateDialogLoop(int *commands, int length)
 		switch (commands[index])
 		{
 			case 0:
-				cout << "< Выход >" << endl;
+				cout << "< Выход >\n" << endl;
 				return;
 			
 			case 1: // 1 - Add value to the sorted list

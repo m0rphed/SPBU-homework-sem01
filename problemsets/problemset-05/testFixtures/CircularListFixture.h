@@ -13,8 +13,6 @@ public:
 	void createListOfSoldiers(int quantity);
 	
 	int JosephusCount(int blackSpot);
-	
-	::testing::AssertionResult checkListStructure();
 
 protected:
 	

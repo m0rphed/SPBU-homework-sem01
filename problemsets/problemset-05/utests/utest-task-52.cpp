@@ -12,8 +12,10 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 	
 	const int n = 13;
 	const int m = 2;
+	
 	this->createListOfSoldiers(n);
 	this->JosephusCount(m);
+	
 	SUCCEED();
 }
 
@@ -23,40 +25,63 @@ TEST_F(CircularListFixture, JosephusSetUpTest2)
 	
 	const int n = 41;
 	const int m = 2;
+	
 	this->createListOfSoldiers(n);
 	this->JosephusCount(m);
+	
 	SUCCEED();
 }
 
 
 TEST(problemset05, circularListTest)
 {
-	cout << "\n\n<=== Start testing: task-5.2 --> CircularListStructureTest ===>" << endl;
+	cout << "\n\n<=== Start testing: task-5.2 -- testing list interface ===>" << endl;
 	
-	auto *myList = new CircularList::LinkedList(4);
-	cout << endl;
-	cout << "Length: " << myList->length() << endl;
+	auto *myList = new CircularList::LinkedList(666);
 	
-	myList->print();
-	myList->insert(1);
-	myList->insert(2);
-	myList->insert(3);
-	myList->insert(4);
+	cout << "\nLength: " << myList->length() << endl;
+	ASSERT_EQ(1, myList->length());
 	
-	myList->print();
-
-	myList->kill(1);
-	myList->print();
+	const int N = 10;
+	const int testValues[N] = {1, 2, 3, 10, -23, 44, 0, 0, 0, 0};
 	
-	myList->kill(4);
+	for (const auto &value : testValues)
+	{
+		myList->insert(value);
+	}
+	
+	cout << "\nInsert some elements to the list" << endl;
 	myList->print();
 	
-	myList->kill(4);
+	for (const auto &value : testValues)
+	{
+		myList->kill(value);
+	}
+	
 	myList->print();
 	
-	myList->kill(2);
+	ASSERT_EQ(1, myList->length());
+	ASSERT_EQ(666, myList->listHead->data);
+	
+	myList->insert(555);
+	ASSERT_EQ(2, myList->length());
 	myList->print();
+	
+	myList->kill(666);
+	ASSERT_EQ(1, myList->length());
+	myList->print();
+	
+	myList->insert(555);
+	ASSERT_EQ(2, myList->length());
+	myList->print();
+	
+	myList->insert(777);
+	ASSERT_EQ(3, myList->length());
+	ASSERT_EQ(555, myList->listHead->data);
+	myList->print();
+	
+	myList->kill(555);
+	ASSERT_EQ(2, myList->length());
 	
 	delete myList;
-	SUCCEED();
 }
