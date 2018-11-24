@@ -8,9 +8,20 @@ using namespace std;
 
 TEST_F(CircularListFixture, JosephusSetUpTest)
 {
-	cout << "\n\n<=== Start testing: task-5.2-JosephusProblem ===>" << endl;
+	cout << "\n\n<=== Start testing: task-5.2-JosephusProblemStandardTest ===>" << endl;
 	
 	const int n = 13;
+	const int m = 2;
+	this->createListOfSoldiers(n);
+	this->JosephusCount(m);
+	SUCCEED();
+}
+
+TEST_F(CircularListFixture, JosephusSetUpTest2)
+{
+	cout << "\n\n<=== Start testing: task-5.2 --> test2 ===>" << endl;
+	
+	const int n = 41;
 	const int m = 2;
 	this->createListOfSoldiers(n);
 	this->JosephusCount(m);
@@ -20,6 +31,8 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 
 TEST(problemset05, circularListTest)
 {
+	cout << "\n\n<=== Start testing: task-5.2 --> CircularListStructureTest ===>" << endl;
+	
 	auto *myList = new CircularList::LinkedList(4);
 	cout << endl;
 	cout << "Length: " << myList->length() << endl;

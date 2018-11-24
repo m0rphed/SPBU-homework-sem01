@@ -3,9 +3,7 @@
 #include "iostream"
 
 
-::testing::AssertionResult CircularListFixture::checkListStructure()
-{
-}
+using namespace std;
 
 
 void CircularListFixture::createListOfSoldiers(int quantity)
@@ -15,7 +13,7 @@ void CircularListFixture::createListOfSoldiers(int quantity)
 		theList->insert(i);
 	}
 	
-	std::cout << "\nTesting list was set:" << std::endl;
+	cout << "\nTesting list was set:" << endl;
 	theList->print();
 }
 
@@ -37,7 +35,7 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 	{
 		if (counter == blackSpot)
 		{
-			std::cout << "\nR.I.P. soldier N: " << current->data << std::endl;
+			cout << "\nR.I.P. soldier N: " << current->data << endl;
 			previous->next = current->next;
 			
 			if (theList->isHead(current))
@@ -56,7 +54,10 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 		};
 	}
 	
-	std::cout << "Soldier with number: " << theList->listHead->data<< " survived!" << std::endl;
-	std::cout << theList->listHead->data<< std::endl;
-	return previous->data;
+	// current length of the list is 1, but there ara still 2 soldiers left
+	cout << "\nI am sorry, old friend...\nR.I.P. soldier N: " << previous->data << endl;
+	theList->listHead = current->next;
+	theList->listHead->next = current->next;
+
+	cout << "\nSoldier with number: " << theList->listHead->data << " survived!" << endl;
 }
