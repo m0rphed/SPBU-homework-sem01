@@ -12,21 +12,23 @@ public:
 	
 	void createListOfSoldiers(int quantity);
 	
+	int JosephusCount(int blackSpot);
+	
 	::testing::AssertionResult checkListStructure();
 
 protected:
 	
+	CircularList::LinkedList *theList = nullptr;
+	
 	// Standard fixture constructor
 	virtual void SetUp()
 	{
-		testingList = new CircularList::LinkedList(1);
+		theList = new CircularList::LinkedList(1);
 	}
 	
 	// Standard fixture destructor
 	virtual void TearDown()
 	{
-		delete testingList;
+		delete theList;
 	}
-	
-	CircularList::LinkedList *testingList = nullptr;
 };

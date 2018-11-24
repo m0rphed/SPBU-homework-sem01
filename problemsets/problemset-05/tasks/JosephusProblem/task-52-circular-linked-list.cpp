@@ -6,28 +6,22 @@
 using namespace std;
 
 
-//"Считалочка" – отряд из 41-го сикария, защищавший галилейскую крепость Массада,
-//не пожелал сдаваться в плен блокировавшим его превосходящим силам римлян.
-//Сикарии стали в круг и договорились, что каждые два воина будут убивать третьего,
-//		пока не погибнут все.
-//Самоубийство – тяжкий грех, но тот, кто в конце концов останется последним, должен будет его совершить.
-//Иосиф Флавий, командовавший этим отрядом, якобы быстро рассчитал, где нужно стать ему и его другу,
-//		чтобы остаться последними, но не для того, чтобы убить друг друга, а чтобы сдать крепость римлянам.
-//В нашем случае участвует n воинов и убивают каждого m-го.
-//Требуется определить номер k начальной позиции воина, который должен будет остаться последним.
-//Считать с помощью циклического списка.
-
-
-CircularList::Node::Node(int value, CircularList::Node *pointerToNext)
+CircularList::Node::Node(int value)
 {
 	data = value;
-	next = pointerToNext;
+	next = this;
 }
 
 
 CircularList::LinkedList::LinkedList(int headValue)
 {
-	listHead = new Node(headValue, listHead);
+	listHead = new Node(headValue);
+}
+
+
+CircularList::LinkedList::~LinkedList()
+{
+	deleteList();
 }
 
 
@@ -37,12 +31,30 @@ bool CircularList::LinkedList::isHead(CircularList::Node *element)
 }
 
 
+void CircularList::LinkedList::shift()
+{
+	auto *previous = listHead;
+	auto *current = listHead->next;
+	
+	while (!isHead(current))
+	{
+		previous = current;
+		current = current->next;
+	}
+	
+	cout << "\nDelete listHead with key: " << current->data << endl;
+	previous->next = current->next;
+	listHead = current->next;
+	delete current;
+}
+
+
 int CircularList::LinkedList::length()
 {
 	int counter = 0;
 	if (listHead == nullptr)
 	{
-		cout << "Circular list is empty (or do not exist)." << endl;
+		cout << "\nCircular list is empty (or do not exist)." << endl;
 		return counter;
 	}
 	
@@ -61,11 +73,12 @@ int CircularList::LinkedList::length()
 
 void CircularList::LinkedList::insert(const int key)
 {
-	Node *newElement = new CircularList::Node(key, listHead);
+	Node *newElement = new CircularList::Node(key);
+	newElement->next = listHead;
 	
 	// make a copy of listHead and listHead->next
-	auto *current = listHead->next;
 	auto *previous = listHead;
+	auto *current = listHead->next;
 	
 	while (!isHead(current))
 	{
@@ -79,15 +92,37 @@ void CircularList::LinkedList::insert(const int key)
 
 void CircularList::LinkedList::kill(int key)
 {
+	if (listHead->data == key)
+	{
+		shift();
+		return;
+	}
+	
+	// make a copy of listHead and listHead->next
+	auto *previous = listHead;
+	auto *current = listHead->next;
+	
 	while (!isHead(current))
 	{
-		cout << current->data << "-->";
-		current = current->next;
+		if (current->data == key)
+		{
+			cout << "\nDelete element with key: " << current->data << endl;
+			previous->next = current->next;
+			delete current;
+			return;
+		}
+		else
+		{
+			previous = current;
+			current = current->next;
+		};
 	}
+	
+	cout << "\nNo element with such key was found." << endl;
 }
 
 
-void CircularList::LinkedList::printList()
+void CircularList::LinkedList::print()
 {
 	cout << listHead->data << "-->";
 	
@@ -118,7 +153,9 @@ void CircularList::LinkedList::deleteList()
 		} catch (exception &message)
 		{
 			cerr << message.what() << endl;
-			throw "ERROR: Trying to delete an object that does not exist.\n";
+			throw "ERROR: Trying to delete an element that does not exist.\n";
 		}
 	}
+	
+	delete listHead;
 }

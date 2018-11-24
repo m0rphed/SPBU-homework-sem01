@@ -11,22 +11,29 @@ namespace CircularList
 		Node *next;
 		
 		// Init class constructor
-		Node(int value, Node *pointerToNext = nullptr);
+		Node(int value);
 	};
 	
 	class LinkedList
 	{
+	
 	private:
 		
-		Node *listHead = nullptr;
+		// Destroys list with every element in it
+		void deleteList();
+		
+		void shift();
 	
 	public:
 		
+		Node *listHead = nullptr;
+		
 		// Init class constructor
-		LinkedList(int headValue = 0);
+		LinkedList(int headValue);
 		
-		virtual ~LinkedList() = default;
+		virtual ~LinkedList();
 		
+		// Returns 'true' if given element is the head
 		bool isHead(Node *element);
 		
 		int length();
@@ -35,8 +42,6 @@ namespace CircularList
 		
 		void kill(int key);
 		
-		void printList();
-		
-		void deleteList();
+		void print();
 	};
 };

@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Define all source files
-set(TASKS_SRCS  tasks/task-51-linked-list.cpp
-                tasks/task-52-circular-linked-list.cpp)
+set(TASKS_SRCS tasks/LinkedList/task-51-linked-list.cpp
+        tasks/JosephusProblem/task-52-circular-linked-list.cpp)
 
 # Define all test fixture
-set(TEST_FIXTURES  testFixture/LinkedListFixture.cpp)
+set(TEST_FIXTURES testFixtures/LinkedListFixture.cpp
+        testFixtures/CircularListFixture.cpp)
 
 # Define all tests
 set(TESTS   utests/utest-task-51.cpp
