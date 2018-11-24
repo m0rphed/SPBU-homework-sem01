@@ -1,5 +1,5 @@
-#include "../testFixture/LinkedListFixture.h"
-#include "../tasks/task-51-linked-list.h"
+#include "../testFixtures/LinkedListFixture.h"
+#include "../tasks/LinkedList/task-51-linked-list.h"
 
 #include <gtest/gtest.h> // Google Test Framework
 
