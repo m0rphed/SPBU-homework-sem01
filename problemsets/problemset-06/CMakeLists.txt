@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Define all source files
-#set(TASKS_SRCS  tasks/...)
+set(TASKS_SRCS  tasks/LastInFirstOut.cpp
+        tasks/ReversePolishNotation/task-61-postfix-notation.cpp)
 
 # Define all tests
 set(TESTS   utests/utest-task-61.cpp
