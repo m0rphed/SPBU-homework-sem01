@@ -57,6 +57,27 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 	// current length of the list is 1
 	theList->listHead = current->next;
 	theList->listHead->next = current->next;
-
+	
 	cout << "\nSoldier with number: " << theList->listHead->data << " survived!" << endl;
+	
+	// save number
+	survived = theList->listHead->data;
+}
+
+
+::testing::AssertionResult CircularListFixture::insertTest(int value, int expectedLength)
+{
+	theList->insert(value);
+	theList->print();
+	return (expectedLength == theList->length()) ?
+	       ::testing::AssertionSuccess() : ::testing::AssertionFailure();
+}
+
+
+::testing::AssertionResult CircularListFixture::killTest(int value, int expectedLength)
+{
+	theList->kill(value);
+	theList->print();
+	return (expectedLength == theList->length()) ?
+	       ::testing::AssertionSuccess() : ::testing::AssertionFailure();
 }

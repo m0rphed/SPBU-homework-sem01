@@ -1,9 +1,8 @@
 #pragma once
 
-
 namespace LinkedList
 {
-	// Defines type of a single node
+	// Let's define type of a single node
 	// in linked list
 	struct Node
 	{
@@ -15,7 +14,7 @@ namespace LinkedList
 		}
 	};
 	
-	// Func. to get length of list
+	// Func. to gets length of list
 	int length(Node *head);
 	
 	// Shifts linked list, insert new element at the head
@@ -24,12 +23,12 @@ namespace LinkedList
 	// Inserts element, doesn't break the order of the items in the list
 	void smartInsert(Node *&head, int data);
 	
-	// Delete element with value = <data>
+	// Deletes element with value = <data>
 	void smartDelete(Node *&head, int data);
 	
 	// I was not asked to do this function,
 	// so it is not a part of the task :)
-	// Func. reverse whole list
+	// Func. reverses whole list
 	void reverse(Node *&head);
 	
 	// Prints the whole list

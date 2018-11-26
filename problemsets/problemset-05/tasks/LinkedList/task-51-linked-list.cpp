@@ -9,11 +9,13 @@ using namespace std;
 int LinkedList::length(Node *head)
 {
 	int length = 0;
+	
 	while (head)
 	{
 		length++;
 		head = head->next;
 	}
+	
 	return length;
 }
 
@@ -48,7 +50,7 @@ void LinkedList::smartInsert(Node *&head, int data)
 	while (current != nullptr)
 	{
 		// What if we found proper place to insert a new node?
-		// --> So, insert the new node BEFORE higher OR equal node
+		// --> So, insert the new node BEFORE higher or equal node
 		// (no need to go through all equal elements -- trust me, it is good point. I googled it!).
 		if (current->data >= data)
 		{
@@ -121,6 +123,7 @@ void LinkedList::smartDelete(Node *&head, int data)
 		previous = current;
 		current = current->next;
 	}
+	
 	if (!deleted)
 	{
 		cout << "\nОшибка, нет такого элемента!" << endl;
@@ -135,6 +138,7 @@ void LinkedList::reverse(Node *&head)
 	{
 		return;
 	}
+	
 	Node *newHead = nullptr;
 	Node *nextNode = nullptr;
 	

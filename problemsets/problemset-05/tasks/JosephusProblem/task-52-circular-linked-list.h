@@ -1,24 +1,21 @@
 #pragma once
 
-
-// Define class Node <=> represents a node of CircularList
 namespace CircularList
 {
+	// Define class Node <=> represents a node of CircularList
 	class Node
 	{
 	public:
+		
 		int data;
 		Node *next;
 		
 		// Init class constructor
-		Node(int value);
+		explicit Node(int value);
 	};
 	
 	class LinkedList
 	{
-	
-	private:
-		
 		// Destroys list with every element in it
 		void deleteList();
 		
@@ -30,7 +27,7 @@ namespace CircularList
 		Node *listHead = nullptr;
 		
 		// Init class constructor
-		LinkedList(int headValue);
+		explicit LinkedList(int headValue);
 		
 		virtual ~LinkedList();
 		

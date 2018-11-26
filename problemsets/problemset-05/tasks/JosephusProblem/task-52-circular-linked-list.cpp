@@ -48,7 +48,7 @@ void LinkedList::shift()
 	auto *previous = listHead;
 	auto *current = listHead->next;
 	
-	while (!isHead(current))
+	while (!this->isHead(current))
 	{
 		previous = current;
 		current = current->next;
@@ -81,7 +81,7 @@ int LinkedList::length()
 		++counter;
 		current = current->next;
 		
-	} while (!isHead(current));
+	} while (!this->isHead(current));
 	
 	return counter;
 }
@@ -108,7 +108,7 @@ void LinkedList::insert(const int key)
 	auto *previous = listHead;
 	auto *current = listHead->next;
 	
-	while (!isHead(current))
+	while (!this->isHead(current))
 	{
 		previous = current;
 		current = current->next;
@@ -144,7 +144,7 @@ void LinkedList::kill(int key)
 	auto *previous = listHead;
 	auto *current = listHead->next;
 	
-	while (!isHead(current))
+	while (!this->isHead(current))
 	{
 		if (current->data == key)
 		{
@@ -170,7 +170,7 @@ void LinkedList::print()
 	
 	auto *current = listHead->next;
 	
-	while (!isHead(current))
+	while (!this->isHead(current))
 	{
 		cout << current->data << "-->";
 		current = current->next;
@@ -191,7 +191,7 @@ void LinkedList::deleteList()
 	
 	auto *current = listHead->next;
 	
-	while (!isHead(current))
+	while (!this->isHead(current))
 	{
 		auto *temp = current;
 		current = current->next;

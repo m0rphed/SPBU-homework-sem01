@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "../tasks/LinkedList/task-51-linked-list.h"
 #include <gtest/gtest.h>
 
@@ -18,6 +17,8 @@ public:
 
 protected:
 	
+	LinkedList::Node *listHead = nullptr;
+	
 	// Standard fixture constructor
 	virtual void SetUp()
 	{
@@ -29,6 +30,4 @@ protected:
 	{
 		LinkedList::deleteList(listHead);
 	}
-	
-	LinkedList::Node *listHead = nullptr;
 };

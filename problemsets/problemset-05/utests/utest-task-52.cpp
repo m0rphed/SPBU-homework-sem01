@@ -16,8 +16,9 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 	this->createListOfSoldiers(n);
 	this->JosephusCount(m);
 	
-	SUCCEED();
+	ASSERT_EQ(11, this->survived);
 }
+
 
 TEST_F(CircularListFixture, JosephusSetUpTest2)
 {
@@ -29,7 +30,27 @@ TEST_F(CircularListFixture, JosephusSetUpTest2)
 	this->createListOfSoldiers(n);
 	this->JosephusCount(m);
 	
-	SUCCEED();
+	ASSERT_EQ(19, this->survived);
+}
+
+
+TEST_F(CircularListFixture, insertThenKill)
+{
+	cout << "\n\n<=== Start testing: insertThenKillTest ===>" << endl;
+	
+	const int n = 41;
+	const int m = 2;
+	
+	this->createListOfSoldiers(n);
+	
+	cout << "\nInsert: " << 42 << endl;
+	this->insertTest(42, theList->length() + 1);
+	
+	cout << "\nKill: " << 1 << endl;
+	this->killTest(1, theList->length() - 1);
+	
+	this->JosephusCount(m);
+	ASSERT_EQ(20, survived);
 }
 
 
@@ -62,26 +83,6 @@ TEST(problemset05, circularListTest)
 	
 	ASSERT_EQ(1, myList->length());
 	ASSERT_EQ(666, myList->listHead->data);
-	
-	myList->insert(555);
-	ASSERT_EQ(2, myList->length());
-	myList->print();
-	
-	myList->kill(666);
-	ASSERT_EQ(1, myList->length());
-	myList->print();
-	
-	myList->insert(555);
-	ASSERT_EQ(2, myList->length());
-	myList->print();
-	
-	myList->insert(777);
-	ASSERT_EQ(3, myList->length());
-	ASSERT_EQ(555, myList->listHead->data);
-	myList->print();
-	
-	myList->kill(555);
-	ASSERT_EQ(2, myList->length());
 	
 	delete myList;
 }
