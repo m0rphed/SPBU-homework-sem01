@@ -13,6 +13,30 @@ stackElement::stackElement(const int &value, stackElement *pointerToNext)
 }
 
 
+int stackElement::getData()
+{
+	return this->data;
+}
+
+
+void stackElement::setData(const int value)
+{
+	this->data = value;
+}
+
+
+stackElement *stackElement::getNext()
+{
+	return this->next;
+}
+
+
+void stackElement::setNext(stackElement *nextElement)
+{
+	this->next = nextElement;
+}
+
+
 myStack::myStack()
 {
 	topElement = nullptr;
@@ -30,7 +54,7 @@ myStack::~myStack()
 	stackElement *current = topElement;
 	while (current != nullptr)
 	{
-		current = topElement->next;
+		current = topElement->getNext();
 		delete topElement;
 		topElement = current;
 	}
@@ -63,7 +87,7 @@ void myStack::push(const int item)
 
 int myStack::pop()
 {
-	int data = topElement->data;
+	int data = topElement->getData();
 	
 	if (this->isEmpty())
 	{
@@ -71,7 +95,7 @@ int myStack::pop()
 	}
 	
 	auto *pointerToTop = topElement;
-	topElement = topElement->next;
+	topElement = topElement->getNext();
 	delete pointerToTop;
 	return data;
 }
@@ -79,7 +103,7 @@ int myStack::pop()
 
 int myStack::top()
 {
-	return topElement->data;
+	return topElement->getData();
 }
 
 
@@ -101,7 +125,7 @@ int myStack::getSize()
 	
 	while (current != nullptr)
 	{
-		current = current->next;
+		current = current->getNext();
 		++counter;
 	}
 	return counter;

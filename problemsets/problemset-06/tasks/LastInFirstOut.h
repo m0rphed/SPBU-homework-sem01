@@ -5,12 +5,22 @@ class stackElement
 {
 public:
 	
-	// properties of this class is public (as when we define struct)
+	// define stackElement constructor
+	stackElement(const int &value, stackElement *pointerToNext);
+	
+	// define setter and getter methods
+	int getData();
+	
+	void setData(int value);
+	
+	stackElement *getNext();
+	
+	void setNext(stackElement *nextElement);
+
+private:
+	
 	int data;
 	stackElement *next = nullptr;
-	
-	// stackElement constructor
-	stackElement(const int &value, stackElement *pointerToNext);
 };
 
 

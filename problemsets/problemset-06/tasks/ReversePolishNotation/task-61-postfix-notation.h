@@ -8,38 +8,41 @@
 
 class calculationStack : public myStack
 {
-	int result = 0;
-	
 public:
 	
 	// This constructor sets topElement to nullptr
 	calculationStack();
 	
-	// In need tho put some value in the stack when initializing it,
+	// in need to put some value in the stack when initializing it,
 	// => use this constructor
 	explicit calculationStack(const int & value);
 	
-	// Check if we can perform a basic binary operation
+	// check if we can perform a basic binary operation
 	// '+', '-', '*', '/'
 	bool checkStack(std::string operation);
 	
-	// Do addition
+	// do addition
 	int add();
 	
-	// Do subtraction
+	// do subtraction
 	int subtract();
 	
-	// Do multiplication
+	// do multiplication
 	int multiply();
 	
-	// Do division
+	// do division
 	int divide();
 	
-	// Do all calculations
+	// do all calculations
 	void performCalculations(std::vector<std::string> input);
 	
-	// Return result of calculation
+	// return result of calculation
 	int getResult();
+
+private:
+	
+	// Field stores result of the calculation
+	int result = 0;
 };
 
 

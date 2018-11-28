@@ -27,12 +27,12 @@ calculationStack::calculationStack()
 }
 
 
-// In need tho put some value in the stack when initializing it,
+// in need tho put some value in the stack when initializing it,
 // => use this constructor
 calculationStack::calculationStack(const int &value)
 {
-	topElement->data = value;
-	topElement->next = nullptr;
+	topElement->setData(value);
+	topElement->setNext(nullptr);
 	
 	if (this->capacity() != 3)
 	{
