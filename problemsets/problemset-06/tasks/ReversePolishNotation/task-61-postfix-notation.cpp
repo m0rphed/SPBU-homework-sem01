@@ -2,6 +2,7 @@
 #include "../LastInFirstOut.h"
 
 #include <string>
+#include <cstring>
 #include <cctype>
 #include <sstream>
 #include <iostream>
@@ -88,9 +89,10 @@ void calculationStack::performCalculations(std::vector<std::string> input)
 	for (const string &substring : input)
 	{
 		// Check if substring is an integer
-		if (!(substring.empty()) && isdigit(substring[0]))
+		if (!(substring.empty()) && (isdigit(substring[0]) || isdigit(substring[1])))
 		{
 			this->push(stoi(substring));
+			continue;
 		}
 		
 		if (substring == "+")
@@ -168,7 +170,7 @@ int manualTestingFunction()
 	
 	// Create an instance of calculationStack class.
 	auto *calculator = new calculationStack(); // calculator points to nullptr
-
+	
 	calculator->performCalculations(handleInput());
 	cout << calculator->getResult();
 	return 0;
