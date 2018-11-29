@@ -1,26 +1,54 @@
 #pragma once
 
+#include <utility>
+
 namespace bitwise
 {
-	// Defines special type <Number>.
-	// Any element of <Number> stores a 'value', and 'mask'
-	// Binary representation of 'value' could be printed using 'mask'
-	struct Number
+	class Number
 	{
-		int value;
-		unsigned int mask;
+	public:
 		
-		Number(int v, unsigned int m) : value(v), mask(m)
-		{
-		}
+		Number() = default;
+		
+		explicit Number(const int &value);
+		
+		~Number();
+		
+		int getDecimal();
+		
+		bool *getBinary();;
+		
+		int checkLength();
+		
+		void setLength(const int &value);
+		
+		void setDecimal(const int &value);
+		
+		void setBinary(bool *pointerToArray);
+		
+		void generateDecimal();
+		
+		void generateBinary();
+		
+		void printBinary();
+		
+		void shiftBits(const int &n);
+	
+	private:
+		// Decimal representation of number
+		int decimalValue = 0;
+		
+		int arrayLength = 0;
+		
+		// Binary representation of number
+		bool *bitArray = nullptr;
 	};
 	
-	// Func. generates binary mask for number
-	unsigned int genBitMask(int number);
+	void updateBitArray(Number *first, Number *second);
 	
-	// Func. prints binary value of number
-	void printBinary(Number *number);
+	void sumTwoBinaryNumbers(Number *first, Number *second, Number *sum);
 	
-	// Func. handles user input
-	void getInput(int &inputNumber);
+	std::pair<int, int> handleUserInput();
+	
+	void performOperations(bool testingMode = false, int firstValue = 0, int secondValue = 0);
 }
