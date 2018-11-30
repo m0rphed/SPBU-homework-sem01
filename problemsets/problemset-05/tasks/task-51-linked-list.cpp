@@ -35,7 +35,7 @@ void LinkedList::shift(Node *&head, int data)
 }
 
 
-void LinkedList::smartInsert(Node *&head, int data)
+void LinkedList::insert(Node *&head, int data)
 {
 	auto *newNode = new LinkedList::Node;
 	newNode->data = data;
@@ -194,7 +194,7 @@ void LinkedList::startDialogLoop(Node *&head)
 			case 1: // 1 - Add value to the sorted list
 				cout << "Добавление значения в список.\n\tВведите значение: ";
 				cin >> value;
-				LinkedList::smartInsert(head, value);
+				LinkedList::insert(head, value);
 				cout << endl;
 				break;
 			
@@ -224,16 +224,16 @@ int polynomial()
 	LinkedList::Node *list = nullptr;
 	startDialogLoop(list);
 	
-	// test LinkedList::length() function
+	// test testWorkList::length() function
 	cout << "\nДлина списка: " << LinkedList::length(list) << endl;
 	LinkedList::printList(list);
 	
-	// test LinkedList::shift() function
+	// test testWorkList::shift() function
 	cout << "Добавим 100 в начало" << endl;
 	LinkedList::shift(list, 100);
 	LinkedList::printList(list);
 	
-	// test LinkedList::reverse() function
+	// test testWorkList::reverse() function
 	cout << "Развернём лист:" << endl;
 	LinkedList::reverse(list);
 	LinkedList::printList(list);
