@@ -13,7 +13,7 @@ void task01::processData(ifstream &file, const int a, const int b,
 {
 	if (file.is_open())
 	{
-		cout << "Start reading..." << endl;
+		cout << "\nStart reading...\n" << endl;
 		
 		string myWord;
 		while (file >> myWord)
@@ -39,7 +39,7 @@ void task01::processData(ifstream &file, const int a, const int b,
 	}
 	else
 	{
-		cout << "No such file in the directory" << endl;
+		cout << "\nNo such file in the directory\n" << endl;
 		return;
 	}
 	

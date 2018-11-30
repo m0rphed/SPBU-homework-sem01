@@ -22,7 +22,7 @@ int testWorkList::length(Node *head)
 
 void testWorkList::insert(Node *&head, int data)
 {
-	auto *newNode = new testWorkList::Node(0, nullptr);
+	auto *newNode = new testWorkList::Node(data, nullptr);
 	
 	// when list is empty
 	if (head == nullptr)
@@ -118,7 +118,7 @@ void testWorkList::deleteList(Node *&head)
 
 void testWorkList::saveList(testWorkList::Node *head, std::ofstream &file)
 {
-	file << "\nResult";
+	file << "\nResult: ";
 	while (head)
 	{
 		file << head->data << " ";
