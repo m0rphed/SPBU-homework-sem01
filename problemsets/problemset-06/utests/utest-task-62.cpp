@@ -1,4 +1,4 @@
-#include "../tasks/BracketCounting/task-62-counting-brackets.h"
+#include "../tasks/BracketCounter/task-62-counting-brackets.h"
 
 #include <gtest/gtest.h> // Google Test Framework
 
@@ -15,7 +15,7 @@ TEST(problemset06, bracketCounterTest)
 		cout << result.second << endl;
 	}
 	
-	vector<string> badTests = {"{{}", "()]", ")[]"};
+	vector<string> badTests = {"{{}", "()]", ")[]", "[(6+10)]"};
 	
 	for (auto &test : badTests)
 	{
