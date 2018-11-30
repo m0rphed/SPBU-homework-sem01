@@ -1,7 +1,26 @@
+#include "../tasks/BracketCounting/task-62-counting-brackets.h"
+
 #include <gtest/gtest.h> // Google Test Framework
 
+using namespace std;
 
-TEST(problemset06, task62)
+TEST(problemset06, bracketCounterTest)
 {
-	FAIL();
+	
+	vector<string> goodTests = {"{}", "()", "[]"};
+	for (auto &test : goodTests)
+	{
+		pair<bool, string> result = bracketCounter::checkString(test);
+		ASSERT_TRUE(result.first);
+		cout << result.second << endl;
+	}
+	
+	vector<string> badTests = {"{{}", "()]", ")[]"};
+	
+	for (auto &test : badTests)
+	{
+		pair<bool, string> result = bracketCounter::checkString(test);
+		ASSERT_FALSE(result.first);
+		cout << result.second << endl;
+	}
 }
