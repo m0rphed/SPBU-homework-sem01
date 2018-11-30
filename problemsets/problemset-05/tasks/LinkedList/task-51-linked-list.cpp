@@ -77,8 +77,6 @@ void LinkedList::smartInsert(Node *&head, int data)
 
 void LinkedList::smartDelete(Node *&head, int data)
 {
-	bool deleted = false;
-	
 	// previous node of linked list
 	LinkedList::Node *previous = nullptr;
 	
@@ -116,18 +114,14 @@ void LinkedList::smartDelete(Node *&head, int data)
 				}
 			};
 			
-			delete (current);
-			deleted = true;
+			delete current;
 			return;
 		}
 		previous = current;
 		current = current->next;
 	}
 	
-	if (!deleted)
-	{
-		cout << "\nОшибка, нет такого элемента!" << endl;
-	}
+	cout << "\nОшибка, нет такого элемента!" << endl;
 }
 
 

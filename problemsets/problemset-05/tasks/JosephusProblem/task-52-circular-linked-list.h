@@ -32,7 +32,7 @@ namespace CircularList
 		virtual ~LinkedList();
 		
 		// Returns 'true' if given element is the head
-		bool isHead(Node *element);
+		bool isHead(Node *element) const;
 		
 		int length();
 		

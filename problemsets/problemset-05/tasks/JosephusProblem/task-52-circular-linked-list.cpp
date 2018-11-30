@@ -30,7 +30,7 @@ LinkedList::~LinkedList()
 
 
 // Returns TRUE if given 'element' = HEAD
-bool LinkedList::isHead(Node *element)
+bool LinkedList::isHead(Node *element) const
 {
 	return (listHead == element);
 }
@@ -101,7 +101,6 @@ void LinkedList::insert(const int key)
 	}
 	
 	// Case 2: circular list is not empty
-	
 	newElement->next = listHead;
 	
 	// make a copy of listHead and listHead->next
@@ -127,7 +126,9 @@ void LinkedList::kill(int key)
 	// so we need to destroy the list.
 	if (listHead->data == key && this->length() == 1)
 	{
+		delete listHead;
 		cout << "\nHead element of the list was deleted!" << endl;
+		
 		listHead = nullptr;
 		return;
 	}
@@ -185,7 +186,6 @@ void LinkedList::deleteList()
 	// Empty list case
 	if (!listHead)
 	{
-		delete listHead;
 		return;
 	}
 	
