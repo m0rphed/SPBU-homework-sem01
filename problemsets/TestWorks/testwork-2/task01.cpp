@@ -23,14 +23,17 @@ void task01::processData(ifstream &file, const int a, const int b,
 			int number = stoi(myWord);
 			if (number < a)
 			{
+				testWorkList::updateHead(lower, number);
 				testWorkList::insert(lower, number);
 			}
 			else if (number > b)
 			{
+				testWorkList::updateHead(higher, number);
 				testWorkList::insert(higher, number);
 			}
 			else
 			{
+				testWorkList::updateHead(inSection, number);
 				testWorkList::insert(inSection, number);
 			}
 		}

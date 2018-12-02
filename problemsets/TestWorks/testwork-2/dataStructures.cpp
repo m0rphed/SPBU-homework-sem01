@@ -31,6 +31,11 @@ void testWorkList::insert(Node *&head, int data)
 		return;
 	}
 	
+	if (head->data == 0)
+	{
+	
+	}
+	
 	// make a copy of head
 	auto *current = head;
 	
@@ -118,11 +123,25 @@ void testWorkList::deleteList(Node *&head)
 
 void testWorkList::saveList(testWorkList::Node *head, std::ofstream &file)
 {
-	file << "\nResult: ";
+	file << "\t";
 	while (head)
 	{
 		file << head->data << " ";
 		head = head->next;
 	}
 	file << "\n";
+}
+
+
+void testWorkList::updateHead(testWorkList::Node *&head, int newData)
+{
+	if (testWorkList::length(head) > 1)
+	{
+		return;
+	}
+	
+	if (!(head->data))
+	{
+		head->data = newData;
+	}
 }

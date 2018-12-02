@@ -19,6 +19,8 @@ namespace testWorkList
 	// Func. to gets length of list
 	int length(Node *head);
 	
+	void updateHead(Node *&head, int newData);
+	
 	// Inserts element, doesn't break the order of the items in the list
 	void insert(Node *&head, int data);
 	
