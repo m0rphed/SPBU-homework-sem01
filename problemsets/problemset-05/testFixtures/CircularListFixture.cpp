@@ -1,6 +1,6 @@
 #include "../tasks/JosephusProblem/task-52-circular-linked-list.h"
 #include "CircularListFixture.h"
-#include "iostream"
+#include <iostream>
 
 
 using namespace std;
@@ -29,18 +29,18 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 	int counter = 2;
 	
 	auto *previous = theList->listHead;
-	auto *current = theList->listHead->next;
+	auto *current = theList->listHead->getNext();
 	
 	while (theList->length() > 1)
 	{
 		if (counter == blackSpot)
 		{
-			cout << "\nR.I.P. soldier N: " << current->data << endl;
-			previous->next = current->next;
+			cout << "\nR.I.P. soldier N: " << current->getData() << endl;
+			previous->setNext(current->getNext());
 			
 			if (theList->isHead(current))
 			{
-				theList->listHead = current->next;
+				theList->listHead = current->getNext();
 			}
 			
 			delete current;
@@ -49,19 +49,19 @@ int CircularListFixture::JosephusCount(const int blackSpot)
 		else
 		{
 			previous = current;
-			current = current->next;
+			current = current->getNext();
 			++counter;
 		};
 	}
 	
 	// current length of the list is 1
-	theList->listHead = current->next;
-	theList->listHead->next = current->next;
+	theList->listHead = current->getNext();
+	theList->listHead->setNext(current->getNext());
 	
-	cout << "\nSoldier with number: " << theList->listHead->data << " survived!" << endl;
+	cout << "\nSoldier with number: " << theList->listHead->getData() << " survived!" << endl;
 	
 	// save number
-	survived = theList->listHead->data;
+	survived = theList->listHead->getData();
 }
 
 

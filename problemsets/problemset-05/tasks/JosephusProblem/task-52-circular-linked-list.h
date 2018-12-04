@@ -7,12 +7,23 @@ namespace CircularList
 	{
 	public:
 		
-		int data;
-		Node *next;
-		
 		// Init class constructor
 		explicit Node(int value);
+		
+		int getData();
+		
+		Node *getNext();
+		
+		void setData(int value);
+		
+		void setNext(Node *pointerToNext);
+	
+	private:
+		
+		int data;
+		Node *next;
 	};
+	
 	
 	class LinkedList
 	{

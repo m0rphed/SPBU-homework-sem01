@@ -14,6 +14,29 @@ Node::Node(int value)
 	next = this;
 }
 
+int Node::getData()
+{
+	return this->data;
+}
+
+
+Node *Node::getNext()
+{
+	return this->next;
+}
+
+
+void Node::setData(const int value)
+{
+	this->data = value;
+}
+
+
+void Node::setNext(Node *pointerToNext)
+{
+	this->next = pointerToNext;
+}
+
 
 // Init constructor of the class
 LinkedList::LinkedList(int headValue)
@@ -46,18 +69,18 @@ void LinkedList::shift()
 	}
 	
 	auto *previous = listHead;
-	auto *current = listHead->next;
+	auto *current = listHead->getNext();
 	
 	while (!this->isHead(current))
 	{
 		previous = current;
-		current = current->next;
+		current = current->getNext();
 	}
 	
-	cout << "\nDelete head of the list with key: " << current->data << endl;
+	cout << "\nDelete head of the list with key: " << current->getData() << endl;
 	
-	previous->next = current->next;
-	listHead = current->next;
+	previous->setNext(current->getNext());
+	listHead = current->getNext();
 	
 	// destroy current element
 	delete current;
@@ -79,7 +102,7 @@ int LinkedList::length()
 	do
 	{
 		++counter;
-		current = current->next;
+		current = current->getNext();
 		
 	} while (!this->isHead(current));
 	
@@ -101,19 +124,19 @@ void LinkedList::insert(const int key)
 	}
 	
 	// Case 2: circular list is not empty
-	newElement->next = listHead;
+	newElement->setNext(listHead);
 	
 	// make a copy of listHead and listHead->next
 	auto *previous = listHead;
-	auto *current = listHead->next;
+	auto *current = listHead->getNext();
 	
 	while (!this->isHead(current))
 	{
 		previous = current;
-		current = current->next;
+		current = current->getNext();
 	}
 	
-	previous->next = newElement;
+	previous->setNext(newElement);
 }
 
 
@@ -124,7 +147,7 @@ void LinkedList::kill(int key)
 	
 	// Case 1a: list has only one element <=> HEAD,
 	// so we need to destroy the list.
-	if (listHead->data == key && this->length() == 1)
+	if (listHead->getData() == key && this->length() == 1)
 	{
 		delete listHead;
 		cout << "\nHead element of the list was deleted!" << endl;
@@ -133,7 +156,7 @@ void LinkedList::kill(int key)
 		return;
 	}
 		// Case 1b: list have more than one element <-- we need to shift HEAD
-	else if (listHead->data == key)
+	else if (listHead->getData() == key)
 	{
 		shift();
 		return;
@@ -143,21 +166,21 @@ void LinkedList::kill(int key)
 	
 	// make a copy of listHead and listHead->next
 	auto *previous = listHead;
-	auto *current = listHead->next;
+	auto *current = listHead->getNext();
 	
 	while (!this->isHead(current))
 	{
-		if (current->data == key)
+		if (current->getData() == key)
 		{
-			cout << "\nDelete element with key: " << current->data << endl;
-			previous->next = current->next;
+			cout << "\nDelete element with key: " << current->getData() << endl;
+			previous->setNext(current->getNext());
 			delete current;
 			return;
 		}
 		else
 		{
 			previous = current;
-			current = current->next;
+			current = current->getNext();
 		};
 	}
 	
@@ -167,14 +190,14 @@ void LinkedList::kill(int key)
 
 void LinkedList::print()
 {
-	cout << listHead->data << "-->";
+	cout << listHead->getData() << "-->";
 	
-	auto *current = listHead->next;
+	auto *current = listHead->getNext();
 	
 	while (!this->isHead(current))
 	{
-		cout << current->data << "-->";
-		current = current->next;
+		cout << current->getData() << "-->";
+		current = current->getNext();
 	}
 	
 	cout << "head" << endl;
@@ -189,12 +212,12 @@ void LinkedList::deleteList()
 		return;
 	}
 	
-	auto *current = listHead->next;
+	auto *current = listHead->getNext();
 	
 	while (!this->isHead(current))
 	{
 		auto *temp = current;
-		current = current->next;
+		current = current->getNext();
 		
 		try
 		{

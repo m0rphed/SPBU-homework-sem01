@@ -82,7 +82,7 @@ TEST(problemset05, circularListTest)
 	myList->print();
 	
 	ASSERT_EQ(1, myList->length());
-	ASSERT_EQ(666, myList->listHead->data);
+	ASSERT_EQ(666, myList->listHead->getData());
 	
 	delete myList;
 }
