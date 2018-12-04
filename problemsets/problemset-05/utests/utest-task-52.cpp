@@ -1,4 +1,4 @@
-#include "../tasks/JosephusProblem/task-52-circular-linked-list.h"
+#include "../tasks/JosephusProblem/CircularLinkedList.h"
 #include "../testFixtures/CircularListFixture.h"
 
 #include <gtest/gtest.h> // Google Test Framework
@@ -14,7 +14,11 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 	const int m = 2;
 	
 	this->createListOfSoldiers(n);
-	this->JosephusCount(m);
+	
+	josephusCount(testList, m);
+	
+	// save number
+	survived = testList->listHead->getData();
 	
 	ASSERT_EQ(11, this->survived);
 }
@@ -28,7 +32,11 @@ TEST_F(CircularListFixture, JosephusSetUpTest2)
 	const int m = 2;
 	
 	this->createListOfSoldiers(n);
-	this->JosephusCount(m);
+	josephusCount(testList, m);
+	
+	// save number
+	survived = testList->listHead->getData();
+	
 	
 	ASSERT_EQ(19, this->survived);
 }
@@ -44,12 +52,16 @@ TEST_F(CircularListFixture, insertThenKill)
 	this->createListOfSoldiers(n);
 	
 	cout << "\nInsert: " << 42 << endl;
-	this->insertTest(42, theList->length() + 1);
+	this->insertTest(42, testList->length() + 1);
 	
 	cout << "\nKill: " << 1 << endl;
-	this->killTest(1, theList->length() - 1);
+	this->killTest(1, testList->length() - 1);
 	
-	this->JosephusCount(m);
+	josephusCount(testList, m);
+	
+	// save number
+	survived = testList->listHead->getData();
+	
 	ASSERT_EQ(20, survived);
 }
 
