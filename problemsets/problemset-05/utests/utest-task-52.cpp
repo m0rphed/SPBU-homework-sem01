@@ -14,13 +14,9 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 	const int m = 2;
 	
 	this->createListOfSoldiers(n);
-	
 	josephusCount(testList, m);
 	
-	// save number
-	survived = testList->listHead->getData();
-	
-	ASSERT_EQ(11, this->survived);
+	ASSERT_EQ(11, testList->listHead->getData());
 }
 
 
@@ -34,11 +30,7 @@ TEST_F(CircularListFixture, JosephusSetUpTest2)
 	this->createListOfSoldiers(n);
 	josephusCount(testList, m);
 	
-	// save number
-	survived = testList->listHead->getData();
-	
-	
-	ASSERT_EQ(19, this->survived);
+	ASSERT_EQ(19, testList->listHead->getData());
 }
 
 
@@ -59,10 +51,7 @@ TEST_F(CircularListFixture, insertThenKill)
 	
 	josephusCount(testList, m);
 	
-	// save number
-	survived = testList->listHead->getData();
-	
-	ASSERT_EQ(20, survived);
+	ASSERT_EQ(20, testList->listHead->getData());
 }
 
 

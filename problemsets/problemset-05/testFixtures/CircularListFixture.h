@@ -10,8 +10,6 @@ class CircularListFixture : public ::testing::Test
 {
 public:
 	
-	int survived = 0;
-	
 	void createListOfSoldiers(int quantity);
 	
 	::testing::AssertionResult insertTest(int value, int expectedLength);
