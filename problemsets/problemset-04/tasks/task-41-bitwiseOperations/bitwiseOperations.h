@@ -24,7 +24,7 @@ namespace bitwise
 	
 	std::pair<int, int> handleUserInput();
 	
-	void sumBinaryNumbers(bitwise::Number *first, bitwise::Number *second, bitwise::Number *sum);
+	void sumBinaryNumbers(Number *first, Number *second, Number *sum);
 	
 	int performOperations(bool testingMode = false, int firstValue = 0, int secondValue = 0);
 }

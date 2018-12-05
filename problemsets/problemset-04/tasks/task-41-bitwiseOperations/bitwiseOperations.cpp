@@ -119,7 +119,7 @@ pair<int, int> bitwise::handleUserInput()
 }
 
 
-void bitwise::sumBinaryNumbers(bitwise::Number *first, bitwise::Number *second, bitwise::Number *sum)
+void bitwise::sumBinaryNumbers(Number *first, Number *second, Number *sum)
 {
 	const bool *secondBinary = second->arrayOfBits;
 	const bool *firstBinary = first->arrayOfBits;
