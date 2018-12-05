@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Define all source files for task-4.1
-set(TASKS_41_SRCS tasks/task-41-bitwiseOperations/task-41-bitwise-operations.cpp)
+set(TASKS_41_SRCS   tasks/task-41-bitwiseOperations/bitwiseOperations.cpp)
 
 # Define all source files for task-4.2
 set(TASKS_42_SRCS   tasks/task-42-searchInFile/quickSortAlgorithm.cpp
