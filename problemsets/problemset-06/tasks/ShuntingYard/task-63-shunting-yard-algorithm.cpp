@@ -25,6 +25,10 @@ int priority(const char &operand)
 string toPostfix(const string &infix)
 {
 	auto *stack = new myStack();
+	
+	// Set stack capacity
+	stack->capacity(infix.size());
+	
 	string postfix;
 	
 	for (const auto &symbol : infix)
@@ -45,9 +49,9 @@ string toPostfix(const string &infix)
 			}
 			stack->push(symbol);
 		}
-		else if (symbol == '(')
+		else if (symbol == ' ' || symbol == '(')
 		{
-			// Push opening parenthesis
+			// Push opening parenthesis/spaces
 			stack->push(symbol);
 		}
 		else if (symbol == ')')
