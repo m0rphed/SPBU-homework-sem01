@@ -2,7 +2,6 @@
 
 #include "../LastInFirstOut.h"
 #include <string>
-#include <iostream>
 
 using namespace std;
 

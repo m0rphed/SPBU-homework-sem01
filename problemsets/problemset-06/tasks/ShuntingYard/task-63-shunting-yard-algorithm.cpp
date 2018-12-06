@@ -1,9 +1,14 @@
 #include "task-63-shunting-yard-algorithm.h"
 
+#include <string>
+#include <iostream>
+
+
 bool isOperator(const char &operand)
 {
 	return ((operand == '+') || (operand == '-') || (operand == '*') || (operand == '/'));
 }
+
 
 int priority(const char &operand)
 {
@@ -60,7 +65,6 @@ string toPostfix(const string &infix)
 			// and push it to the postfix (output string)
 			while (stack->top() != '(')
 			{
-				//
 				postfix.insert(postfix.end(), stack->pop());
 			}
 			
