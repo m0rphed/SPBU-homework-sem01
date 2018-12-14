@@ -1,59 +1,160 @@
-#include "dataStructures.h" // include header file
-
-#include <iostream> // cin, cout, endl
-#include <locale>   // setlocale(LC_ALL, "Russian")
+#include "dataStructures.h"
+#include <iostream>
 
 using namespace std;
 
+typedef int ElementType;
 
-int testWorkList::length(Node *head)
+
+Node::Node() : data(0), next(nullptr)
 {
-	int length = 0;
-	
-	while (head)
+}
+
+
+Node::Node(const ElementType &value) : data(value), next(nullptr)
+{
+}
+
+
+MyLinkedList::MyLinkedList()
+{
+	head = nullptr;
+	length = 0;
+}
+
+
+MyLinkedList::MyLinkedList(const ElementType *arrayOfElements, const int &size)
+{
+	if (size == 0)
 	{
-		length++;
-		head = head->next;
+		return;
 	}
 	
+	head = new Node(arrayOfElements[0]);
+	auto *headCopy = head;
+	
+	for (int i = 1; i < size; ++i)
+	{
+		headCopy->next = new Node(arrayOfElements[i]);
+		headCopy = headCopy->next;
+	}
+	
+	length = size;
+}
+
+
+MyLinkedList::~MyLinkedList()
+{
+	destroyList();
+}
+
+
+int MyLinkedList::countNodes()
+{
+	auto *headCopy = head;
+	int counter = 0;
+	
+	while (headCopy)
+	{
+		++counter;
+		headCopy = headCopy->next;
+	}
+	
+	return counter;
+}
+
+
+int MyLinkedList::getLength()
+{
 	return length;
 }
 
 
-void testWorkList::insert(Node *&head, int data)
+void MyLinkedList::shift(const ElementType &data)
 {
-	auto *newNode = new testWorkList::Node(data, nullptr);
+	auto *newNode = new Node(0);
+	newNode->data = data;
+	newNode->next = head;
+	head = newNode;
+	++length;
+}
+
+
+void MyLinkedList::insert(const ElementType &value)
+{
+	auto *newNode = new Node(value);
 	
-	// when list is empty
-	if (head == nullptr)
+	if (!head)
 	{
 		head = newNode;
-		return;
 	}
-	
-	if (head->data == 0)
+	else
 	{
+		auto *headCopy = head;
+		while (headCopy->next)
+		{
+			headCopy = headCopy->next;
+		}
+		headCopy->next = newNode;
+	}
+}
+
+
+void MyLinkedList::smartInsert(const ElementType &data)
+{
+	auto *newNode = new Node(0);
+	newNode->data = data;
 	
+	// previous node of linked list
+	Node *previous = nullptr;
+	
+	// when list is empty
+	if (!head)
+	{
+		head = newNode;
+		++length;
+		return;
 	}
 	
 	// make a copy of head
 	auto *current = head;
 	
-	while (current->next != nullptr)
+	while (current)
 	{
+		// What if we found proper place to insert a new node?
+		// --> So, insert the new node BEFORE higher or equal node
+		// (no need to go through all equal elements -- trust me, it is good point. I googled it!).
+		if (current->data >= data)
+		{
+			newNode->next = current;
+			
+			if (previous)
+			{
+				previous->next = newNode;
+			}
+			else // when previous do not exist
+			{
+				head = newNode;
+			};
+			return;
+		}
+		
+		previous = current;
 		current = current->next;
 	}
-	current->next = newNode;
+	
+	previous->next = newNode;
+	++length;
 }
 
 
-void testWorkList::smartDelete(Node *&head, int key)
+void MyLinkedList::smartDelete(const ElementType &data)
 {
 	// previous node of linked list
-	testWorkList::Node *previous = nullptr;
+	Node *previous = nullptr;
 	
 	// when list is empty
-	if (head == nullptr)
+	if (!head)
 	{
 		// "List is already empty, there is nothing to delete here!"
 		cout << "Лист уже пуст, нечего тут удалять!" << endl;
@@ -63,32 +164,37 @@ void testWorkList::smartDelete(Node *&head, int key)
 	// make a copy of head
 	auto *current = head;
 	
-	while (current != nullptr)
+	while (current)
 	{
-		if (current->data == key)
+		if (current->data == data)
 		{
-			if (previous != nullptr)
+			if (previous)
 			{
 				previous->next = current->next;
 			}
 			else // when previous do not exist
 			{
-				// Case 1: current is the last element in list
-				if (testWorkList::length(current) == 1) // => Check if length == 1
+				// Case: current is the last element in list
+				if (length == 1) // => Check if length == 1
 				{
 					// Then, the list should be empty
+					delete head;
 					head = nullptr;
 					cout << "Удалён последний элемент." << endl;
+					length = 0;
+					return;
 				}
 				else
 				{
 					head = current->next;
 				}
-			};
+			}
 			
-			delete (current);
+			delete current;
+			--length;
 			return;
 		}
+		
 		previous = current;
 		current = current->next;
 	}
@@ -97,19 +203,42 @@ void testWorkList::smartDelete(Node *&head, int key)
 }
 
 
-void testWorkList::printList(Node *head)
+// I like reversing things
+void MyLinkedList::reverse()
 {
-	cout << "\t";
+	if (!head || (!(head->next) && head))
+	{
+		return;
+	}
+	
+	Node *newHead = nullptr;
+	Node *nextNode = nullptr;
+	
 	while (head)
 	{
-		cout << head->data << "-->";
-		head = head->next;
+		nextNode = head->next;
+		head->next = newHead;
+		newHead = head;
+		head = nextNode;
 	}
-	cout << "nullptr" << endl;
+	head = newHead;
 }
 
 
-void testWorkList::deleteList(Node *&head)
+void MyLinkedList::printList()
+{
+	auto *headCopy = head;
+	cout << "\t";
+	while (headCopy)
+	{
+		cout << headCopy->data << "-->";
+		headCopy = headCopy->next;
+	}
+	cout << "null" << endl;
+}
+
+
+void MyLinkedList::destroyList()
 {
 	Node *nextNode;
 	while (head)
@@ -118,30 +247,58 @@ void testWorkList::deleteList(Node *&head)
 		delete (head);
 		head = nextNode;
 	}
+	length = 0;
 }
 
 
-void testWorkList::saveList(testWorkList::Node *head, std::ofstream &file)
+void MyLinkedList::linkedListInterface()
 {
-	file << "\t";
-	while (head)
-	{
-		file << head->data << " ";
-		head = head->next;
-	}
-	file << "\n";
-}
-
-
-void testWorkList::updateHead(testWorkList::Node *&head, int newData)
-{
-	if (testWorkList::length(head) > 1)
-	{
-		return;
-	}
+	int command = 0;
+	ElementType value;
 	
-	if (!(head->data))
+	// Start dialog mode loop
+	do
 	{
-		head->data = newData;
-	}
+		// For NonRussianHackers "Введите команду" <=> "Enter a command"
+		cout << "Введите команду: ";
+		cin >> command;
+		cout << endl;
+		
+		// The dialog mode provides the following operations:
+		switch (command)
+		{
+			case 0:
+				cout << "< Выход >" << endl;
+				break;
+			
+			case 1: // 1 - Add value to the sorted list
+				cout << "Добавление значения в список.\n\tВведите значение: ";
+				cin >> value;
+				MyLinkedList::smartInsert(value);
+				cout << endl;
+				break;
+			
+			case 2: // 2 – Delete value from list
+				cout << "Удаление значения из списка.\n\tВведите значение:";
+				cin >> value;
+				MyLinkedList::smartDelete(value);
+				cout << endl;
+				break;
+			
+			case 3: // 3 – Print the whole list
+				cout << "Печать списка..." << endl;
+				MyLinkedList::printList();
+				break;
+			
+			default:
+				cout << "Неверная команда!" << endl;
+		}
+		
+	} while (command != 0);
+}
+
+
+Node *MyLinkedList::getHead()
+{
+	return head;
 }
