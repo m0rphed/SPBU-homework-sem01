@@ -1,5 +1,6 @@
-#include "bossFight-task01.h"
 #include "dataStructures/LinkedList.h"
+#include "bossFight-task01.h"
+
 #include <iostream>
 #include <locale>
 
@@ -11,16 +12,16 @@
 // My Notes:
 // Буду решать с помщью связного списка, с добавлением не нарушаеющего порядок
 // *фиксировать для каждого узла количество повторений
-
+using namespace std;
 
 void handleNumbers()
 {
-	using namespace std;
+	
 	int number = 1;
 	setlocale(LC_ALL, "Russian");
 	cout << "Введите числа ('0' -- признак конца):" << endl;
 	
-	auto *myList = new LinkedList();
+	LinkedList *myList = new LinkedList();
 	
 	while (number != 0)
 	{
@@ -32,6 +33,7 @@ void handleNumbers()
 	
 	cout << "Ввод завершён" << endl;
 }
+
 
 int main()
 {

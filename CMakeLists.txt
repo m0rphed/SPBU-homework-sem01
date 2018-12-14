@@ -77,5 +77,4 @@ add_executable(spbuHomeWork ${SOURCE_FILES})
 
 # Link current run-configuration with what we want to test and the GTest and pthread library
 target_link_libraries(spbuHomeWork gmock gtest_main pthread)
-
-add_executable(bossFight-task01 problemsets/TestWorks/BossFight/bossFight-task01.cpp)
+#add_executable(bossFight-task01 problemsets/TestWorks/BossFight/bossFight-task01.cpp)
