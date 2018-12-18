@@ -72,6 +72,9 @@ add_subdirectory(problemsets/TestWorks/testwork-third-try)
 # Locate solutions for testWorks-2: first try
 add_subdirectory(problemsets/TestWorks/testwork-2)
 
+# Locate solutions for testWorks-2: №3 third try
+add_subdirectory(problemsets/TestWorks/testwork-2-3)
+
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
