@@ -15,8 +15,8 @@ int josephusCount(CircularList::LinkedList *soldiers, const int &blackSpot)
 	// And headValue is always = 1.
 	int counter = 2;
 	
-	auto *previous = soldiers->listHead;
-	auto *current = soldiers->listHead->getNext();
+	auto *previous = soldiers->getHead();
+	auto *current = (soldiers->getHead())->getNext();
 	
 	while (soldiers->length() > 1)
 	{
@@ -27,7 +27,7 @@ int josephusCount(CircularList::LinkedList *soldiers, const int &blackSpot)
 			
 			if (soldiers->isHead(current))
 			{
-				soldiers->listHead = current->getNext();
+				soldiers->setHead(current->getNext());
 			}
 			
 			delete current;
@@ -42,8 +42,8 @@ int josephusCount(CircularList::LinkedList *soldiers, const int &blackSpot)
 	}
 	
 	// current length of the list is 1
-	soldiers->listHead = current->getNext();
-	soldiers->listHead->setNext(current->getNext());
+	soldiers->setHead(current->getNext());
+	(soldiers->getHead())->setNext(current->getNext());
 	
-	cout << "\nSoldier with number: " << soldiers->listHead->getData() << " survived!" << endl;
+	cout << "\nSoldier with number: " << soldiers->getHead()->getData() << " survived!" << endl;
 }

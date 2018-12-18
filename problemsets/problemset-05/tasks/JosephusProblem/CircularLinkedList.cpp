@@ -231,3 +231,15 @@ void LinkedList::deleteList()
 	
 	delete listHead;
 }
+
+
+Node *LinkedList::getHead()
+{
+	return listHead;
+}
+
+
+void LinkedList::setHead(Node *newHead)
+{
+	listHead = newHead;
+}

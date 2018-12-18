@@ -16,7 +16,7 @@ TEST_F(CircularListFixture, JosephusSetUpTest)
 	this->createListOfSoldiers(n);
 	josephusCount(testList, m);
 	
-	ASSERT_EQ(11, testList->listHead->getData());
+	ASSERT_EQ(11, testList->getHead()->getData());
 }
 
 
@@ -30,7 +30,7 @@ TEST_F(CircularListFixture, JosephusSetUpTest2)
 	this->createListOfSoldiers(n);
 	josephusCount(testList, m);
 	
-	ASSERT_EQ(19, testList->listHead->getData());
+	ASSERT_EQ(19, testList->getHead()->getData());
 }
 
 
@@ -51,7 +51,7 @@ TEST_F(CircularListFixture, insertThenKill)
 	
 	josephusCount(testList, m);
 	
-	ASSERT_EQ(20, testList->listHead->getData());
+	ASSERT_EQ(20, testList->getHead()->getData());
 }
 
 
@@ -83,7 +83,7 @@ TEST(problemset05, circularListTest)
 	myList->print();
 	
 	ASSERT_EQ(1, myList->length());
-	ASSERT_EQ(666, myList->listHead->getData());
+	ASSERT_EQ(666, myList->getHead()->getData());
 	
 	delete myList;
 }

@@ -27,6 +27,8 @@ namespace CircularList
 	
 	class LinkedList
 	{
+		Node *listHead = nullptr;
+		
 		// Destroys list with every element in it
 		void deleteList();
 		
@@ -34,13 +36,14 @@ namespace CircularList
 		void shift();
 	
 	public:
-		
-		Node *listHead = nullptr;
-		
 		// Init class constructor
 		explicit LinkedList(int headValue);
 		
 		virtual ~LinkedList();
+		
+		Node *getHead();
+		
+		void setHead(Node *newHead);
 		
 		// Returns 'true' if given element is the head
 		bool isHead(Node *element) const;
