@@ -71,7 +71,7 @@ Node *DoublyLinkedList::getNodeAt(const int &position)
 		if (position > length / 2)
 		{
 			auto *current = tail;
-			for (int i = length; i > position; --i)
+			for (int i = length - 1; i > position; --i)
 			{
 				current = current->previous;
 			}
