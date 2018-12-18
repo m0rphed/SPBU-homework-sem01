@@ -29,5 +29,5 @@ TEST(testwork2ThirdTry, doublyListInterface)
 		EXPECT_EQ((testList->getNodeAt(i))->data, i);
 	}
 	
-	cout << endl;
+	delete testList;
 }

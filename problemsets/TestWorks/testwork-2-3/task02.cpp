@@ -68,3 +68,14 @@ void doublyLinkedListInterface(DoublyLinkedList *myList)
 		
 	} while (command != 0);
 }
+
+
+//int main()
+//{
+//	auto *myList = new DoublyLinkedList();
+//
+//	doublyLinkedListInterface(myList);
+//
+//	delete myList;
+//	return 0;
+//}
