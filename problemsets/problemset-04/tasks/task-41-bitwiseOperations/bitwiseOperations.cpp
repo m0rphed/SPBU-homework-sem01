@@ -32,7 +32,7 @@ void bitwise::Number::generateBinary()
 	}
 	
 	// Free memory if arrayOfBits was set before
-	if (!(this->arrayOfBits))
+	if (this->arrayOfBits)
 	{
 		delete arrayOfBits;
 	}
@@ -73,7 +73,7 @@ int bitwise::Number::getActualLength()
 	{
 		if (this->arrayOfBits[i])
 		{
-			return size - i + 1;;
+			return size - i + 1;
 		}
 	}
 }
