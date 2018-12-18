@@ -34,7 +34,10 @@ namespace CircularList
 		
 		// function is private
 		void shift();
-	
+		
+		// Returns 'true' if given element is the head
+		bool isHead(const Node *element);
+		
 	public:
 		// Init class constructor
 		explicit LinkedList(int headValue);
@@ -44,9 +47,6 @@ namespace CircularList
 		Node *getHead();
 		
 		void setHead(Node *newHead);
-		
-		// Returns 'true' if given element is the head
-		bool isHead(Node *element) const;
 		
 		int length();
 		

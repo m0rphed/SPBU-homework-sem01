@@ -53,7 +53,7 @@ LinkedList::~LinkedList()
 
 
 // Returns TRUE if given 'element' = HEAD
-bool LinkedList::isHead(Node *element) const
+bool LinkedList::isHead(const Node *element)
 {
 	return (listHead == element);
 }

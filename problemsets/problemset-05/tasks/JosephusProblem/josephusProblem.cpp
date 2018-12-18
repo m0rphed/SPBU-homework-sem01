@@ -25,7 +25,7 @@ int josephusCount(CircularList::LinkedList *soldiers, const int &blackSpot)
 			cout << "\nR.I.P. soldier N: " << current->getData() << endl;
 			previous->setNext(current->getNext());
 			
-			if (soldiers->isHead(current))
+			if (soldiers->getHead() == current)
 			{
 				soldiers->setHead(current->getNext());
 			}
