@@ -1,79 +1,136 @@
 #include "task-64-merge-sort.h"
-#include <iostream>
+#include "DoublyLinkedList.h"
 
+#include <iostream>
 using namespace std;
 
-void mergeSort::printArray(int *array, int n)
+void processData()
 {
-	for (int i = 0; i < n; ++i)
-		std::cout << array[i] << std::endl;
+	// 1 open file with data
+	// 2 check that everything is ok
+	// 3-a read all string data "имя - номер телефона"
+	// 3-b write all to myDoublyLinkedList with
+	//      Node {
+	//              name: "имя",
+	//              phoneNumber : "+79818212598"
+	//           }
+	
+	// let user decide what to use as a KEY for sorting
+	// something like: cin >> choice;
+	//                  if choce == 1 => name
+	// 					if choce == 2 => phoneNumber
+	
+	// mergeSort(myDoublyLinkedList)
 }
 
 
-void mergeSort::merge(int *array, int low, int mid, int high)
+void mergeSortByName(DoublyLinkedList *list)
 {
-	int temp[high + 1];
-	int i = low;
-	int j = mid + 1;
+	cout << "Splitting ";
+	list->print();
+	
+	if (list->getLength() == 1)
+	{
+		return;
+	}
+	
+	int mid = list->getLength() / 2;
+	auto *leftHalf = list->sliceList(0, mid);
+	auto *rightHalf = list->sliceList(mid, list->getLength());
+	
+	mergeSortByName(leftHalf);
+	mergeSortByName(rightHalf);
+	
+	int i = 0;
+	int j = 0;
 	int k = 0;
 	
-	while (i <= mid && j <= high)
+	// MERGING
+	while (i < leftHalf->getLength() && j < rightHalf->getLength())
 	{
-		if (array[i] <= array[j])
+		if ((leftHalf->getNodeAt(i))->name < (rightHalf->getNodeAt(j))->name)
 		{
-			temp[k] = array[i++];
+			list->setNodeAt(k, leftHalf->getNodeAt(i));
+			++i;
 		}
 		else
 		{
-			temp[k++] = array[j++];
+			list->setNodeAt(k, rightHalf->getNodeAt(j));
+			++j;
 		}
+		++k;
 	}
 	
-	while (i <= mid)
+	while (i < leftHalf->getLength())
 	{
-		temp[k++] = array[i++];
+		list->setNodeAt(k, leftHalf->getNodeAt(i));
+		++i;
+		++k;
 	}
 	
-	while (j <= high)
+	while (j < rightHalf->getLength())
 	{
-		temp[k++] = array[j++];
+		list->setNodeAt(k, rightHalf->getNodeAt(j));
+		++j;
+		++k;
 	}
-	--k;
 	
-	while (k >= 0)
-	{
-		array[k + low] = temp[k];
-		--k;
-	}
+	cout << "Merging ";
+	list->print();
 }
 
 
-void mergeSort::mergeSort(int *array, int low, int high)
+void mergeSortByPhone(DoublyLinkedList *list)
 {
-	int mid;
+	cout << "Splitting ";
+	list->print();
 	
-	if (low < high)
+	if (list->getLength() == 1)
 	{
-		mid = (low + high) / 2;
-		mergeSort(array, low, mid);
-		mergeSort(array, mid + 1, high);
-		merge(array, low, mid, high);
+		return;
 	}
-}
-
-
-int main()
-{
-	using namespace mergeSort;
-	int array[] = {95, 45, 48, 98, 1, 485, 65, 478, 1, 2325};
-	int n = sizeof(array) / sizeof(array[0]);
 	
-	cout << "Before Merge Sort :" << endl;
-	printArray(array, n);
+	int mid = list->getLength() / 2;
+	auto *leftHalf = list->sliceList(0, mid);
+	auto *rightHalf = list->sliceList(mid, list->getLength());
 	
-	mergeSort(array, 0, n - 1);
+	mergeSortByName(leftHalf);
+	mergeSortByName(rightHalf);
 	
-	cout << "After Merge Sort :" << endl;
-	printArray(array, n);
-	return 0;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	
+	// MERGING
+	while (i < leftHalf->getLength() && j < rightHalf->getLength())
+	{
+		if ((leftHalf->getNodeAt(i))->phone < (rightHalf->getNodeAt(j))->phone)
+		{
+			list->setNodeAt(k, leftHalf->getNodeAt(i));
+			++i;
+		}
+		else
+		{
+			list->setNodeAt(k, rightHalf->getNodeAt(j));
+			++j;
+		}
+		++k;
+	}
+	
+	while (i < leftHalf->getLength())
+	{
+		list->setNodeAt(k, leftHalf->getNodeAt(i));
+		++i;
+		++k;
+	}
+	
+	while (j < rightHalf->getLength())
+	{
+		list->setNodeAt(k, rightHalf->getNodeAt(j));
+		++j;
+		++k;
+	}
+	
+	cout << "Merging ";
+	list->print();
 }
