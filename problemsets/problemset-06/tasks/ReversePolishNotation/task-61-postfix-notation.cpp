@@ -77,7 +77,8 @@ int calculationStack::multiply()
 
 int calculationStack::divide()
 {
-	int result = this->pop() / this->pop();
+	int secondOperand = this->pop();
+	int result = this->pop() / secondOperand;
 	this->push(result);
 }
 
