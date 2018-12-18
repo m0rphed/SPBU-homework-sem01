@@ -2,4 +2,4 @@
 
 #include "dataStructures.h"
 
-void doublyLinkedListInterface(DoublyLinkedList *myList)ж
+void doublyLinkedListInterface(DoublyLinkedList *myList);
