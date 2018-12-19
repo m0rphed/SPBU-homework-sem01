@@ -78,6 +78,7 @@ pair<bool, string> bracketCounter::checkString(string input)
 			}
 			else
 			{
+				delete stack;
 				return make_pair(false, "\nBrackets/braces mismatch!\n");
 			}
 		}
@@ -85,6 +86,7 @@ pair<bool, string> bracketCounter::checkString(string input)
 	
 	if (stack->isEmpty())
 	{
+		delete stack;
 		return make_pair(true, "\nAll right!\n");
 	}
 	

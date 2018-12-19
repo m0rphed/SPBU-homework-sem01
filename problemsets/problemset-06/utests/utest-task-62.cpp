@@ -6,21 +6,22 @@ using namespace std;
 
 TEST(problemset06, bracketCounterTest)
 {
-	
-	vector<string> goodTests = {"{}", "()", "[]"};
-	for (auto &test : goodTests)
+	vector<string> truthyTests = {"{}", "()", "[{()}]", "[](){}", "()()[{}]"};
+	for (auto &test : truthyTests)
 	{
 		pair<bool, string> result = bracketCounter::checkString(test);
 		ASSERT_TRUE(result.first);
-		cout << result.second << endl;
+		cout << "\n\nTesting: " << test << endl;
+		cout << "--> Result: " << result.second << endl;
 	}
 	
-	vector<string> badTests = {"{{}", "()]", ")[]", "[(6+10)]"};
+	vector<string> falsyTests = {"{{}", "()]", ")[]", "[(6+10)]"};
 	
-	for (auto &test : badTests)
+	for (auto &test : falsyTests)
 	{
 		pair<bool, string> result = bracketCounter::checkString(test);
 		ASSERT_FALSE(result.first);
-		cout << result.second << endl;
+		cout << "\n\nTesting: " << test << endl;
+		cout << "--> Result: " << result.second << endl;
 	}
 }
