@@ -1,31 +1,30 @@
-#include "dataStructures.h"
+#include "LinkedList.h"
 #include <iostream>
-#include <vector>
-#include <utility>
 
 using namespace std;
 
 typedef int ElementType;
 
-
-Node::Node() : data(0), next(nullptr)
+Node::Node() : data(0), next(nullptr), occurrences(1)
 {
 }
 
 
-Node::Node(const ElementType &value) : data(value), next(nullptr)
+Node::Node(const ElementType &value) : data(value), next(nullptr), occurrences(1)
 {
 }
 
 
-MyLinkedList::MyLinkedList()
+//------------------------------------------LINKED-LIST--------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+LinkedList::LinkedList()
 {
 	head = nullptr;
 	length = 0;
 }
 
 
-MyLinkedList::MyLinkedList(const ElementType *arrayOfElements, const int &size)
+LinkedList::LinkedList(const ElementType *arrayOfElements, const int &size)
 {
 	if (size == 0)
 	{
@@ -45,13 +44,13 @@ MyLinkedList::MyLinkedList(const ElementType *arrayOfElements, const int &size)
 }
 
 
-MyLinkedList::~MyLinkedList()
+LinkedList::~LinkedList()
 {
 	destroyList();
 }
 
 
-int MyLinkedList::countNodes()
+int LinkedList::countNodes()
 {
 	auto *headCopy = head;
 	int counter = 0;
@@ -66,46 +65,25 @@ int MyLinkedList::countNodes()
 }
 
 
-int MyLinkedList::getLength()
+int LinkedList::getLength()
 {
 	return length;
 }
 
 
-void MyLinkedList::shift(const ElementType &data)
+void LinkedList::shift(const ElementType &data)
 {
-	auto *newNode = new Node(0);
-	newNode->data = data;
+	auto *newNode = new Node(data);
+	
 	newNode->next = head;
 	head = newNode;
 	++length;
 }
 
 
-void MyLinkedList::insert(const ElementType &value)
+void LinkedList::smartInsert(const ElementType &data)
 {
-	auto *newNode = new Node(value);
-	
-	if (!head)
-	{
-		head = newNode;
-	}
-	else
-	{
-		auto *headCopy = head;
-		while (headCopy->next)
-		{
-			headCopy = headCopy->next;
-		}
-		headCopy->next = newNode;
-	}
-}
-
-
-void MyLinkedList::smartInsert(const ElementType &data)
-{
-	auto *newNode = new Node(0);
-	newNode->data = data;
+	auto *newNode = new Node(data);
 	
 	// previous node of linked list
 	Node *previous = nullptr;
@@ -124,10 +102,16 @@ void MyLinkedList::smartInsert(const ElementType &data)
 	while (current)
 	{
 		// What if we found proper place to insert a new node?
-		// --> So, insert the new node BEFORE higher or equal node
-		// (no need to go through all equal elements -- trust me, it is good point. I googled it!).
+		// --> So, insert the new node.
 		if (current->data >= data)
 		{
+			if (current->data == data)
+			{
+				// increase occurrences and skip
+				++current->occurrences;
+				return;
+			}
+			
 			newNode->next = current;
 			
 			if (previous)
@@ -150,7 +134,7 @@ void MyLinkedList::smartInsert(const ElementType &data)
 }
 
 
-void MyLinkedList::smartDelete(const ElementType &data)
+void LinkedList::smartDelete(const ElementType &data)
 {
 	// previous node of linked list
 	Node *previous = nullptr;
@@ -206,7 +190,7 @@ void MyLinkedList::smartDelete(const ElementType &data)
 
 
 // I like reversing things
-void MyLinkedList::reverse()
+void LinkedList::reverse()
 {
 	if (!head || (!(head->next) && head))
 	{
@@ -227,7 +211,7 @@ void MyLinkedList::reverse()
 }
 
 
-void MyLinkedList::printList()
+void LinkedList::printList()
 {
 	auto *headCopy = head;
 	cout << "\t";
@@ -239,8 +223,19 @@ void MyLinkedList::printList()
 	cout << "null" << endl;
 }
 
+void LinkedList::smartPrint()
+{
+	auto *headCopy = head;
+	cout << "\t";
+	while (headCopy)
+	{
+		cout << "{data: " << headCopy->data << ", occurrences: " << headCopy->occurrences << "} ---> ";
+		headCopy = headCopy->next;
+	}
+	cout << "null" << endl;
+}
 
-void MyLinkedList::destroyList()
+void LinkedList::destroyList()
 {
 	Node *nextNode;
 	while (head)
@@ -253,7 +248,7 @@ void MyLinkedList::destroyList()
 }
 
 
-void MyLinkedList::linkedListInterface()
+void LinkedList::linkedListInterface()
 {
 	int command = 0;
 	ElementType value;
@@ -276,20 +271,20 @@ void MyLinkedList::linkedListInterface()
 			case 1: // 1 - Add value to the sorted list
 				cout << "Добавление значения в список.\n\tВведите значение: ";
 				cin >> value;
-				MyLinkedList::smartInsert(value);
+				LinkedList::smartInsert(value);
 				cout << endl;
 				break;
 			
 			case 2: // 2 – Delete value from list
 				cout << "Удаление значения из списка.\n\tВведите значение:";
 				cin >> value;
-				MyLinkedList::smartDelete(value);
+				LinkedList::smartDelete(value);
 				cout << endl;
 				break;
 			
 			case 3: // 3 – Print the whole list
 				cout << "Печать списка..." << endl;
-				MyLinkedList::printList();
+				LinkedList::printList();
 				break;
 			
 			default:
@@ -297,40 +292,4 @@ void MyLinkedList::linkedListInterface()
 		}
 		
 	} while (command != 0);
-}
-
-
-Node *MyLinkedList::getHead()
-{
-	return head;
-}
-
-
-void createGraphAdjList()
-{
-	int numOfVertices;
-	int totalNeighbors;
-	int id;
-	int weight;
-	
-	cout << "numOfVertices: ";
-	cin >> numOfVertices;
-	
-	cout << "Lets provide data to adjacent lists" << endl;
-
-	adjacentList.assign(numOfVertices, bucket());
-	
-	for (int i = 0; i < numOfVertices; i++)
-	{
-		cout << "totalNeighbors: ";
-		cin >> totalNeighbors;
-		for (int j = 0; j < totalNeighbors; j++)
-		{
-			cout << "id : ";
-			cin >> id;
-			cout << "weight : ";
-			cin >> weight;
-			adjacentList[i].push_back(infoVertex(id, weight));
-		}
-	}
 }

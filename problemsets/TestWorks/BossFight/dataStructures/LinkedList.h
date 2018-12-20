@@ -1,6 +1,9 @@
 #pragma once
-#include <vector>
-#include <utility>
+
+#include "LinkedList.h"
+#include <iostream>
+
+using namespace std;
 
 typedef int ElementType;
 
@@ -8,6 +11,7 @@ struct Node
 {
 	ElementType data;
 	Node *next;
+	int occurrences;
 	
 	Node();
 	
@@ -17,7 +21,7 @@ struct Node
 
 //------------------------------------------LINKED-LIST--------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
-class MyLinkedList
+class LinkedList
 {
 private:
 	Node *head;
@@ -25,13 +29,13 @@ private:
 
 public:
 	// Default constructor
-	MyLinkedList();
+	LinkedList();
 	
 	// Constructor can make a list from array of ElementType
-	MyLinkedList(const ElementType *arrayOfElements, const int &size);
+	LinkedList(const ElementType *arrayOfElements, const int &size);
 	
 	// Default destructor
-	~MyLinkedList();
+	~LinkedList();
 	
 	// Func. to iterate through the list and get the real length of the list
 	int countNodes();
@@ -39,13 +43,8 @@ public:
 	// Getter-function
 	int getLength();
 	
-	Node *getHead();
-	
 	// Shifts linked list, insert new element at the position of head
 	void shift(const ElementType &value); // changes length
-	
-	// Inserts element to the end
-	void insert(const ElementType &value);
 	
 	// Inserts element, doesn't break the order of the items in the list
 	void smartInsert(const ElementType &data); // changes length
@@ -61,21 +60,12 @@ public:
 	// Prints the whole list
 	void printList();
 	
+	// Print every node with occurrences
+	void smartPrint();
+	
 	// Destroys list recursively
 	void destroyList();
 	
 	// Handles dialog interface
 	void linkedListInterface();
 };
-
-
-//------------------------------------------GRAPH--------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
-
-// Aliasing to short name
-typedef std::pair<int, int> infoVertex;
-typedef std::vector<infoVertex> bucket;
-
-std::vector<bucket> adjacentList;
-
-void createGraphAdjList();
