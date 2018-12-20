@@ -6,10 +6,34 @@
 using namespace std;
 
 
-stackElement::stackElement(const int &value, stackElement *pointerToNext)
+StackElement::StackElement(const int &value, StackElement *pointerToNext)
 {
 	data = value;
 	next = pointerToNext;
+}
+
+
+int StackElement::getData() const
+{
+	return this->data;
+}
+
+
+void StackElement::setData(const int value)
+{
+	this->data = value;
+}
+
+
+StackElement *StackElement::getNext() const
+{
+	return this->next;
+}
+
+
+void StackElement::setNext(StackElement *nextElement)
+{
+	this->next = nextElement;
 }
 
 
@@ -21,16 +45,16 @@ myStack::myStack()
 
 myStack::myStack(const int value)
 {
-	topElement = new stackElement(value, nullptr);
+	topElement = new StackElement(value, nullptr);
 }
 
 
 myStack::~myStack()
 {
-	stackElement *current = topElement;
+	StackElement *current = topElement;
 	while (current != nullptr)
 	{
-		current = topElement->next;
+		current = topElement->getNext();
 		delete topElement;
 		topElement = current;
 	}
@@ -56,14 +80,14 @@ void myStack::push(const int item)
 		throw "\nERROR: Can't push() to stack.\n The stack is full.\n";
 	}
 	
-	auto *newElement = new stackElement(item, topElement);
+	auto *newElement = new StackElement(item, topElement);
 	topElement = newElement;
 }
 
 
 int myStack::pop()
 {
-	int data = topElement->data;
+	int data = topElement->getData();
 	
 	if (this->isEmpty())
 	{
@@ -71,7 +95,7 @@ int myStack::pop()
 	}
 	
 	auto *pointerToTop = topElement;
-	topElement = topElement->next;
+	topElement = topElement->getNext();
 	delete pointerToTop;
 	return data;
 }
@@ -79,7 +103,7 @@ int myStack::pop()
 
 int myStack::top()
 {
-	return topElement->data;
+	return topElement->getData();
 }
 
 
@@ -97,11 +121,11 @@ int myStack::getSize()
 	}
 	
 	int counter = 0;
-	stackElement *current = topElement;
+	StackElement *current = topElement;
 	
 	while (current != nullptr)
 	{
-		current = current->next;
+		current = current->getNext();
 		++counter;
 	}
 	return counter;

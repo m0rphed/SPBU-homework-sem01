@@ -1,16 +1,26 @@
 #pragma once
 
 
-class stackElement
+class StackElement
 {
 public:
 	
-	// properties of this class is public (as when we define struct)
-	int data;
-	stackElement *next = nullptr;
+	// define stackElement constructor
+	StackElement(const int &value, StackElement *pointerToNext);
 	
-	// stackElement constructor
-	stackElement(const int &value, stackElement *pointerToNext);
+	// define setter and getter methods
+	int getData() const;
+	
+	void setData(int value);
+	
+	StackElement *getNext() const;
+	
+	void setNext(StackElement *nextElement);
+
+private:
+	
+	int data;
+	StackElement *next = nullptr;
 };
 
 
@@ -58,5 +68,5 @@ protected: // these properties will be available in classes that inherit from th
 	int maxCapacity = 0;
 	
 	// Points to HEAD element which type is stackElement
-	stackElement *topElement;
+	StackElement *topElement;
 };

@@ -6,9 +6,9 @@
 using namespace std;
 
 
-vector<string> handleUserInput(const string &input)
+vector<string> simulateUserInput(const string &input)
 {
-	cout << "\nInput mathematical operation in Reverse Polish Notation:\n" << input << endl;
+	cout << "\n\nInput mathematical operation in Reverse Polish Notation:\n" << input << endl;
 	
 	// create vector of substrings split by space character
 	istringstream stream(input);
@@ -18,16 +18,32 @@ vector<string> handleUserInput(const string &input)
 }
 
 
-TEST(problemset06, ReversePolishTest)
+TEST(problemset06, ReversePolishNotation)
 {
-	// Create an instance of calculationStack class.
+	// create an instance of calculationStack class.
 	auto *calculator = new calculationStack(); // calculator points to nullptr
 	
 	const string testString = "9 6 - 1 2 + *\n";
-
-	// Simulate user input and do calculation
-	calculator->performCalculations(handleUserInput(testString));
 	
-	cout << "Result:\n" << calculator->getResult() << endl;
+	// simulate user input and do calculation
+	calculator->performCalculations(simulateUserInput(testString));
+	
+	cout << "\tResult: " << calculator->getResult() << endl;
 	ASSERT_EQ(9, calculator->getResult());
+}
+
+
+TEST(problemset06, ReversePolishNotation_test_01)
+{
+	// create an instance of calculationStack class.
+	auto *calculator = new calculationStack();
+	
+	const string testString = "-5 100 * 2 + 2 *\n";
+	
+	// simulate user input and do calculation
+	vector<string> v = (simulateUserInput(testString));
+	calculator->performCalculations(v);
+	
+	cout << "\tResult: " << calculator->getResult() << endl;
+	ASSERT_EQ(-498*2, calculator->getResult());
 }
