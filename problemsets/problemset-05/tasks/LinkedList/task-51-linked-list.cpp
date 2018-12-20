@@ -3,32 +3,26 @@
 #include <iostream> // cin, cout, endl
 #include <locale>   // setlocale(LC_ALL, "Russian")
 
-
 using namespace std;
-
-
-struct LinkedList::Node
-{
-	int data = 0;
-	Node *next = nullptr;
-};
 
 
 int LinkedList::length(Node *head)
 {
-	int len = 0;
+	int length = 0;
+	
 	while (head)
 	{
-		len++;
+		length++;
 		head = head->next;
 	}
-	return len;
+	
+	return length;
 }
 
 
 void LinkedList::shift(Node *&head, int data)
 {
-	auto *newNode = new LinkedList::Node;
+	auto *newNode = new LinkedList::Node(0, nullptr);
 	newNode->data = data;
 	newNode->next = head;
 	head = newNode;
@@ -37,7 +31,7 @@ void LinkedList::shift(Node *&head, int data)
 
 void LinkedList::insert(Node *&head, int data)
 {
-	auto *newNode = new LinkedList::Node;
+	auto *newNode = new LinkedList::Node(0, nullptr);
 	newNode->data = data;
 	
 	// previous node of linked list
@@ -56,7 +50,7 @@ void LinkedList::insert(Node *&head, int data)
 	while (current != nullptr)
 	{
 		// What if we found proper place to insert a new node?
-		// --> So, insert the new node BEFORE higher OR equal node
+		// --> So, insert the new node BEFORE higher or equal node
 		// (no need to go through all equal elements -- trust me, it is good point. I googled it!).
 		if (current->data >= data)
 		{
@@ -72,6 +66,7 @@ void LinkedList::insert(Node *&head, int data)
 			};
 			return;
 		}
+		
 		previous = current;
 		current = current->next;
 	}
@@ -82,7 +77,6 @@ void LinkedList::insert(Node *&head, int data)
 
 void LinkedList::smartDelete(Node *&head, int data)
 {
-	bool deleted = false;
 	// previous node of linked list
 	LinkedList::Node *previous = nullptr;
 	
@@ -107,22 +101,27 @@ void LinkedList::smartDelete(Node *&head, int data)
 			}
 			else // when previous do not exist
 			{
-				// The list should be empty
-				head = nullptr;
-				cout << "Удалён последний элемент." << endl;
+				// Case 1: current is the last element in list
+				if (LinkedList::length(current) == 1) // => Check if length == 1
+				{
+					// Then, the list should be empty
+					head = nullptr;
+					cout << "Удалён последний элемент." << endl;
+				}
+				else
+				{
+					head = current->next;
+				}
 			};
 			
-			delete (current);
-			deleted = true;
+			delete current;
 			return;
 		}
 		previous = current;
 		current = current->next;
 	}
-	if (!deleted)
-	{
-		cout << "\nОшибка, нет такого элемента!" << endl;
-	}
+	
+	cout << "\nОшибка, нет такого элемента!" << endl;
 }
 
 
@@ -133,6 +132,7 @@ void LinkedList::reverse(Node *&head)
 	{
 		return;
 	}
+	
 	Node *newHead = nullptr;
 	Node *nextNode = nullptr;
 	
@@ -184,7 +184,7 @@ void LinkedList::startDialogLoop(Node *&head)
 		cin >> key;
 		cout << endl;
 		
-		// The dialog mode allows the following operations:
+		// The dialog mode provides the following operations:
 		switch (key)
 		{
 			case 0:
@@ -216,6 +216,7 @@ void LinkedList::startDialogLoop(Node *&head)
 		
 	} while (key != 0);
 }
+<<<<<<< HEAD:problemsets/problemset-05/tasks/task-51-linked-list.cpp
 
 
 int polynomial()
@@ -241,3 +242,5 @@ int polynomial()
 	LinkedList::deleteList(list);
 	return 0;
 }
+=======
+>>>>>>> master:problemsets/problemset-05/tasks/LinkedList/task-51-linked-list.cpp
