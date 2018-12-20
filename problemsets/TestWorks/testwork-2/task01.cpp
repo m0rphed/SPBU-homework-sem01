@@ -3,76 +3,40 @@
 
 #include <fstream>
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-
-void task01::processData(ifstream &file, const int a, const int b,
-                         testWorkList::Node *lower, testWorkList::Node *inSection, testWorkList::Node *higher)
+void handleIO()
 {
-	if (file.is_open())
+	auto *myList = new MyLinkedList();
+	ifstream incomingData("f.txt", ios::in);
+	
+	if (incomingData.is_open())
 	{
-		cout << "\nStart reading...\n" << endl;
-		
+		cout << "\nStart reading your data...\n" << endl;
 		string myWord;
-		while (file >> myWord)
+		
+		while (incomingData >> myWord)
 		{
-			cout << myWord << " ";
-			
 			int number = stoi(myWord);
-			if (number < a)
-			{
-				testWorkList::updateHead(lower, number);
-				testWorkList::insert(lower, number);
-			}
-			else if (number > b)
-			{
-				testWorkList::updateHead(higher, number);
-				testWorkList::insert(higher, number);
-			}
-			else
-			{
-				testWorkList::updateHead(inSection, number);
-				testWorkList::insert(inSection, number);
-			}
+			myList->insert(number);
 		}
 		
-		file.close();
+		cout << "Before REVERSING the list:" << endl;
+		myList->printList();
+		
+		cout << "After reversing the list:" << endl;
+		myList->reverse();
+		myList->printList();
 	}
 	else
 	{
-		cout << "\nNo such file in the directory\n" << endl;
-		return;
+		cout << "ERROR: File not found :(" << endl;
 	}
-	
 }
 
-
-void task01::letsListSomeData(const int &a, const int &b)
+int main()
 {
-	auto *lower = new testWorkList::Node(0, nullptr);
-	auto *inSection = new testWorkList::Node(0, nullptr);
-	auto *higher = new testWorkList::Node(0, nullptr);
-	
-	ifstream incoming("f.txt", ios::in);
-	
-	processData(incoming, a, b, lower, inSection, higher);
-	
-	ofstream output;
-	output.open("g.txt");
-	
-	testWorkList::saveList(lower, output);
-	testWorkList::printList(lower);
-	
-	testWorkList::saveList(inSection, output);
-	testWorkList::printList(inSection);
-	
-	testWorkList::saveList(higher, output);
-	testWorkList::printList(higher);
-	output.close();
-	
-	delete lower;
-	delete inSection;
-	delete higher;
+	handleIO();
+	return 0;
 }

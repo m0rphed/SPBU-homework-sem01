@@ -2,7 +2,7 @@
 #define SPBU_HOMEWORK_TASK_51_LINKED_LIST_H
 
 
-namespace testWorkList
+namespace LinkedList
 {
 	struct Node;
 	
