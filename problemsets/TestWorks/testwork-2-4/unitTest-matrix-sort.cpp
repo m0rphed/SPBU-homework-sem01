@@ -7,16 +7,27 @@
 typedef int ElementType;
 using namespace std;
 
-TEST(easyestTestWork, task1_matrix_sort)
+TEST(task1_matrix_sort, printMyMatrixTest)
 {
-	vector<int> v;
-	int size;
-	cin >> size;
-	int a;
-	for (int i = 0; i < size; i++)
+	vector<vector<ElementType>> myMatrix = {};
+	
+	const int n = 5;
+	const int m = 5;
+	
+	unsigned int counter = 0;
+	
+	for (int i = 0; i < n; ++i)
 	{
-		cin >> a;
-		v.push_back(a);
+		vector<ElementType> temp = {};
+		for(int j = 0; j < m; ++j)
+		{
+			temp.push_back(counter);
+			++counter;
+		}
+		myMatrix.push_back(temp);
 	}
-	FAIL();
+	
+	printMatrix(myMatrix, n, m);
+	
+	SUCCEED();
 }

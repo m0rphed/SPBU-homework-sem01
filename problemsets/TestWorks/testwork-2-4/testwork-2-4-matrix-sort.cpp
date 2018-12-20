@@ -52,11 +52,14 @@ void sortMatrixColumns(vector<vector<ElementType>> &myMatrix)
 
 void printMatrix(vector<vector<ElementType>> &myMatrix, const int &numberOfRows, const int &numberOfColumns)
 {
+	cout << endl;
 	for (int i = 0; i < numberOfRows; ++i)
 	{
 		for (int j = 0; j < numberOfColumns; ++j)
 		{
-			cout << myMatrix[i][j] << endl;
+			cout << myMatrix[i][j] << "  ";
 		}
+		
+		cout << endl;
 	}
 }
