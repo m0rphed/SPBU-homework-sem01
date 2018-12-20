@@ -12,8 +12,10 @@ vector<ElementType> getFirstRow(vector<vector<ElementType>> &myMatrix)
 	vector<int> firstRow;
 	for (int j = 0; j < numberOfColumns; ++j)
 	{
-		firstRow.push_back(myMatrix[1][j]);
+		firstRow.push_back(myMatrix[0][j]);
 	}
+	
+	return firstRow;
 }
 
 
@@ -40,7 +42,7 @@ void sortMatrixColumns(vector<vector<ElementType>> &myMatrix)
 	{
 		for (int t = 0; t < numberOfColumns - j - 1; ++t)
 		{
-			if (&order[t] > &order[t + 1])
+			if (order[t] > order[t + 1])
 			{
 				// меняем элементы местами
 				swapColumns(myMatrix, t, t + 1);

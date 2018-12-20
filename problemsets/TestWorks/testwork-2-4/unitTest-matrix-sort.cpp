@@ -31,3 +31,33 @@ TEST(task1_matrix_sort, printMyMatrixTest)
 	
 	SUCCEED();
 }
+
+
+TEST(task1_matrix_sort, sortMyMatrixTest)
+{
+	vector<vector<ElementType>> myMatrix = {};
+	
+	const int n = 5;
+	const int m = 5;
+	
+	unsigned int counter = n*m;
+	
+	for (int i = 0; i < n; ++i)
+	{
+		vector<ElementType> temp = {};
+		for(int j = 0; j < m; ++j)
+		{
+			temp.push_back(counter);
+			--counter;
+		}
+		myMatrix.push_back(temp);
+	}
+	
+	printMatrix(myMatrix, n, m);
+	
+	sortMatrixColumns(myMatrix);
+	
+	printMatrix(myMatrix, n, m);
+	
+	SUCCEED();
+}
