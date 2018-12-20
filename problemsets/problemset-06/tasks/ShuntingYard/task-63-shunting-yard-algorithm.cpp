@@ -43,18 +43,18 @@ string toPostfix(const string &infix)
 			// All numbers are pushed to the postfix (output string)
 			// when they are read.
 			postfix.insert(postfix.end(), symbol);
+			postfix += " ";
 		}
 		else if (isOperator(symbol))
 		{
-			while ((!stack->isEmpty())
-			       && isOperator(stack->top())
-			       && priority(stack->top() >= priority(symbol)))
+			while ((!stack->isEmpty()) && isOperator(stack->top()) && priority(stack->top()) >= priority(symbol))
 			{
 				postfix.insert(postfix.end(), stack->pop());
+				postfix += " ";
 			}
 			stack->push(symbol);
 		}
-		else if (symbol == ' ' || symbol == '(')
+		else if (symbol == '(')
 		{
 			// Push opening parenthesis/spaces
 			stack->push(symbol);
@@ -66,6 +66,7 @@ string toPostfix(const string &infix)
 			while (stack->top() != '(')
 			{
 				postfix.insert(postfix.end(), stack->pop());
+				postfix += " ";
 			}
 			
 			// Pop '('
@@ -95,9 +96,9 @@ void handleIO(string infix)
 	}
 	else
 	{
-		cout << "Expression in infix form: " << infix << endl;
+		cout << "\nExpression in infix form:\n\t" << infix << endl;
 	}
 	
-	cout << "Expression in postfix form (reverse polish notation):" << endl;
-	cout << toPostfix(infix) << endl;
+	cout << "\nExpression in postfix form (reverse polish notation):\n\t" << toPostfix(infix) << endl;
+	cout << endl;
 }

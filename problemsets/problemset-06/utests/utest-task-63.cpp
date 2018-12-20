@@ -4,6 +4,15 @@
 
 TEST(problemset06, task63)
 {
-	handleIO("(1 + 1) * 2");
-	EXPECT_EQ(toPostfix("(1 + 1) * 2"), "1 1 + 2 *");
+	const auto input = "(1 + 1) * 2";
+	handleIO(input);
+	EXPECT_EQ(toPostfix(input), "1 1 + 2 *");
+}
+
+
+TEST(problemset06, task63LongerExpression)
+{
+	const auto input = "1 + 2 + 3 * 4 * 5 + 6 + 7";
+	handleIO(input);
+	EXPECT_EQ(toPostfix(input), "1 2 + 3 4 * 5 * + 6 + 7 +");
 }
