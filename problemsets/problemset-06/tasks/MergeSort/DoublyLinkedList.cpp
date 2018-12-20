@@ -228,7 +228,7 @@ void DoublyLinkedList::checkPosition(const int &position)
 	if (position >= this->length || position < 0)
 	{
 		cerr << "ERROR: position is out of range" << endl;
-		throw std::exception();
+		throw runtime_error(string("OUT OF RANGE!"));
 	}
 }
 
@@ -240,8 +240,16 @@ void DoublyLinkedList::resetNode(const int &position, Node *newNode)
 	
 	newNode->previous = node->previous;
 	newNode->next = node->next;
-	(newNode->previous)->next = newNode;
-	(newNode->next)->previous = newNode;
+	
+	if(newNode->previous)
+	{
+		(newNode->previous)->next = newNode;
+	}
+
+	if(newNode->next)
+	{
+		(newNode->next)->previous = newNode;
+	}
 	
 	delete node;
 }
@@ -251,10 +259,10 @@ DoublyLinkedList *DoublyLinkedList::getSubList(const int &beginning, const int &
 {
 	auto subList = new DoublyLinkedList();
 	
-	if (beginning < 0 || theEnd >= length)
+	if (beginning < 0 || theEnd > this->length)
 	{
 		cerr << "ERROR: position is out of range" << endl;
-		throw std::exception();
+		throw runtime_error("FUUUUUCK!");
 	}
 	
 	int index = beginning;
