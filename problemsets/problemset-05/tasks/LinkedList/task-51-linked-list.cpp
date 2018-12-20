@@ -29,7 +29,7 @@ void LinkedList::shift(Node *&head, int data)
 }
 
 
-void LinkedList::smartInsert(Node *&head, int data)
+void LinkedList::insert(Node *&head, int data)
 {
 	auto *newNode = new LinkedList::Node(0, nullptr);
 	newNode->data = data;
@@ -194,7 +194,7 @@ void LinkedList::startDialogLoop(Node *&head)
 			case 1: // 1 - Add value to the sorted list
 				cout << "Добавление значения в список.\n\tВведите значение: ";
 				cin >> value;
-				LinkedList::smartInsert(head, value);
+				LinkedList::insert(head, value);
 				cout << endl;
 				break;
 			
@@ -216,3 +216,31 @@ void LinkedList::startDialogLoop(Node *&head)
 		
 	} while (key != 0);
 }
+<<<<<<< HEAD:problemsets/problemset-05/tasks/task-51-linked-list.cpp
+
+
+int polynomial()
+{
+	setlocale(LC_ALL, "Russian");
+	LinkedList::Node *list = nullptr;
+	startDialogLoop(list);
+	
+	// test testWorkList::length() function
+	cout << "\nДлина списка: " << LinkedList::length(list) << endl;
+	LinkedList::printList(list);
+	
+	// test testWorkList::shift() function
+	cout << "Добавим 100 в начало" << endl;
+	LinkedList::shift(list, 100);
+	LinkedList::printList(list);
+	
+	// test testWorkList::reverse() function
+	cout << "Развернём лист:" << endl;
+	LinkedList::reverse(list);
+	LinkedList::printList(list);
+	
+	LinkedList::deleteList(list);
+	return 0;
+}
+=======
+>>>>>>> master:problemsets/problemset-05/tasks/LinkedList/task-51-linked-list.cpp
