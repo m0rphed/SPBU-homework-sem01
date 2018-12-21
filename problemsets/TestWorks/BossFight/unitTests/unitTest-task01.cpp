@@ -3,6 +3,5 @@
 
 TEST(bossFight, task01)
 {
-	handleNumbers();
 	FAIL();
 }

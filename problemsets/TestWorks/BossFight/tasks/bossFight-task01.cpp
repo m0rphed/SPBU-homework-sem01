@@ -1,40 +1,84 @@
-#include "../dataStructures/LinkedList.h"
 #include "bossFight-task01.h"
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <locale>
 #include <string>
+#include <utility>
+#include <gtest/gtest.h> // Google Test Framework
 
 using namespace std;
 
-BinarySearchTree *processData(BinarySearchTree *myTree)
+void writeToFile(ofstream &output, BinarySearchTree *myTree)
 {
-	string fileName = "data.txt";
-	ifstream data(fileName, ios::in);
+	// Backup stream buffers of std::cout and std::cin
+	streambuf *streamBufferCout = cout.rdbuf();
+	
+	// Get the stream buffer of the file
+	streambuf *streamBufferFile = output.rdbuf();
+	
+	// Redirect std::cout to file
+	cout.rdbuf(streamBufferFile);
+	
+	myTree->inOrder();
+	
+	// Redirect back
+	cout.rdbuf(streamBufferCout);
+	
+	cout << "Data was written to file." << endl;
+}
+
+
+void *processData(string inputFile, string outputFile, BinarySearchTree *myTree)
+{
+	ifstream input(inputFile, ios::in);
+	ofstream output(outputFile);
 	
 	// Check that file can be found, and throw exception if it can not
-	if (!data.is_open())
+	if (!input.is_open())
 	{
 		cerr << "ERROR: File not found." << endl;
-		throw runtime_error(string("Failed opening: ") + fileName);
+		throw runtime_error(string("Failed opening: ") + inputFile);
 	}
 	
-	cout << "\nStart reading your phone-book...\n" << endl;
+	cout << "\nStart reading your data...\n" << endl;
 	int counter = 0;
 	
-	while (!data.eof())
+	while (!input.eof())
 	{
 		string line;
 		
-		getline(data, line);
-		myTree->insert(line);
+		getline(input, line);
 		
+		pair<bool, TreeNode *> found = myTree->search(line);
+		
+		if (found.first)
+		{
+			continue;
+		}
+		else
+		{
+			myTree->insert(line);
+		}
 		++counter;
 	}
-	
 	cout << "Successfully read " << counter << " lines." << endl;
-	data.close();
 	
+	// write all gathered data to output
+	writeToFile(output, myTree);
+	
+	input.close();
 	return myTree;
+}
+
+
+int main()
+{
+	string inputName = "data.txt";
+	string outputName = "output.txt";
+	
+	auto *tree = new BinarySearchTree();
+	
+	processData(inputName, outputName, tree);
 }

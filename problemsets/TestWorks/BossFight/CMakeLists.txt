@@ -8,8 +8,9 @@ set(DS  dataStructures/BinarySearchTree.cpp)
 #                bossFight-task02.cpp
 #                bossFight-task03.cpp)
 #
-## Define all tests
-#set(TESTS   unitTests/unitTest-task01.cpp
+
+# Define all tests
+set(TESTS   unitTests/unitTest-task01.cpp)
 #            unitTests/unitTest-task02.cpp
 #            unitTests/unitTest-task03.cpp)
 #
@@ -18,4 +19,4 @@ set(DS  dataStructures/BinarySearchTree.cpp)
 #                            ${TESTS})
 
 add_executable(bossFight-task01 ${DS} tasks/bossFight-task01.cpp)
-#target_link_libraries(bossFight gtest gtest_main pthread)
+#target_link_libraries(bossFight-tasks gtest pthread)

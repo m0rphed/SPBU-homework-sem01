@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <utility>
-typedef int TreeValueType;
+#include <string>
+
+typedef std::string TreeValueType;
 
 struct TreeNode
 {
@@ -35,8 +37,6 @@ public:
 	TreeNode *getMin();
 	
 	TreeNode *getMax();
-	
-	bool check();
 	
 	~BinarySearchTree();
 };

@@ -23,23 +23,6 @@ TreeNode *insertTo(const TreeValueType &value, TreeNode *subTree)
 }
 
 
-bool isBST(TreeNode *node, TreeValueType minKey, TreeValueType maxKey)
-{
-	if (!node)
-	{
-		return true;
-	}
-	
-	if (node->data < minKey || node->data > maxKey)
-	{
-		return false;
-	}
-	
-	return isBST(node->left, minKey, node->data - 1) &&
-	       isBST(node->right, node->data + 1, maxKey);
-}
-
-
 void preOrderTraversal(TreeNode *currentNode)
 {
 	if (!currentNode)
@@ -47,7 +30,7 @@ void preOrderTraversal(TreeNode *currentNode)
 		return;
 	}
 	
-	cout << currentNode->data << " ";
+	cout << currentNode->data << endl;
 	
 	preOrderTraversal(currentNode->left);
 	preOrderTraversal(currentNode->right);
@@ -64,7 +47,7 @@ void inOrderTraversal(TreeNode *currentNode)
 	
 	inOrderTraversal(currentNode->left);
 	
-	cout << currentNode->data << " ";
+	cout << currentNode->data << endl;
 	
 	inOrderTraversal(currentNode->right);
 }
@@ -80,7 +63,7 @@ void postOrderTraversal(TreeNode *currentNode)
 	postOrderTraversal(currentNode->left);
 	postOrderTraversal(currentNode->right);
 	
-	cout << currentNode->data << " ";
+	cout << currentNode->data << endl;
 }
 
 
@@ -207,43 +190,6 @@ TreeNode *BinarySearchTree::getMin()
 TreeNode *BinarySearchTree::getMax()
 {
 	return findMax(root);
-}
-
-
-bool BinarySearchTree::check()
-{
-	TreeValueType maxValue = (getMax())->data;
-	TreeValueType minValue = (getMin())->data;
-	
-	return isBST(root, minValue, maxValue);
-}
-
-
-void simpleTest(TreeValueType *elements, const int &length)
-{
-	auto *myBST = new BinarySearchTree();
-	
-	for (int i = 0; i < length; ++i)
-	{
-		myBST->insert(elements[i]);
-	}
-	
-	myBST->inOrder();
-	cout << endl;
-	
-	cout << "\nMax data is " << (myBST->getMax())->data << endl;
-	cout << "\nMin data is " << (myBST->getMin())->data << endl;
-	
-	if (myBST->check())
-	{
-		cout << "Tree is BST" << endl;
-	}
-	else
-	{
-		cout << "Not BST" << endl;
-	}
-	
-	delete myBST;
 }
 
 
