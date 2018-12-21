@@ -1,6 +1,7 @@
 #include "DoublyLinkedList.h"
 
 #include <string>
+#include <utility>
 #include <iostream>
 #include <stdexcept>
 
@@ -241,12 +242,12 @@ void DoublyLinkedList::resetNode(const int &position, Node *newNode)
 	newNode->previous = node->previous;
 	newNode->next = node->next;
 	
-	if(newNode->previous)
+	if (newNode->previous)
 	{
 		(newNode->previous)->next = newNode;
 	}
-
-	if(newNode->next)
+	
+	if (newNode->next)
 	{
 		(newNode->next)->previous = newNode;
 	}
@@ -259,10 +260,16 @@ DoublyLinkedList *DoublyLinkedList::getSubList(const int &beginning, const int &
 {
 	auto subList = new DoublyLinkedList();
 	
-	if (beginning < 0 || theEnd > this->length)
+	if(beginning == theEnd)
+	{
+		subList->append(this->getNodeAt(beginning)->name, this->getNodeAt(beginning)->phone);
+		return subList;
+	}
+	
+	if (beginning < 0 || this->length < theEnd)
 	{
 		cerr << "ERROR: position is out of range" << endl;
-		throw runtime_error("FUUUUUCK!");
+		throw runtime_error("Out of range!");
 	}
 	
 	int index = beginning;

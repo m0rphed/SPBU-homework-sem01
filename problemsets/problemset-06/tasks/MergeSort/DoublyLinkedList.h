@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 typedef std::string TypeOfValue;
 
