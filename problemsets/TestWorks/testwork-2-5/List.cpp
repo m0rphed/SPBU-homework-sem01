@@ -2,7 +2,13 @@
 
 typedef string ElementType;
 
-Node::Node() : data(0), next(nullptr)
+string LinkedList::getHeadValue()
+{
+	return this->head->data;
+}
+
+
+Node::Node() : next(nullptr)
 {
 }
 
@@ -204,13 +210,13 @@ void LinkedList::reverse()
 void LinkedList::printList()
 {
 	auto *headCopy = head;
-	cout << "\t";
+	cout << endl;
 	while (headCopy)
 	{
-		cout << headCopy->data << "-->";
+		cout << headCopy->data << endl;
 		headCopy = headCopy->next;
 	}
-	cout << "null" << endl;
+	cout << endl;
 }
 
 

@@ -38,6 +38,8 @@ public:
 	// Func. to iterate through the list and get the real length of the list
 	int countNodes();
 	
+	std::string getHeadValue();
+	
 	// Getter-function
 	int getLength();
 	
