@@ -2,6 +2,8 @@
 
 #include "../dataStructures/BinarySearchTree.h"
 #include <fstream>
-void writeToFile(ofstream &output, BinarySearchTree *myTree)
+#include <string>
 
-void *processData(string inputFile, string outputFile, BinarySearchTree *myTree)
+void writeToFile(std::ofstream &output, BinarySearchTree *myTree);
+
+void *processData(std::string inputFile, std::string outputFile, BinarySearchTree *myTree);

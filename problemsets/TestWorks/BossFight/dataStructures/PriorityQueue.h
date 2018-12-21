@@ -4,22 +4,24 @@
 
 using namespace std;
 
+typedef struct QueueNode
+{
+	int data = 0;
+	int key;
+	QueueNode *next = nullptr;
+} node;
+
+
 class PriorityQueue
 {
-	typedef struct QueueNode
-	{
-		int value;
-		struct QueueNode *next;
-	} node;
-	
-	int numberOfNodes;
+	int length = 0;
 	node *head;
 	node *tail;
 
 public:
 	PriorityQueue();
 	
-	bool empty();
+	bool isEmpty();
 	
 	int size();
 	
@@ -27,127 +29,125 @@ public:
 	
 	int back();
 	
-	void enqueue();
+	void enqueue(int value, int key);
 	
 	void dequeue();
 };
 
 
-bool PriorityQueue::empty()
+// Constructor
+PriorityQueue::PriorityQueue( void )
 {
-	return (head == NULL);
+	head = tail = nullptr;
+	length = 0;
+}
+
+
+bool PriorityQueue::isEmpty()
+{
+	return (head == nullptr);
 }
 
 
 int PriorityQueue::size()
 {
-	return numberOfNodes;
+	return this->length;
 }
 
 
 int PriorityQueue::front()
 {
-	if (head != NULL)
-		return head->value;
+	if (head != nullptr)
+	{
+		return head->data;
+	}
 	else
+	{
 		return -1;
+	}
 }
 
 
 int PriorityQueue::back()
 {
-	for (tail = head; tail->next != NULL; tail = tail->next);
-	return tail->value;
+	for (tail = head; tail->next != nullptr; tail = tail->next);
+	return tail->data;
 }
 
 
-void PriorityQueue::enqueue(int newValue)
+void PriorityQueue::enqueue(int value, int key)
 {
-	node *temp;
-	node *current;
-	
-	temp = (node *) calloc(1, sizeof(node));
-	temp->value = newValue;
-	
-	// Inserting in the beginning of the queue
-	if (head == NULL || newValue < head->value)
+	node *newNode = new node();
+	newNode->data = value;
+	newNode->next = nullptr;
+	if (head == nullptr)
 	{
-		temp->next = head;
-		head = temp;
+		head = newNode;
+		tail = newNode;
+		return;
 	}
-		// Inserting middle/end of queue
-	else
+	struct QueueNode *it;
+	struct QueueNode *it1;
+	it = head;
+	it1 = nullptr;
+	while (it != nullptr)
 	{
-		current = head;
-		
-		// Navigate through the list until the next node value is LARGER than the current value, but stop once we hit the end of the list
-		while (current->next != NULL && current->next->value < newValue)
+		if (it->key < key)
 		{
-			current = current->next;
+			if (it1 != nullptr)
+				it1->next = newNode;
+			newNode->next = it;
+			if (it1 == nullptr)
+				head = newNode;
+			return;
 		}
-		temp->next = current->next;
-		current->next = temp;
+		it1 = it;
+		it = it->next;
 	}
-	
-	numberOfNodes++;
+	it1->next = newNode;
+	tail = newNode;
 }
-
 
 void PriorityQueue::dequeue()
 {
-	node *temp;
-	
-	if (head != nullptr)
+	if (head == nullptr)
 	{
-		temp = head;
-		head = head->next;
-		
-		free(temp);
-		temp = nullptr;
-		
-		numberOfNodes--;
+		cout << "Queue is EMPTY!" << endl;
+		return;
 	}
+	cout << "Deleted value was: " << head->data << " with key: " << head->key << endl;
+	struct QueueNode *temp = head;
+	head = head->next;
+	if (head == nullptr)
+	{
+		tail = nullptr;
+	}
+	
+	delete temp;
 }
 
 
-// Constructor
-PriorityQueue::PriorityQueue()
+void PriorityQueue::front()
 {
-	head = tail = nullptr;
-	numberOfNodes = 0;
+	if (head == nullptr)
+	{
+		cout << "Peeked Value" << endl;
+	}
+	
 }
 
 
-int main(int argc, char **argv)
+void PriorityQueue::print()
 {
-	PriorityQueue myQueue = PriorityQueue();
+	auto *copyOfHead = head;
 	
-	cout << "The queue should be empty: " << myQueue.empty() << endl;
-	cout << "The size of the queue should be 0: " << myQueue.size() << endl;
-	myQueue.enqueue(3);
-	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-	myQueue.enqueue(1);
-	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-	myQueue.enqueue(2);
-	myQueue.dequeue();
-	cout << "The size of the queue should be 2: " << myQueue.size() << endl;
+	cout << "Priority Queue: ";
 	
-	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-	myQueue.enqueue(4);
-	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-	myQueue.enqueue(5);
-	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-	myQueue.dequeue();
-	
-	cout << "The queue should NOT be empty: " << myQueue.empty() << endl;
-	cout << "The size of the queue should be 3: " << myQueue.size() << endl;
-	
-	// Print out the queue
-	while (!myQueue.empty())
+	while (copyOfHead != nullptr)
 	{
-		cout << myQueue.front() << " " << endl;
-		myQueue.dequeue();
+		cout << copyOfHead->data << " ";
+		copyOfHead = copyOfHead->next;
 	}
 	
-	return 0;
+	cout << endl;
 }
