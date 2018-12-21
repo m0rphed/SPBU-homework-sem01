@@ -1,7 +1,7 @@
 #include "PriorityQueue.h"
 
 // Constructor
-PriorityQueue::PriorityQueue(void)
+PriorityQueue::PriorityQueue()
 {
 	head = tail = nullptr;
 	length = 0;
@@ -94,17 +94,20 @@ int PriorityQueue::dequeue()
 		return -1;
 	}
 	
-	auto *temp = head;
-	head = head->next;
+	node *maxNode = this->findHighestNode();
 	
-	if (!head)
+	for (auto *headCopy = head; headCopy->next != nullptr; headCopy = headCopy->next)
 	{
-		tail = nullptr;
+		if ((headCopy->next)->key == maxNode->key)
+		{
+			(headCopy->next)->next = ((headCopy->next)->next)->next;
+			break;
+		}
 	}
 	
-	delete temp;
 	--length;
-	cout << "Deleted value was: " << head->data << " with key: " << head->key << endl;
+	cout << "Deleted value was: " << maxNode->data << " with key: " << maxNode->key << endl;
+	delete maxNode;
 }
 
 
@@ -122,36 +125,20 @@ void PriorityQueue::print()
 	cout << endl;
 }
 
-//
-//
-//void queueTest()
-//{
-//	PriorityQueue myQueue = PriorityQueue();
-//
-//	cout << "The queue should be empty: " << myQueue.empty() << endl;
-//	cout << "The size of the queue should be 0: " << myQueue.size() << endl;
-//	myQueue.enqueue(3);
-//	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-//	myQueue.enqueue(1);
-//	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-//	myQueue.enqueue(2);
-//	myQueue.dequeue();
-//	cout << "The size of the queue should be 2: " << myQueue.size() << endl;
-//
-//	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-//	myQueue.enqueue(4);
-//	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-//	myQueue.enqueue(5);
-//	cout << "myQueue.front() = " << myQueue.front() << " myQueue.back() = " << myQueue.back() << endl;
-//	myQueue.dequeue();
-//
-//	cout << "The queue should NOT be empty: " << myQueue.empty() << endl;
-//	cout << "The size of the queue should be 3: " << myQueue.size() << endl;
-//
-//	// Print out the queue
-//	while (!myQueue.empty())
-//	{
-//		cout << myQueue.front() << " " << endl;
-//		myQueue.dequeue();
-//	}
-//}
+
+node *PriorityQueue::findHighestNode()
+{
+	node *highest = head;
+	int maxKey = head->key;
+	
+	for (node *headCopy = head; headCopy->next != nullptr; headCopy = headCopy->next)
+	{
+		if (headCopy->key > maxKey)
+		{
+			highest = headCopy;
+			maxKey = headCopy->key;
+		}
+	}
+	return highest;
+}
+

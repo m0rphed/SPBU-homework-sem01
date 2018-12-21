@@ -29,7 +29,9 @@ public:
 	
 	void enqueue(int value, int key);
 	
-	void dequeue();
+	int dequeue();
 	
 	void print();
+	
+	node *findHighestNode();
 };
