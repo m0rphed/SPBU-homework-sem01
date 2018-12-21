@@ -70,7 +70,7 @@ add_subdirectory(problemsets/TestWorks/testwork-second-try)
 add_subdirectory(problemsets/TestWorks/testwork-third-try)
 
 # Locate solutions for testwork-2.4
-add_subdirectory(problemsets/TestWorks/testwork-2-4)
+add_subdirectory(problemsets/TestWorks/testwork-2-5)
 
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
