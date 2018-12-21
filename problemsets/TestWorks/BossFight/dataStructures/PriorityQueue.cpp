@@ -1,93 +1,127 @@
 #include "PriorityQueue.h"
 
-//
-//bool PriorityQueue::empty()
-//{
-//	return (head == nullptr);
-//}
-//
-//
-//int PriorityQueue::size()
-//{
-//	return numberOfNodes;
-//}
-//
-//
-//int PriorityQueue::front()
-//{
-//	if (head)
-//	{
-//		return head->value;
-//	}
-//	else
-//	{
-//		return -1;
-//	}
-//}
-//
-//
-//int PriorityQueue::back()
-//{
-//	for (tail = head; tail->next != nullptr; tail = tail->next);
-//	return tail->value;
-//}
-//
-//
-//void PriorityQueue::enqueue(const int &newValue)
-//{
-//	node *temp;
-//	node *current;
-//
-//	temp = new node;
-//	temp->value = newValue;
-//
-//	// Inserting in the beginning of the queue
-//	if (head == nullptr || newValue < head->value)
-//	{
-//		temp->next = head;
-//		head = temp;
-//	}
-//		// Inserting middle/end of queue
-//	else
-//	{
-//		current = head;
-//
-//		// Go through the list until the next node value
-//		// is LARGER than the current value,
-//		// but stop once we hit the end of the list
-//		while (current->next != nullptr && current->next->value < newValue)
-//		{
-//			current = current->next;
-//		}
-//		temp->next = current->next;
-//		current->next = temp;
-//	}
-//
-//	++numberOfNodes;
-//}
-//
-//
-//void PriorityQueue::dequeue()
-//{
-//	node *temp = nullptr;
-//
-//	if (head)
-//	{
-//		temp = head;
-//		head = head->next;
-//
-//		delete temp;
-//		--numberOfNodes;
-//	}
-//}
-//
-//
-//// Constructor
-//PriorityQueue::PriorityQueue()
-//{
-//	head = tail = nullptr;
-//	numberOfNodes = 0;
-//}
+// Constructor
+PriorityQueue::PriorityQueue(void)
+{
+	head = tail = nullptr;
+	length = 0;
+}
+
+
+bool PriorityQueue::isEmpty()
+{
+	return (head == nullptr);
+}
+
+
+int PriorityQueue::getLength()
+{
+	return this->length;
+}
+
+
+int PriorityQueue::front()
+{
+	if (head != nullptr)
+	{
+		return head->data;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+
+int PriorityQueue::back()
+{
+	for (tail = head; tail->next != nullptr; tail = tail->next);
+	return tail->data;
+}
+
+
+void PriorityQueue::enqueue(int value, int key)
+{
+	auto *newNode = new node();
+	
+	newNode->data = value;
+	newNode->next = nullptr;
+	
+	if (head == nullptr)
+	{
+		head = newNode;
+		tail = newNode;
+		return;
+	}
+	
+	auto *previous = head;
+	node *current;
+	
+	while (previous != nullptr)
+	{
+		if (previous->key < key)
+		{
+			if (current)
+			{
+				current->next = newNode;
+			}
+			
+			newNode->next = previous;
+			
+			if (!current)
+			{
+				head = newNode;
+			}
+			
+			return;
+		}
+		
+		current = previous;
+		previous = previous->next;
+	}
+	
+	current->next = newNode;
+	tail = newNode;
+	++length;
+}
+
+
+int PriorityQueue::dequeue()
+{
+	if (!head)
+	{
+		cout << "Queue is empty." << endl;
+		return -1;
+	}
+	
+	auto *temp = head;
+	head = head->next;
+	
+	if (!head)
+	{
+		tail = nullptr;
+	}
+	
+	delete temp;
+	--length;
+	cout << "Deleted value was: " << head->data << " with key: " << head->key << endl;
+}
+
+
+void PriorityQueue::print()
+{
+	auto *copyOfHead = head;
+	
+	cout << "Priority Queue: " << endl;
+	
+	while (copyOfHead)
+	{
+		cout << copyOfHead->data << " ";
+		copyOfHead = copyOfHead->next;
+	}
+	cout << endl;
+}
+
 //
 //
 //void queueTest()
