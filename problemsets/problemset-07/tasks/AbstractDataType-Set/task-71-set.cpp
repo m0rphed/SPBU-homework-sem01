@@ -1,6 +1,7 @@
 #include "task-71-set.h"
 #include "Set.h"
 #include <iostream>
+#include <gtest/gtest.h> // Google Test Framework
 
 using namespace std;
 
@@ -107,9 +108,10 @@ void userInterface(Set *mySet)
 }
 
 
-int main()
-{
-	auto *mySet = new Set();
-	userInterface(mySet);
-	return 0;
+int main(int argc, char **argv) {
+//	auto *mySet = new Set();
+//	userInterface(mySet);
+	
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

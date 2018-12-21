@@ -11,4 +11,4 @@ set(TESTS   utests/utest-task-71.cpp
             utests/utest-task-72.cpp)
 
 add_executable(problemset-07 ${TASK71_SRCS} ${TESTS})
-target_link_libraries(problemset-07 gmock gtest gtest_main pthread)
+target_link_libraries(problemset-07 gmock gtest pthread)
