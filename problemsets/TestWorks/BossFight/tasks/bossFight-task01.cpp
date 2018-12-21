@@ -1,11 +1,10 @@
 #include "bossFight-task01.h"
 
-#include <algorithm>
 #include <iostream>
 #include <fstream>
-#include <locale>
 #include <string>
 #include <utility>
+
 #include <gtest/gtest.h> // Google Test Framework
 
 using namespace std;

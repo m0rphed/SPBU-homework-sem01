@@ -19,4 +19,5 @@ set(TESTS   unitTests/unitTest-task01.cpp)
 #                            ${TESTS})
 
 add_executable(bossFight-task01 ${DS} tasks/bossFight-task01.cpp)
+add_executable(bossFight-task02 ${DS} tasks/bossFight-task02.cpp)
 #target_link_libraries(bossFight-tasks gtest pthread)
