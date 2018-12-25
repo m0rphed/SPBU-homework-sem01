@@ -54,6 +54,7 @@ void Queue::printQueue()
 	{
 		cout << current->data << " <-- ";
 	}
+	cout << "null" << endl;
 	cout << "." << endl;
 }
 
