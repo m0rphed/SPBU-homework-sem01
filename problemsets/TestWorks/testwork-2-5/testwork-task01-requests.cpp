@@ -18,6 +18,7 @@ void handleInput(const int &n, int *requests)
 	{
 		cout << requests[i] << ", ";
 	}
+	cout << endl;
 	
 	auto *myQueue = new Queue;
 	for (int i = 0; i < n; ++i)
@@ -47,6 +48,7 @@ void handleInput(const int &n, int *requests, Queue *myQueue)
 	{
 		cout << requests[i] << ", ";
 	}
+	cout << endl;
 	
 	for (int i = 0; i < n; ++i)
 	{

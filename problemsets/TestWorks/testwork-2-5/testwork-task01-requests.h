@@ -10,4 +10,4 @@
 
 void handleInput(const int &n, int *requests);
 
-void handleInput(const int &n, int *requests, Queue &myQueue);
+void handleInput(const int &n, int *requests, Queue *myQueue);

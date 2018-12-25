@@ -6,12 +6,12 @@
 
 using namespace std;
 
-TEST(testwork_2, calendarParserTest)
+TEST(testwork_2, requestTest)
 {
 	auto *myQueue = new Queue();
 	
 	const int n = 10;
-	const int arrayOfCommands[n] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int arrayOfCommands[n] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	
 	handleInput(n, arrayOfCommands, myQueue);
 	
