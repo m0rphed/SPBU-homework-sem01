@@ -1,5 +1,5 @@
 #include "testwork-task01-requests.h"
-#include <stdexcept>
+#include "Queue.h"
 #include <iostream>
 
 using namespace std;
@@ -9,7 +9,3 @@ using namespace std;
 // Иначе следует добавить этот элемент в конец очереди.
 // Для каждого запроса -1 вывести убираемый элемент, либо -1, если очередь пуста.
 
-void processRequests()
-{
-
-}

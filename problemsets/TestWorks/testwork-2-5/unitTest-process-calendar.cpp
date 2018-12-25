@@ -10,7 +10,7 @@ TEST(testwork_2, calendarParserTest)
 {
 	auto *myQueue = new Queue();
 	
-//	processData("calendar.txt", myQueue);
+//	handleInput("calendar.txt", myQueue);
 //
 //	cout << "Max date: " << myQueue->getHeadValue() << endl;
 //
