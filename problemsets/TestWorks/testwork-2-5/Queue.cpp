@@ -118,4 +118,6 @@ void queueInterface()
 				break;
 		}
 	} while (option != 0);
+	
+	delete myQueue;
 }
