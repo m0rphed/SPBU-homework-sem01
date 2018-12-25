@@ -19,7 +19,7 @@ class Queue
 	};
 
 private:
-	int size;
+	int size = 0;
 	Node *first = nullptr;
 	Node *last = nullptr;
 
@@ -48,32 +48,3 @@ public:
 	
 	void deleteQueue();
 };
-
-
-/*
-int main( )
-{
-  queue<int> q;
-  
-  q.enqueue( 10 );
-  q.enqueue( 45 );
-  q.enqueue( 34 );
-  q.enqueue( 12 );
-  q.enqueue( 89 );
-  q.enqueue( 17 );
-  
-  q.display( );
-  
-  for ( int i = 0; i < 3; i++ )
-    q.dequeue( );
-  
-  q.display( );
-  
-  q.makeempty( );
-  
-  q.display( );
-
-  cin.get( );
-  return 0;
-}
-*/

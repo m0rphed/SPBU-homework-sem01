@@ -39,7 +39,7 @@ void handleInput(const int &n, int *requests)
 }
 
 
-void handleInput(const int &n, int *requests, Queue &myQueue)
+void handleInput(const int &n, int *requests, Queue *myQueue)
 {
 	cout << "\nStarted testing module..." << endl;
 	cout << "\nGot array of requests:" << endl;
@@ -53,14 +53,14 @@ void handleInput(const int &n, int *requests, Queue &myQueue)
 		if (requests[i] != -1)
 		{
 			cout << "Enqueued with value: " << requests[i] << endl;
-			myQueue.enqueue(requests[i]);
+			myQueue->enqueue(requests[i]);
 		}
 		else
 		{
-			cout << "Dequeued value: " << myQueue.dequeue() << endl;
+			cout << "Dequeued value: " << myQueue->dequeue() << endl;
 		}
 	}
 	
 	cout << "At the end of the day we have: " << endl;
-	myQueue.printQueue();
+	myQueue->printQueue();
 }
