@@ -1,4 +1,5 @@
-#include "testwork-process-calendar.h"
+#include "testwork-task01-requests.h"
+#include "Queue.h"
 
 #include <gtest/gtest.h> // Google Test Framework
 #include <iostream>
@@ -7,14 +8,15 @@ using namespace std;
 
 TEST(testwork_2, calendarParserTest)
 {
-	auto *list = new LinkedList();
+	auto *myQueue = new Queue();
 	
-	processData("calendar.txt", list);
+//	processData("calendar.txt", myQueue);
+//
+//	cout << "Max date: " << myQueue->getHeadValue() << endl;
+//
+//	cout << "\nList of dates:" << endl;
+//	myQueue->printList();
 	
-	cout << "Max date: " << list->getHeadValue() << endl;
-	
-	cout << "\nList of dates:" << endl;
-	list->printList();
-	
+	delete myQueue;
 	SUCCEED();
 }
