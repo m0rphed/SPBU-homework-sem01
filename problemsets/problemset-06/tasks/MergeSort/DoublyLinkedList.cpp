@@ -1,14 +1,14 @@
 #include "DoublyLinkedList.h"
 
 #include <string>
+#include <utility>
 #include <iostream>
 #include <stdexcept>
 
 using namespace std;
 typedef string TypeOfValue;
 
-
-myNode::myNode(const TypeOfValue &newName, const TypeOfValue &newPhone)
+Node::Node(const TypeOfValue &newName, const TypeOfValue &newPhone)
 {
 	name = newName;
 	phone = newPhone;
@@ -17,18 +17,17 @@ myNode::myNode(const TypeOfValue &newName, const TypeOfValue &newPhone)
 }
 
 
-myNode::myNode(const TypeOfValue &newName, const TypeOfValue &newPhone, myNode *pointerToPrevious,
-               myNode *pointerToNext)
+Node::Node(const TypeOfValue &newName, const TypeOfValue &newPhone, Node *previousNode,
+           Node *nextNode)
 {
 	name = newName;
 	phone = newPhone;
-	
-	previous = pointerToPrevious;
-	next = pointerToNext;
+	previous = previousNode;
+	next = nextNode;
 }
 
 
-myNode::myNode() : previous(nullptr), next(nullptr)
+Node::Node() : previous(nullptr), next(nullptr)
 {
 }
 
@@ -45,7 +44,7 @@ void DoublyLinkedList::destroyList()
 {
 	while (head != nullptr)
 	{
-		myNode *pointerToNext = head;
+		Node *pointerToNext = head;
 		head = head->next;
 		delete pointerToNext;
 	}
@@ -59,14 +58,12 @@ DoublyLinkedList::~DoublyLinkedList()
 	destroyList();
 }
 
-
-myNode *DoublyLinkedList::getHead()
+Node *DoublyLinkedList::getHead()
 {
 	return this->head;
 }
 
-
-myNode *DoublyLinkedList::getTail()
+Node *DoublyLinkedList::getTail()
 {
 	return this->tail;
 }
@@ -78,7 +75,7 @@ int DoublyLinkedList::getLength()
 }
 
 
-myNode *DoublyLinkedList::getNodeAt(const int &position)
+Node *DoublyLinkedList::getNodeAt(const int &position)
 {
 	if (position < 0)
 	{
@@ -112,11 +109,12 @@ myNode *DoublyLinkedList::getNodeAt(const int &position)
 }
 
 
-void DoublyLinkedList::addTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone)
+
+void DoublyLinkedList::insertTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone)
 {
 	if (length == 0)
 	{
-		head = tail = new myNode(username, phone);
+		head = tail = new Node(username, phone);
 	}
 	else
 	{
@@ -125,17 +123,18 @@ void DoublyLinkedList::addTo(const int &position, const TypeOfValue &username, c
 		if (!next)
 		{
 			tail->next = new myNode(username, phone, tail, nullptr);
+			tail->next = new Node(username, phone, tail, nullptr);
 			tail = tail->next;
 		}
 		else if (next == head)
 		{
-			head = new myNode(username, phone, next->previous, next);
+			head = new Node(username, phone, next->previous, next);
 			head->next->previous = head;
 		}
 		else
 		{
-			next->previous = new myNode(username, phone, next->previous, next);
-			if (next->previous->previous != nullptr)
+			next->previous = new Node(username, phone, next->previous, next);
+			if (next->previous->previous)
 			{
 				next->previous->previous->next = next->previous;
 			}
@@ -145,13 +144,13 @@ void DoublyLinkedList::addTo(const int &position, const TypeOfValue &username, c
 }
 
 
-void DoublyLinkedList::addToEnd(const TypeOfValue &username, const TypeOfValue &phone)
+void DoublyLinkedList::append(const TypeOfValue &username, const TypeOfValue &phone)
 {
-	addTo(length, username, phone);
+	insertTo(length, username, phone);
 }
 
 
-void DoublyLinkedList::removeFrom(const int &position)
+void DoublyLinkedList::remove(const int &position)
 {
 	if (length == 0)
 	{
@@ -162,7 +161,7 @@ void DoublyLinkedList::removeFrom(const int &position)
 		auto *temp = head;
 		head = temp->next;
 		
-		if (head == nullptr)
+		if (!head)
 		{
 			tail = nullptr;
 		}
@@ -176,7 +175,7 @@ void DoublyLinkedList::removeFrom(const int &position)
 	{
 		auto *temp = tail;
 		tail = temp->previous;
-		if (tail == nullptr)
+		if (!tail)
 		{
 			head = nullptr;
 		}
@@ -188,7 +187,7 @@ void DoublyLinkedList::removeFrom(const int &position)
 	}
 	else
 	{
-		myNode *temp = getNodeAt(position);
+		Node *temp = getNodeAt(position);
 		temp->next->previous = temp->previous;
 		temp->previous->next = temp->next;
 		delete temp;
@@ -224,21 +223,70 @@ void DoublyLinkedList::print()
 }
 
 
-void DoublyLinkedList::setNodeAt(const int &index, myNode *newNode)
+void DoublyLinkedList::checkPosition(const int &position)
 {
+	if (position >= this->length || position < 0)
+	{
+		cerr << "ERROR: position is out of range" << endl;
+		throw runtime_error(string("OUT OF RANGE!"));
+	}
 }
 
 
-DoublyLinkedList *DoublyLinkedList::sliceList(const int &fromPosition, const int &toPosition)
+void DoublyLinkedList::resetNode(const int &position, Node *newNode)
 {
-	// Case 0: throw ERROR
-	if (fromPosition < 0 || toPosition >= length)
+	checkPosition(position);
+	auto *node = this->getNodeAt(position);
+	
+	newNode->previous = node->previous;
+	newNode->next = node->next;
+	
+	if (newNode->previous)
 	{
-		cerr << "ERROR: position is out of range" << endl;
-		throw std::exception();
+		(newNode->previous)->next = newNode;
 	}
 	
-	// Case 1: from beginning to some position
-	// Case 2: from position_1 to some position_2
-	// Case 3: from some position to end
+	if (newNode->next)
+	{
+		(newNode->next)->previous = newNode;
+	}
+	
+	delete node;
+}
+
+
+DoublyLinkedList *DoublyLinkedList::getSubList(const int &beginning, const int &theEnd)
+{
+	auto subList = new DoublyLinkedList();
+	
+	if(beginning == theEnd)
+	{
+		subList->append(this->getNodeAt(beginning)->name, this->getNodeAt(beginning)->phone);
+		return subList;
+	}
+	
+	if (beginning < 0 || this->length < theEnd)
+	{
+		cerr << "ERROR: position is out of range" << endl;
+		throw runtime_error("Out of range!");
+	}
+	
+	int index = beginning;
+	while (index < theEnd)
+	{
+		auto *current = this->getNodeAt(index);
+		subList->append(current->name, current->phone);
+		++index;
+	}
+	
+	return subList;
+}
+
+
+void DoublyLinkedList::resetNodeData(const int &position, const TypeOfValue &username, const TypeOfValue &phone)
+{
+	checkPosition(position);
+	auto *node = this->getNodeAt(position);
+	node->name = username;
+	node->phone = phone;
 }

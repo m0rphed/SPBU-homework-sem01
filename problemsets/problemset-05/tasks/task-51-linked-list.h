@@ -13,10 +13,10 @@ namespace LinkedList
 	void shift(Node *&head, int value);
 
 
-	void smartInsert(Node *&head, int data);
+	void insert(Node *&head, int data);
 	
 	
-	void smartDelete(Node *&head, int data);
+	void smartDelete(Node *&head, int key);
 	
 	
 	void reverse(Node *&head);

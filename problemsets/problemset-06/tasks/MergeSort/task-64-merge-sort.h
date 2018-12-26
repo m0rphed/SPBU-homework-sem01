@@ -1,10 +1,13 @@
 #include "DoublyLinkedList.h"
 
 #include <iostream>
-
 using namespace std;
 
-void processData();
+DoublyLinkedList *processData(DoublyLinkedList *list);
+
+unsigned int handleUserCommands();
+
+void controlFunction(bool isTestingMode = true);
 
 void mergeSortByName(DoublyLinkedList *list);
 

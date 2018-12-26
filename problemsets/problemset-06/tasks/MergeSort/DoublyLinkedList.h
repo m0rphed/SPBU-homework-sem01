@@ -1,30 +1,35 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 typedef std::string TypeOfValue;
 
-struct myNode
+struct Node
 {
 	TypeOfValue name = "";
 	TypeOfValue phone = "";
-	myNode *previous;
-	myNode *next;
+	Node *previous;
+	Node *next;
 	
-	myNode(const TypeOfValue &newName, const TypeOfValue &newPhone, myNode *pointerToPrevious, myNode *pointerToNext);
+	Node(const TypeOfValue &newName, const TypeOfValue &newPhone, Node *previousNode, Node *nextNode);
 	
-	myNode(const TypeOfValue &newName, const TypeOfValue &newPhone);
+	Node(const TypeOfValue &newName, const TypeOfValue &newPhone);
 	
-	myNode();
+	Node();
 };
 
 
 class DoublyLinkedList
 {
 private:
-	myNode *head;
-	myNode *tail;
+	Node *head;
+	
+	Node *tail;
+	
 	int length;
+	
+	void checkPosition(const int &position);
 
 public:
 	DoublyLinkedList();
@@ -33,24 +38,27 @@ public:
 	
 	void destroyList();
 	
-	myNode *getNodeAt(const int &position);
+	Node *getNodeAt(const int &position);
 	
-	myNode *getHead();
+	Node *getHead();
 	
-	myNode *getTail();
+	Node *getTail();
 	
 	int getLength();
 	
 	// copy array from arg_1 to arg_2 - 1
-	DoublyLinkedList *sliceList(const int &fromPosition, const int &toPosition);
+
+	DoublyLinkedList *getSubList(const int &beginning, const int &theEnd);
 	
-	void setNodeAt(const int &index, myNode *newNode);
+	void resetNode(const int &position, Node *newNode);
 	
-	void addTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone);
+	void resetNodeData(const int &position, const TypeOfValue &username, const TypeOfValue &phone);
 	
-	void addToEnd(const TypeOfValue &username, const TypeOfValue &phone);
+	void insertTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone);
 	
-	void removeFrom(const int &position);
+	void append(const TypeOfValue &username, const TypeOfValue &phone);
+	
+	void remove(const int &position);
 	
 	void print();
 };
