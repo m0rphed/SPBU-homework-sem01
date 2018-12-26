@@ -1,8 +1,7 @@
 #include <gtest/gtest.h> // Google Test Framework
-#include <gmock/gmock.h>
 
 
-TEST(problemset04, phonebookTest)
+TEST(testWork2_0, task_02)
 {
 	FAIL();
 }
