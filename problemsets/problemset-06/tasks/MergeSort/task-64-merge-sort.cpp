@@ -140,7 +140,7 @@ void mergeSortByName(DoublyLinkedList *list)
 		++j;
 		++k;
 	}
-	
+
 	delete leftHalf;
 	delete rightHalf;
 }
@@ -159,7 +159,7 @@ void mergeSortByPhone(DoublyLinkedList *list)
 	int mid = list->getLength() / 2;
 	auto *leftHalf = list->getSubList(0, mid);
 	auto *rightHalf = list->getSubList(mid, list->getLength());
-	
+  
 	mergeSortByName(leftHalf);
 	mergeSortByName(rightHalf);
 	
@@ -177,6 +177,7 @@ void mergeSortByPhone(DoublyLinkedList *list)
 		}
 		else
 		{
+
 			list->resetNode(k, rightHalf->getNodeAt(j));
 			++j;
 		}
@@ -197,6 +198,8 @@ void mergeSortByPhone(DoublyLinkedList *list)
 		++k;
 	}
 	
+	cout << "Merging ";
+	list->print();
 	delete leftHalf;
 	delete rightHalf;
 }

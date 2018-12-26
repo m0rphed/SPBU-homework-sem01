@@ -47,6 +47,7 @@ public:
 	int getLength();
 	
 	// copy array from arg_1 to arg_2 - 1
+
 	DoublyLinkedList *getSubList(const int &beginning, const int &theEnd);
 	
 	void resetNode(const int &position, Node *newNode);

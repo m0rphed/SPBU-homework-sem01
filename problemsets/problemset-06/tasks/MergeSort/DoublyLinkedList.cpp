@@ -8,7 +8,6 @@
 using namespace std;
 typedef string TypeOfValue;
 
-
 Node::Node(const TypeOfValue &newName, const TypeOfValue &newPhone)
 {
 	name = newName;
@@ -59,12 +58,10 @@ DoublyLinkedList::~DoublyLinkedList()
 	destroyList();
 }
 
-
 Node *DoublyLinkedList::getHead()
 {
 	return this->head;
 }
-
 
 Node *DoublyLinkedList::getTail()
 {
@@ -112,6 +109,7 @@ Node *DoublyLinkedList::getNodeAt(const int &position)
 }
 
 
+
 void DoublyLinkedList::insertTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone)
 {
 	if (length == 0)
@@ -124,6 +122,7 @@ void DoublyLinkedList::insertTo(const int &position, const TypeOfValue &username
 		
 		if (!next)
 		{
+			tail->next = new myNode(username, phone, tail, nullptr);
 			tail->next = new Node(username, phone, tail, nullptr);
 			tail = tail->next;
 		}
