@@ -1,8 +1,9 @@
 #include <gtest/gtest.h> // Google Test Framework
-#include <gmock/gmock.h>
+#include "../tasks/MergeSort/DoublyLinkedList.h"
+#include "../tasks/MergeSort/task-64-merge-sort.h"
 
-
-TEST(problemset06, task64)
+TEST(problemset06, mergeSortTest)
 {
-	ASSERT_TRUE(false);
+	controlFunction();
+	SUCCEED();
 }
