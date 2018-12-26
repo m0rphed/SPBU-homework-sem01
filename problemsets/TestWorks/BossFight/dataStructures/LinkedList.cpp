@@ -1,62 +1,120 @@
-#include "task-51-linked-list.h" // include header file
-
-#include <iostream> // cin, cout, endl
-#include <locale>   // setlocale(LC_ALL, "Russian")
+#include "LinkedList.h"
+#include <iostream>
 
 using namespace std;
 
+typedef int ElementType;
 
-int LinkedList::length(Node *head)
+Node::Node() : data(0), next(nullptr), occurrences(1)
 {
-	int length = 0;
-	
-	while (head)
+}
+
+
+Node::Node(const ElementType &value) : data(value), next(nullptr), occurrences(1)
+{
+}
+
+
+//------------------------------------------LINKED-LIST--------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+LinkedList::LinkedList()
+{
+	head = nullptr;
+	length = 0;
+}
+
+
+LinkedList::LinkedList(const ElementType *arrayOfElements, const int &size)
+{
+	if (size == 0)
 	{
-		length++;
-		head = head->next;
+		return;
 	}
 	
+	head = new Node(arrayOfElements[0]);
+	auto *headCopy = head;
+	
+	for (int i = 1; i < size; ++i)
+	{
+		headCopy->next = new Node(arrayOfElements[i]);
+		headCopy = headCopy->next;
+	}
+	
+	length = size;
+}
+
+
+LinkedList::~LinkedList()
+{
+	destroyList();
+}
+
+
+int LinkedList::countNodes()
+{
+	auto *headCopy = head;
+	int counter = 0;
+	
+	while (headCopy)
+	{
+		++counter;
+		headCopy = headCopy->next;
+	}
+	
+	return counter;
+}
+
+
+int LinkedList::getLength()
+{
 	return length;
 }
 
 
-void LinkedList::shift(Node *&head, int data)
+void LinkedList::shift(const ElementType &data)
 {
-	auto *newNode = new LinkedList::Node(0, nullptr);
-	newNode->data = data;
+	auto *newNode = new Node(data);
+	
 	newNode->next = head;
 	head = newNode;
+	++length;
 }
 
 
-void LinkedList::insert(Node *&head, int data)
+void LinkedList::smartInsert(const ElementType &data)
 {
-	auto *newNode = new LinkedList::Node(0, nullptr);
-	newNode->data = data;
+	auto *newNode = new Node(data);
 	
 	// previous node of linked list
-	LinkedList::Node *previous = nullptr;
+	Node *previous = nullptr;
 	
 	// when list is empty
-	if (head == nullptr)
+	if (!head)
 	{
 		head = newNode;
+		++length;
 		return;
 	}
 	
 	// make a copy of head
 	auto *current = head;
 	
-	while (current != nullptr)
+	while (current)
 	{
 		// What if we found proper place to insert a new node?
-		// --> So, insert the new node BEFORE higher or equal node
-		// (no need to go through all equal elements -- trust me, it is good point. I googled it!).
+		// --> So, insert the new node.
 		if (current->data >= data)
 		{
+			if (current->data == data)
+			{
+				// increase occurrences and skip
+				++current->occurrences;
+				return;
+			}
+			
 			newNode->next = current;
 			
-			if (previous != nullptr)
+			if (previous)
 			{
 				previous->next = newNode;
 			}
@@ -72,16 +130,17 @@ void LinkedList::insert(Node *&head, int data)
 	}
 	
 	previous->next = newNode;
+	++length;
 }
 
 
-void LinkedList::smartDelete(Node *&head, int data)
+void LinkedList::smartDelete(const ElementType &data)
 {
 	// previous node of linked list
-	LinkedList::Node *previous = nullptr;
+	Node *previous = nullptr;
 	
 	// when list is empty
-	if (head == nullptr)
+	if (!head)
 	{
 		// "List is already empty, there is nothing to delete here!"
 		cout << "Лист уже пуст, нечего тут удалять!" << endl;
@@ -91,32 +150,37 @@ void LinkedList::smartDelete(Node *&head, int data)
 	// make a copy of head
 	auto *current = head;
 	
-	while (current != nullptr)
+	while (current)
 	{
 		if (current->data == data)
 		{
-			if (previous != nullptr)
+			if (previous)
 			{
 				previous->next = current->next;
 			}
 			else // when previous do not exist
 			{
-				// Case 1: current is the last element in list
-				if (LinkedList::length(current) == 1) // => Check if length == 1
+				// Case: current is the last element in list
+				if (length == 1) // => Check if length == 1
 				{
 					// Then, the list should be empty
+					delete head;
 					head = nullptr;
 					cout << "Удалён последний элемент." << endl;
+					length = 0;
+					return;
 				}
 				else
 				{
 					head = current->next;
 				}
-			};
+			}
 			
 			delete current;
+			--length;
 			return;
 		}
+		
 		previous = current;
 		current = current->next;
 	}
@@ -126,9 +190,9 @@ void LinkedList::smartDelete(Node *&head, int data)
 
 
 // I like reversing things
-void LinkedList::reverse(Node *&head)
+void LinkedList::reverse()
 {
-	if (head == nullptr || (head && (head->next == nullptr)))
+	if (!head || (!(head->next) && head))
 	{
 		return;
 	}
@@ -147,19 +211,31 @@ void LinkedList::reverse(Node *&head)
 }
 
 
-void LinkedList::printList(Node *head)
+void LinkedList::printList()
 {
+	auto *headCopy = head;
 	cout << "\t";
-	while (head)
+	while (headCopy)
 	{
-		cout << head->data << "-->";
-		head = head->next;
+		cout << headCopy->data << "-->";
+		headCopy = headCopy->next;
 	}
-	cout << "nullptr" << endl;
+	cout << "null" << endl;
 }
 
+void LinkedList::smartPrint()
+{
+	auto *headCopy = head;
+	cout << "\t";
+	while (headCopy)
+	{
+		cout << "{data: " << headCopy->data << ", occurrences: " << headCopy->occurrences << "} ---> ";
+		headCopy = headCopy->next;
+	}
+	cout << "null" << endl;
+}
 
-void LinkedList::deleteList(Node *&head)
+void LinkedList::destroyList()
 {
 	Node *nextNode;
 	while (head)
@@ -168,24 +244,25 @@ void LinkedList::deleteList(Node *&head)
 		delete (head);
 		head = nextNode;
 	}
+	length = 0;
 }
 
 
-void LinkedList::startDialogLoop(Node *&head)
+void LinkedList::linkedListInterface()
 {
-	int key = 0;
-	int value = 0;
+	int command = 0;
+	ElementType value;
 	
 	// Start dialog mode loop
 	do
 	{
 		// For NonRussianHackers "Введите команду" <=> "Enter a command"
 		cout << "Введите команду: ";
-		cin >> key;
+		cin >> command;
 		cout << endl;
 		
 		// The dialog mode provides the following operations:
-		switch (key)
+		switch (command)
 		{
 			case 0:
 				cout << "< Выход >" << endl;
@@ -194,53 +271,25 @@ void LinkedList::startDialogLoop(Node *&head)
 			case 1: // 1 - Add value to the sorted list
 				cout << "Добавление значения в список.\n\tВведите значение: ";
 				cin >> value;
-				LinkedList::insert(head, value);
+				LinkedList::smartInsert(value);
 				cout << endl;
 				break;
 			
 			case 2: // 2 – Delete value from list
 				cout << "Удаление значения из списка.\n\tВведите значение:";
 				cin >> value;
-				LinkedList::smartDelete(head, value);
+				LinkedList::smartDelete(value);
 				cout << endl;
 				break;
 			
 			case 3: // 3 – Print the whole list
 				cout << "Печать списка..." << endl;
-				LinkedList::printList(head);
+				LinkedList::printList();
 				break;
 			
 			default:
 				cout << "Неверная команда!" << endl;
 		}
 		
-	} while (key != 0);
+	} while (command != 0);
 }
-<<<<<<< HEAD:problemsets/problemset-05/tasks/task-51-linked-list.cpp
-
-
-int polynomial()
-{
-	setlocale(LC_ALL, "Russian");
-	LinkedList::Node *list = nullptr;
-	startDialogLoop(list);
-	
-	// test testWorkList::length() function
-	cout << "\nДлина списка: " << LinkedList::length(list) << endl;
-	LinkedList::printList(list);
-	
-	// test testWorkList::shift() function
-	cout << "Добавим 100 в начало" << endl;
-	LinkedList::shift(list, 100);
-	LinkedList::printList(list);
-	
-	// test testWorkList::reverse() function
-	cout << "Развернём лист:" << endl;
-	LinkedList::reverse(list);
-	LinkedList::printList(list);
-	
-	LinkedList::deleteList(list);
-	return 0;
-}
-=======
->>>>>>> master:problemsets/problemset-05/tasks/LinkedList/task-51-linked-list.cpp

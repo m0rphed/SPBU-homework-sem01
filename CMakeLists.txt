@@ -63,17 +63,27 @@ add_subdirectory(problemsets/problemset-07)
 # Locate solutions for problemsets-08
 add_subdirectory(problemsets/problemset-08)
 
-# Locate solutions for testWorks
+# Locate solutions for TestWork-1: second try
 add_subdirectory(problemsets/TestWorks/testwork-second-try)
 
-# Locate solutions for testWorks
+# Locate solutions for TestWork-1: third try
 add_subdirectory(problemsets/TestWorks/testwork-third-try)
 
 # Locate solutions for testwork-2.4
 add_subdirectory(problemsets/TestWorks/testwork-2-5)
+
+# Locate solutions for testWorks-2: first try
+add_subdirectory(problemsets/TestWorks/testwork-2)
+
+# Locate solutions for testWorks-2: №3 third try
+add_subdirectory(problemsets/TestWorks/testwork-2-3)
+
+# BOSS FIGHT
+add_subdirectory(problemsets/TestWorks/BossFight)
 
 set(SOURCE_FILES init_gtest.cpp)
 add_executable(spbuHomeWork ${SOURCE_FILES})
 
 # Link current run-configuration with what we want to test and the GTest and pthread library
 target_link_libraries(spbuHomeWork gmock gtest_main pthread)
+#add_executable(bossFight-task01 problemsets/TestWorks/BossFight/bossFight-task01.cpp)
