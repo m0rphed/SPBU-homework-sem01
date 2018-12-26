@@ -69,6 +69,9 @@ add_subdirectory(problemsets/TestWorks/testwork-second-try)
 # Locate solutions for TestWork-1: third try
 add_subdirectory(problemsets/TestWorks/testwork-third-try)
 
+# Locate solutions for testwork-2.4
+add_subdirectory(problemsets/TestWorks/testwork-2-5)
+
 # Locate solutions for testWorks-2: first try
 add_subdirectory(problemsets/TestWorks/testwork-2)
 
