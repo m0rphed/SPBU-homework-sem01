@@ -32,7 +32,7 @@ public:
 	// Sets topElement with nullptr
 	myStack();
 	
-	// Sets topElement with new stackElement
+	// Sets topElement with new value
 	explicit myStack(int value);
 	
 	// Provides proper destruction of an stackElement
