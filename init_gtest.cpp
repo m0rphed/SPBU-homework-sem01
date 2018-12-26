@@ -4,5 +4,5 @@
 
 TEST(dummyTests, isOk)
 {
-	ASSERT_TRUE(true);
+	SUCCEED();
 }
