@@ -67,15 +67,3 @@ public:
 	// Handles dialog interface
 	void linkedListInterface();
 };
-
-
-//------------------------------------------GRAPH--------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
-
-// Aliasing to short name
-typedef std::pair<int, int> infoVertex;
-typedef std::vector<infoVertex> bucket;
-
-std::vector<bucket> adjacentList;
-
-void createGraphAdjList();
