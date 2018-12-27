@@ -1,8 +1,9 @@
+#include "../tasks/SetOnBinTrees/Set.h"
+#include "../tasks/SetOnBinTrees/task-71-userInterface.h"
+
 #include <gtest/gtest.h> // Google Test Framework
-#include <gmock/gmock.h>
 #include <iostream>
-#include "../tasks/AbstractDataType-Set/Set.h"
-#include "../tasks/AbstractDataType-Set/task-71-set.h"
+
 
 TEST(problemset07, task71)
 {
@@ -14,19 +15,19 @@ TEST(problemset07, task71)
 	
 	for (int i = 0; i < 10; ++i)
 	{
-		mySet->add(i);
+		mySet->addValue(i);
 	}
 	
 	EXPECT_FALSE(mySet->isEmpty());
 	
 	for (int i = 0; i < 10; ++i)
 	{
-		EXPECT_TRUE(mySet->isExists(i));
+		EXPECT_TRUE(mySet->contains(i));
 	}
 	
 	for (int i = 0; i < 10; ++i)
 	{
-		EXPECT_FALSE(mySet->add(i));
+		EXPECT_FALSE(mySet->addValue(i));
 	}
 	
 	cout << "All tests passed" << endl;

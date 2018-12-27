@@ -1,7 +1,6 @@
-#include "task-71-set.h"
+#include "task-71-userInterface.h"
 #include "Set.h"
 #include <iostream>
-#include <gtest/gtest.h> // Google Test Framework
 
 using namespace std;
 
@@ -16,7 +15,7 @@ int getValueFromKeyboard()
 
 void addValue(Set *mySet)
 {
-	if (!mySet->add(getValueFromKeyboard()))
+	if (!mySet->addValue(getValueFromKeyboard()))
 	{
 		cout << "Can't add value. Value is already in the set." << endl;
 	}
@@ -29,7 +28,7 @@ void addValue(Set *mySet)
 
 void removeValue(Set *mySet)
 {
-	if (!mySet->remove(getValueFromKeyboard()))
+	if (!mySet->removeValue(getValueFromKeyboard()))
 	{
 		cout << "Can't remove value. No such value in the set." << endl;
 	}
@@ -40,9 +39,9 @@ void removeValue(Set *mySet)
 }
 
 
-void checkIfValueExists(const Set *mySet)
+void checkValue(const Set *mySet)
 {
-	if (mySet->isExists(getValueFromKeyboard()))
+	if (mySet->contains(getValueFromKeyboard()))
 	{
 		cout << "The value is in the set." << endl;
 	}
@@ -85,18 +84,18 @@ void userInterface(Set *mySet)
 				break;
 			
 			case 3:
-				checkIfValueExists(mySet);
+				checkValue(mySet);
 				break;
 			
 			case 4:
 				cout << "Printing in ascending order:" << endl;
-				mySet->ascendingOrder();
+				mySet->print(mySet->ascendingOrder());
 				cout << endl << endl;
 				break;
 			
 			case 5:
 				cout << "Printing in descending order:" << endl;
-				mySet->descendingOrder();
+				mySet->print(mySet->descendingOrder());
 				cout << endl << endl;
 				break;
 			
@@ -105,13 +104,4 @@ void userInterface(Set *mySet)
 				cin >> command;
 		}
 	} while (command != 0);
-}
-
-
-int main(int argc, char **argv) {
-//	auto *mySet = new Set();
-//	userInterface(mySet);
-	
-	::testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
 }
