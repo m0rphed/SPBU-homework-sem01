@@ -234,7 +234,7 @@ void Set::print(vector<ValueType> &&setContainer)
 	
 	for (auto &element : setContainer)
 	{
-		cout << element << ", " << endl;
+		cout << element << ", ";
 	}
 	cout << "}" << endl;
 }
