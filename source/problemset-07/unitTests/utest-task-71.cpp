@@ -1,5 +1,5 @@
-#include "../tasks/SetOnBinTrees/Set.h"
-#include "../tasks/SetOnBinTrees/task-71-userInterface.h"
+#include "../tasks/SetOnBinTree/Set.h"
+#include "../tasks/SetOnBinTree/task-71-userInterface.h"
 
 #include <gtest/gtest.h> // Google Test Framework
 #include <iostream>
@@ -30,5 +30,5 @@ TEST(problemset07, task71)
 		EXPECT_FALSE(mySet->addValue(i));
 	}
 	
-	cout << "All tests passed" << endl;
+	cout << "\nAll tests passed" << endl;
 }
