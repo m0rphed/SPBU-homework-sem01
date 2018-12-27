@@ -304,33 +304,3 @@ Node *MyLinkedList::getHead()
 {
 	return head;
 }
-
-
-void createGraphAdjList()
-{
-	int numOfVertices;
-	int totalNeighbors;
-	int id;
-	int weight;
-	
-	cout << "numOfVertices: ";
-	cin >> numOfVertices;
-	
-	cout << "Lets provide data to adjacent lists" << endl;
-
-	adjacentList.assign(numOfVertices, bucket());
-	
-	for (int i = 0; i < numOfVertices; i++)
-	{
-		cout << "totalNeighbors: ";
-		cin >> totalNeighbors;
-		for (int j = 0; j < totalNeighbors; j++)
-		{
-			cout << "id : ";
-			cin >> id;
-			cout << "weight : ";
-			cin >> weight;
-			adjacentList[i].push_back(infoVertex(id, weight));
-		}
-	}
-}

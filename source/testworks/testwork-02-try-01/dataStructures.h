@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include  <vector>
 #include <utility>
 
 typedef int ElementType;
@@ -67,15 +67,3 @@ public:
 	// Handles dialog interface
 	void linkedListInterface();
 };
-
-
-//------------------------------------------GRAPH--------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
-
-// Aliasing to short name
-typedef std::pair<int, int> infoVertex;
-typedef std::vector<infoVertex> bucket;
-
-std::vector<bucket> adjacentList;
-
-void createGraphAdjList();
