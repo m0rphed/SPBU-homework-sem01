@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h> // Google Test Framework
 
-TEST(problemset06, task63)
+TEST(problemset06, task_63)
 {
 	const auto input = "(1 + 1) * 2";
 	handleIO(input);
@@ -10,7 +10,7 @@ TEST(problemset06, task63)
 }
 
 
-TEST(problemset06, task63LongerExpression)
+TEST(problemset06, task_63_LongerExpression)
 {
 	const auto input = "1 + 2 + 3 * 4 * 5 + 6 + 7";
 	handleIO(input);
