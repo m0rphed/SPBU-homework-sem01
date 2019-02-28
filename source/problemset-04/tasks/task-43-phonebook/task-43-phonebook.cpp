@@ -7,7 +7,6 @@
 #include <string>
 #include <stdexcept>
 #include <locale>
-#include <windows.h> // винда
 
 using namespace std;
 
@@ -47,7 +46,6 @@ void processData(const string &filename, Record *phoneBook, int &size)
 
 void saveData(const string &filename, Record *phoneBook, const int &size)
 {
-    setlocale(LC_ALL, "Russian");
     fstream output;
     output.open(filename, ios::out | ios::trunc);
 
@@ -69,7 +67,7 @@ void saveData(const string &filename, Record *phoneBook, const int &size)
 }
 
 
-void addRecord(const string &newName, const long &newNumber, Record *phoneBook, int &size)
+void addRecord(const string &newName, const long long &newNumber, Record *phoneBook, int &size)
 {
     setlocale(LC_ALL, "Russian");
 
@@ -92,7 +90,7 @@ void addRecord(const string &newName, const long &newNumber, Record *phoneBook, 
 }
 
 
-string findName(const long &number, const Record *phoneBook, const int &size)
+string findName(const long long &number, const Record *phoneBook, const int &size)
 {
     for (int i = 0; i < size; ++i)
     {
@@ -107,7 +105,7 @@ string findName(const long &number, const Record *phoneBook, const int &size)
 }
 
 
-long findNumber(const string &name, const Record *phoneBook, const int &size)
+long long findNumber(const string &name, const Record *phoneBook, const int &size)
 {
     for (int i = 0; i < size; ++i)
     {
@@ -162,7 +160,7 @@ void phoneBookUserInterface()
         string newName;
         string temp;
 
-        long newNumber = 0;
+        long long newNumber = 0;
 
         switch (command)
         {
@@ -177,7 +175,7 @@ void phoneBookUserInterface()
 
                 cout << "Введите номер телефона:" << endl;
                 cin >> temp;
-                newNumber = stol(temp);
+                newNumber = stoll(temp);
 
                 addRecord(newName, newNumber, phoneBook, size);
                 break;
@@ -200,7 +198,7 @@ void phoneBookUserInterface()
                 }
                 else
                 {
-                    cout << "Записей не найденно." << endl;
+                    cout << "Записей не найдено." << endl;
                     break;
                 }
 
@@ -217,7 +215,7 @@ void phoneBookUserInterface()
                 }
                 else
                 {
-                    cout << "Записей не найденно." << endl;
+                    cout << "Записей не найдено." << endl;
                     break;
                 }
 
@@ -238,10 +236,6 @@ int main(int argc, char **argv)
 {
     // Allow RUSSIAN in console
     setlocale(LC_ALL, "Russian");
-
-    // Ха-ха, всё равно Русский работает только в режиме отладки. Windows -- ты целый мир!
-    SetConsoleCP(866);
-    SetConsoleOutputCP(866);
 
     // phoneBookUserInterface();
     ::testing::InitGoogleTest(&argc, argv);

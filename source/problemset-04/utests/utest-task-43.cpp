@@ -11,16 +11,16 @@ TEST(problemset04, phonebookTest_NameCheck)
 {
     const int fixedSize = 100;
     // Define a all I/O file names
-    const string filename = "phoneBook-data.txt";
-    // const string filenameOut = "phoneBook-output.txt";
+    const string fileName = "phoneBook-data.txt";
+    // const string fileNameOut = "phoneBook-output.txt";
 
     // Create phone book "database" of records
     Record phoneBook[fixedSize];
     int size = 0;
-    processData(filename, phoneBook, size);
+    processData(fileName, phoneBook, size);
 
 
-    map<long, string> shakespeareHamletCharacters = {
+    map<long long, string> shakespeareHamletCharacters = {
             {4579012213, "Hamlet"},
             {4557536809, "Claudius"},
             {4552866487, "Gertrude"},
@@ -30,7 +30,7 @@ TEST(problemset04, phonebookTest_NameCheck)
             {4510385086, "Rosencrantz"}
     };
 
-    map<long, string> shakespeareMacbethCharacters = {
+    map<long long, string> shakespeareMacbethCharacters = {
             {1234567891, "Duncan"},
             {1244567891, "Lady Macbeth"},
             {1237777891, "Seyton"},
@@ -47,17 +47,17 @@ TEST(problemset04, phonebookTest_NameCheck)
     }
 }
 
-TEST(problemset04, phonebookTest_NumberCheck)
+TEST(problemset04, phonebookTest_NumberDoNotExistCheck)
 {
     const int fixedSize = 100;
     // Define a all I/O file names
-    const string filename = "phoneBook-data.txt";
-    // const string filenameOut = "phoneBook-output.txt";
+    const string fileName = "phoneBook-data.txt";
+    // const string fileNameOut = "phoneBook-output.txt";
 
     // Create phone book "database" of records
     Record phoneBook[fixedSize];
     int size = 0;
-    processData(filename, phoneBook, size);
+    processData(fileName, phoneBook, size);
 
 
     vector<string> bunchOfActors = {
