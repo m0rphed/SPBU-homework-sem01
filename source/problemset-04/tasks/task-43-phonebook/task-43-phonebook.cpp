@@ -40,7 +40,7 @@ void processData(const string &filename, Record *phoneBook, int &size)
     }
 
     data.close();
-    cout << "Успешно прочитано " << size << " записей." << endl;
+    cout << "\nУспешно прочитано " << size << " записей.\n" << endl;
 }
 
 
