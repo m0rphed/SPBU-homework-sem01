@@ -122,7 +122,7 @@ void DoublyLinkedList::insertTo(const int &position, const TypeOfValue &username
 		
 		if (!next)
 		{
-			tail->next = new myNode(username, phone, tail, nullptr);
+			tail->next = new Node(username, phone, tail, nullptr);
 			tail->next = new Node(username, phone, tail, nullptr);
 			tail = tail->next;
 		}
