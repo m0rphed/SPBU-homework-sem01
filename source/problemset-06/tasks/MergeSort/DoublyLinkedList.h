@@ -1,64 +1,59 @@
 #pragma once
 
 #include <string>
-#include <utility>
 
-typedef std::string TypeOfValue;
-
-struct Node
+struct DListNode
 {
-	TypeOfValue name = "";
-	TypeOfValue phone = "";
-	Node *previous;
-	Node *next;
-	
-	Node(const TypeOfValue &newName, const TypeOfValue &newPhone, Node *previousNode, Node *nextNode);
-	
-	Node(const TypeOfValue &newName, const TypeOfValue &newPhone);
-	
-	Node();
-};
+    std::string name;
+    std::string number;
+    DListNode *previous = nullptr;
+    DListNode *next = nullptr;
 
+    DListNode() = default;
+
+    DListNode(const std::string &name, const std::string &number, DListNode *previous, DListNode *next);
+};
 
 class DoublyLinkedList
 {
 private:
-	Node *head;
-	
-	Node *tail;
-	
-	int length;
-	
-	void checkPosition(const int &position);
+    DListNode *head = nullptr;
+    DListNode *tail = nullptr;
+    int length = 0;
 
 public:
-	DoublyLinkedList();
-	
-	~DoublyLinkedList();
-	
-	void destroyList();
-	
-	Node *getNodeAt(const int &position);
-	
-	Node *getHead();
-	
-	Node *getTail();
-	
-	int getLength();
-	
-	// copy array from arg_1 to arg_2 - 1
+    // Default constructor
+    DoublyLinkedList() = default;
 
-	DoublyLinkedList *getSubList(const int &beginning, const int &theEnd);
-	
-	void resetNode(const int &position, Node *newNode);
-	
-	void resetNodeData(const int &position, const TypeOfValue &username, const TypeOfValue &phone);
-	
-	void insertTo(const int &position, const TypeOfValue &username, const TypeOfValue &phone);
-	
-	void append(const TypeOfValue &username, const TypeOfValue &phone);
-	
-	void remove(const int &position);
-	
-	void print();
+    // Returns pointer to the first element of list
+    DListNode *getHead();
+
+    // Returns pointer to the last element of list
+    DListNode *getTail();
+
+    // Returns length of the list
+    int getLength();
+
+    // Checks the list is empty
+    bool isEmpty();
+
+    // Add new element to the list
+    void add(const std::string &name, const std::string &number);
+
+    // Delete list completely
+    void deleteList();
+
+    // Print all the elements
+    void printList();
 };
+
+// Copy number and name from source element to target element
+void copyData(DListNode *&first, DListNode *&second);
+
+DListNode *getNext(DListNode *current);
+
+DListNode *getPrevious(DListNode *current);
+
+std::string name(DListNode *node);
+
+std::string number(DListNode *node);

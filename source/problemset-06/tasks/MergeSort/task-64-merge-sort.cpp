@@ -10,196 +10,125 @@ using namespace std;
 
 DoublyLinkedList *processData(DoublyLinkedList *list)
 {
-	string fileName = "data.txt";
-	ifstream data(fileName, ios::in);
-	
-	// Check that file can be found, and throw exception if it can not
-	if (!data.is_open())
-	{
-		cerr << "ERROR: File not found." << endl;
-		throw runtime_error(string("Failed opening: ") + fileName);
-	}
-	
-	cout << "\nStart reading your phone-book...\n" << endl;
-	int records = 0;
-	
-	while (!data.eof())
-	{
-		string username;
-		string phone;
-		
-		getline(data, username);
-		getline(data, phone);
-		list->append(username, phone);
-		
-		++records;
-	}
-	
-	cout << "Successfully read " << records << " records." << endl;
-	data.close();
-	
-	return list;
+    string fileName = "data.txt";
+    ifstream data(fileName, ios::in);
+
+    // Check that file can be found, and throw exception if it can not
+    if (!data.is_open())
+    {
+        cerr << "ERROR: File not found." << endl;
+        throw runtime_error(string("Failed opening: ") + fileName);
+    }
+
+    cout << "\nStart reading your phone-book...\n" << endl;
+    int records = 0;
+
+    while (!data.eof())
+    {
+        string username;
+        string phone;
+
+        getline(data, username);
+        getline(data, phone);
+        list->add(username, phone);
+
+        ++records;
+    }
+
+    cout << "Successfully read " << records << " records." << endl;
+    data.close();
+
+    return list;
 }
 
 
 unsigned int handleUserCommands()
 {
-	unsigned int command = 0;
-	cout << "Choose option:" << endl;
-	cout << "\t1 => sorting by NAME" << endl;
-	cout << "\t2 => sorting by PHONE NUMBER" << endl;
-	
-	cin >> command;
-	return command;
+    unsigned int command = 0;
+    cout << "Choose option:" << endl;
+    cout << "\t1 => sorting by NAME" << endl;
+    cout << "\t2 => sorting by PHONE NUMBER" << endl;
+
+    cin >> command;
+    return command;
 }
 
-
-void controlFunction(bool isTestingMode)
+void split(DoublyLinkedList *&list, DoublyLinkedList *&left, DoublyLinkedList *&right)
 {
-	auto *list = new DoublyLinkedList();
-	
-	processData(list);
-	
-	if (isTestingMode)
-	{
-		mergeSortByName(list);
-		list->print();
-		return;
-	}
-	else
-	{
-		int command = handleUserCommands();
-		switch (command)
-		{
-			case 1:
-				mergeSortByName(list);
-				list->print();
-				return;
-			
-			case 2:
-				mergeSortByPhone(list);
-				list->print();
-				return;
-			
-			default:
-				cout << "No such command! \n\t--> Exiting" << endl;
-				break;
-		}
-	}
-	delete list;
+    DListNode *temp = list->getTail();
+
+    for (int i = list->getLength(); i > 0; --i)
+    {
+        if (i > list->getLength() / 2)
+        {
+            right->add(temp->name, temp->number);
+        }
+        else
+        {
+            right->add(temp->name, temp->number);
+        }
+
+        temp = getPrevious(temp);
+    }
 }
 
-
-void mergeSortByName(DoublyLinkedList *list)
+void merge(DoublyLinkedList *&list, DoublyLinkedList *&left, DoublyLinkedList *&right, const bool byName)
 {
-	cout << "Splitting ";
-	list->print();
-	
-	if (list->getLength() == 1)
-	{
-		return;
-	}
-	
-	int mid = list->getLength() / 2;
-	auto *leftHalf = list->getSubList(0, mid);
-	auto *rightHalf = list->getSubList(mid, list->getLength());
-	
-	mergeSortByName(leftHalf);
-	mergeSortByName(rightHalf);
-	
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	
-	// MERGING
-	while (i < leftHalf->getLength() && j < rightHalf->getLength())
-	{
-		if ((leftHalf->getNodeAt(i))->name < (rightHalf->getNodeAt(j))->name)
-		{
-			list->resetNode(k, leftHalf->getNodeAt(i));
-			++i;
-		}
-		else
-		{
-			list->resetNode(k, rightHalf->getNodeAt(j));
-			++j;
-		}
-		++k;
-	}
-	
-	while (i < leftHalf->getLength())
-	{
-		list->resetNode(k, leftHalf->getNodeAt(i));
-		++i;
-		++k;
-	}
-	
-	while (j < rightHalf->getLength())
-	{
-		list->resetNode(k, rightHalf->getNodeAt(j));
-		++j;
-		++k;
-	}
+    DListNode *tempTarget = list->getHead();
+    DListNode *tempLeft = left->getHead();
+    DListNode *tempRight = right->getHead();
 
-	delete leftHalf;
-	delete rightHalf;
+    while ((tempLeft != nullptr) || (tempRight != nullptr))
+    {
+        if ((tempLeft != nullptr) && (tempRight != nullptr))
+        {
+            const int result = byName ? (tempLeft->name).compare(tempRight->number) : (tempLeft->number).compare(
+                    tempRight->number);
+
+            if (result < 0)
+            {
+                copyData(tempLeft, tempTarget);
+                tempLeft = tempLeft->next;
+            }
+            else
+            {
+                copyData(tempRight, tempTarget);
+                tempRight = tempRight->next;
+            }
+        }
+        else if (tempRight == nullptr)
+        {
+
+            copyData(tempLeft, tempTarget);
+            tempLeft = tempLeft->next;
+        }
+        else
+        {
+            copyData(tempRight, tempTarget);
+            tempRight = tempRight->next;
+        }
+
+        tempTarget = tempTarget->next;
+    }
 }
 
-
-void mergeSortByPhone(DoublyLinkedList *list)
+void mergeSort(DoublyLinkedList *list, const bool byName)
 {
-	cout << "Splitting ";
-	list->print();
-	
-	if (list->getLength() == 1)
-	{
-		return;
-	}
-	
-	int mid = list->getLength() / 2;
-	auto *leftHalf = list->getSubList(0, mid);
-	auto *rightHalf = list->getSubList(mid, list->getLength());
-  
-	mergeSortByName(leftHalf);
-	mergeSortByName(rightHalf);
-	
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	
-	// MERGING
-	while (i < leftHalf->getLength() && j < rightHalf->getLength())
-	{
-		if ((leftHalf->getNodeAt(i))->phone < (rightHalf->getNodeAt(j))->phone)
-		{
-			list->resetNode(k, leftHalf->getNodeAt(i));
-			++i;
-		}
-		else
-		{
+    if (list->getLength() <= 1)
+    {
+        return;
+    }
 
-			list->resetNode(k, rightHalf->getNodeAt(j));
-			++j;
-		}
-		++k;
-	}
-	
-	while (i < leftHalf->getLength())
-	{
-		list->resetNode(k, leftHalf->getNodeAt(i));
-		++i;
-		++k;
-	}
-	
-	while (j < rightHalf->getLength())
-	{
-		list->resetNode(k, rightHalf->getNodeAt(j));
-		++j;
-		++k;
-	}
-	
-	cout << "Merging ";
-	list->print();
-	delete leftHalf;
-	delete rightHalf;
+    auto *left = new DoublyLinkedList();
+    auto *right = new DoublyLinkedList();
+
+    split(list, left, right);
+
+    mergeSort(left, byName);
+    mergeSort(right, byName);
+
+    merge(list, left, right, byName);
+
+    left->deleteList();
+    left->deleteList();
 }
