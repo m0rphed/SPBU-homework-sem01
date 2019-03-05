@@ -84,6 +84,20 @@ bool Set::addValue(const ValueType &value)
     return true;
 }
 
+void safeDeleteChild(BSTNode *node)
+{
+    if (node->parent->left == node)
+    {
+        node->parent->left = nullptr;
+    }
+    else
+    {
+        node->parent->right = nullptr;
+    }
+
+    delete node;
+}
+
 void Set::removeTraversal(BSTNode *current, const ValueType &target)
 {
     if (target < current->data)
@@ -98,25 +112,25 @@ void Set::removeTraversal(BSTNode *current, const ValueType &target)
     {
         if (!current->left && !current->right)
         {
-            delete current;
+            safeDeleteChild(current);
             return;
         }
         else
         {
-            vector<ValueType> valuePair = {};
+            vector<ValueType> values = {};
             if (current->left)
             {
-                valuePair.push_back((current->left)->data);
+                values.push_back((current->left)->data);
             }
 
             if (current->right)
             {
-                valuePair.push_back((current->right)->data);
+                values.push_back((current->right)->data);
             }
 
-            delete current;
+            safeDeleteChild(current);
 
-            for (auto &value : valuePair)
+            for (auto &value : values)
             {
                 addValue(value);
             }
