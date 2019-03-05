@@ -53,14 +53,14 @@ bool calculationStack::checkStack(std::string operation)
 }
 
 
-int calculationStack::add()
+void calculationStack::add()
 {
 	int result = this->pop() + this->pop();
 	this->push(result);
 }
 
 
-int calculationStack::subtract()
+void calculationStack::subtract()
 {
 	int secondOperand = this->pop();
 	int result = this->pop() - secondOperand;
@@ -68,14 +68,14 @@ int calculationStack::subtract()
 }
 
 
-int calculationStack::multiply()
+void calculationStack::multiply()
 {
 	int result = this->pop() * this->pop();
 	this->push(result);
 }
 
 
-int calculationStack::divide()
+void calculationStack::divide()
 {
 	int secondOperand = this->pop();
 	int result = this->pop() / secondOperand;

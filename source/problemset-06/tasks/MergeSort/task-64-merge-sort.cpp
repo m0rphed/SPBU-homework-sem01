@@ -1,5 +1,5 @@
 #include "task-64-merge-sort.h"
-#include "DoublyLinkedList.h"
+#include "List.h"
 
 #include <iostream>
 #include <utility>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-DoublyLinkedList *processData(DoublyLinkedList *list)
+List *processData(List *list)
 {
     string fileName = "data.txt";
     ifstream data(fileName, ios::in);
@@ -30,7 +30,8 @@ DoublyLinkedList *processData(DoublyLinkedList *list)
 
         getline(data, username);
         getline(data, phone);
-        list->add(username, phone);
+
+        list->pushFront(username, phone);
 
         ++records;
     }
@@ -53,58 +54,61 @@ unsigned int handleUserCommands()
     return command;
 }
 
-void split(DoublyLinkedList *&list, DoublyLinkedList *&left, DoublyLinkedList *&right)
+void split(List *&list, List *&left, List *&right)
 {
-    DListNode *temp = list->getTail();
+    Record *temp = list->getTail();
 
     for (int i = list->getLength(); i > 0; --i)
     {
         if (i > list->getLength() / 2)
         {
-            right->add(temp->name, temp->number);
+            right->pushFront(temp->name, temp->number);
         }
         else
         {
-            right->add(temp->name, temp->number);
+            right->pushFront(temp->name, temp->number);
         }
 
-        temp = getPrevious(temp);
+        temp = temp->previous;
     }
 }
 
-void merge(DoublyLinkedList *&list, DoublyLinkedList *&left, DoublyLinkedList *&right, const bool byName)
+void merge(List *&list, List *&left, List *&right, const bool byName)
 {
-    DListNode *tempTarget = list->getHead();
-    DListNode *tempLeft = left->getHead();
-    DListNode *tempRight = right->getHead();
+    Record *tempTarget = list->getHead();
+    Record *tempLeft = left->getHead();
+    Record *tempRight = right->getHead();
 
-    while ((tempLeft != nullptr) || (tempRight != nullptr))
+    while (tempLeft || tempRight)
     {
-        if ((tempLeft != nullptr) && (tempRight != nullptr))
+        if (tempLeft && tempRight)
         {
             const int result = byName ? (tempLeft->name).compare(tempRight->number) : (tempLeft->number).compare(
                     tempRight->number);
 
             if (result < 0)
             {
-                copyData(tempLeft, tempTarget);
+                tempTarget->name = tempLeft->name;
+                tempTarget->number = tempLeft->number;
                 tempLeft = tempLeft->next;
             }
             else
             {
-                copyData(tempRight, tempTarget);
+                tempTarget->name = tempRight->name;
+                tempTarget->number = tempRight->number;
                 tempRight = tempRight->next;
             }
         }
-        else if (tempRight == nullptr)
+        else if (!tempRight)
         {
-
-            copyData(tempLeft, tempTarget);
+            tempTarget->name = tempLeft->name;
+            tempTarget->number = tempLeft->number;
             tempLeft = tempLeft->next;
         }
         else
         {
-            copyData(tempRight, tempTarget);
+            tempTarget->name = tempRight->name;
+            tempTarget->number = tempRight->number;
             tempRight = tempRight->next;
         }
 
@@ -112,15 +116,15 @@ void merge(DoublyLinkedList *&list, DoublyLinkedList *&left, DoublyLinkedList *&
     }
 }
 
-void mergeSort(DoublyLinkedList *list, const bool byName)
+void mergeSort(List *list, const bool byName)
 {
     if (list->getLength() <= 1)
     {
         return;
     }
 
-    auto *left = new DoublyLinkedList();
-    auto *right = new DoublyLinkedList();
+    auto *left = new List();
+    auto *right = new List();
 
     split(list, left, right);
 
@@ -129,6 +133,6 @@ void mergeSort(DoublyLinkedList *list, const bool byName)
 
     merge(list, left, right, byName);
 
-    left->deleteList();
-    left->deleteList();
+    delete left;
+    delete right;
 }

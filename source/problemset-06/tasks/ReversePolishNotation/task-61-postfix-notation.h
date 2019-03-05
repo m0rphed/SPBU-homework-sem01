@@ -22,16 +22,16 @@ public:
 	bool checkStack(std::string operation);
 	
 	// do addition
-	int add();
+	void add();
 	
 	// do subtraction
-	int subtract();
+	void subtract();
 	
 	// do multiplication
-	int multiply();
+	void multiply();
 	
 	// do division
-	int divide();
+	void divide();
 	
 	// do all calculations
 	void performCalculations(std::vector<std::string> input);

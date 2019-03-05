@@ -6,8 +6,8 @@ set(TASKS_SRCS  tasks/LastInFirstOut.cpp
                 tasks/BracketCounter/task-62-counting-brackets.cpp
                 tasks/ShuntingYard/task-63-shunting-yard-algorithm.cpp)
 
-set(TASKS64_SRCS    tasks/MergeSort/DoublyLinkedList.cpp
-                    tasks/MergeSort/task-64-merge-sort.cpp)
+set(TASKS64_SRCS    tasks/MergeSort/task-64-merge-sort.cpp
+                    tasks/MergeSort/List.cpp)
 
 # Define all tests
 set(TESTS   utests/utest-task-61.cpp

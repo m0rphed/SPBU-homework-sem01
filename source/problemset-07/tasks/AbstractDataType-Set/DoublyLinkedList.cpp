@@ -1,4 +1,6 @@
 #include "DoublyLinkedList.h"
+#include "../../../problemset-06/tasks/MergeSort/DoublyLinkedList.h"
+
 
 typedef int ListValueType;
 
@@ -15,7 +17,6 @@ ListNode::ListNode(const ListValueType &value, ListNode *pointerPrevious = nullp
 ListNode::ListNode() : data(0), previous(nullptr), next(nullptr)
 {
 }
-
 
 DoublyLinkedList::DoublyLinkedList()
 {
