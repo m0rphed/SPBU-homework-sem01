@@ -4,14 +4,17 @@
 
 TEST(task72, simpleTest)
 {
-	const std::string fileName = "data.txt";
-	auto *tree = new SyntaxTree(fileName);
+    const std::string fileName = "data.txt";
+    auto *tree = new SyntaxTree(fileName);
 
-	std::cout << "\nExpression tree:" << std::endl;
-	tree->printTree();
+    std::cout << "\nExpression tree:" << std::endl;
+    tree->printTree();
 
-	std::cout << "\nResult: " << tree->evalExpression() << std::endl;
+    std::cout << "\nResult: " << tree->evalExpression() << std::endl;
 
-	SUCCEED();
-	delete tree;
+    //ASSERT_THROW(tree->evalExpression(), std::invalid_argument);
+
+    ASSERT_EQ(4, tree->evalExpression());
+
+    delete tree;
 }

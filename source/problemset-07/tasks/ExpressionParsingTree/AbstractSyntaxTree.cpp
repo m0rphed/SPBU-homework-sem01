@@ -58,7 +58,7 @@ int evalByNode(SyntaxTreeNode *current)
     {
         if(evalByNode(current->right) == 0)
         {
-            throw runtime_error("Division by zero");
+            throw invalid_argument("Division by zero");
         }
 
         return evalByNode(current->left) / evalByNode(current->right);
