@@ -1,7 +1,6 @@
 #include "PriorityQueue.h"
 
-<<<<<<< HEAD
-// Constructor
+
 PriorityQueue::PriorityQueue()
 {
 	head = tail = nullptr;
@@ -109,6 +108,9 @@ int PriorityQueue::dequeue()
 	--length;
 	cout << "Deleted value was: " << maxNode->data << " with key: " << maxNode->key << endl;
 	delete maxNode;
+
+	auto value =  maxNode->data;
+	return value;
 }
 
 
@@ -143,7 +145,7 @@ node *PriorityQueue::findHighestNode()
 	return highest;
 }
 
-=======
+
 //
 //bool PriorityQueue::empty()
 //{
@@ -265,4 +267,3 @@ node *PriorityQueue::findHighestNode()
 //		myQueue.dequeue();
 //	}
 //}
->>>>>>> parent of 917e341... Updated
