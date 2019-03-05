@@ -56,7 +56,13 @@ int evalByNode(SyntaxTreeNode *current)
     }
     else if (current->data == '/')
     {
+        if(evalByNode(current->right) == 0)
+        {
+            throw runtime_error("Division by zero");
+        }
+
         return evalByNode(current->left) / evalByNode(current->right);
+
     }
     else if (current->data == '+')
     {
@@ -135,6 +141,13 @@ void SyntaxTree::printTree()
 SyntaxTree::SyntaxTree(const string &fileName)
 {
     ifstream input(fileName, ios::in);
+
+    if (!input.is_open())
+    {
+        cerr << "\nCould not open file: " << fileName << endl;
+        throw runtime_error("Error opening file.");
+    }
+
     root = createNode(input);
     input.close();
 }
