@@ -1,5 +1,6 @@
 #include "../tasks/MergeSort/List.h"
 #include "../tasks/MergeSort/task-64-merge-sort.h"
+
 #include <iostream>
 #include <gtest/gtest.h> // Google Test Framework
 
@@ -10,7 +11,9 @@ TEST(task64, mergeSortTest)
     auto *list = processData("data.txt");
     list->printList();
 
-    mergeSort(list);
+    mergeSort(list, false);
     list->printList();
-    FAIL();
+
+    delete list;
+    SUCCEED();
 }

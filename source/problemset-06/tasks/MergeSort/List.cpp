@@ -62,7 +62,7 @@ bool List::isEmpty()
 
 void List::pushBack(const KeyType &key, const ValueType &value)
 {
-    tail = new Node(key, value, tail, nullptr);
+    tail = new Node(key, value, nullptr, tail);
 
     if (isEmpty())
     {
@@ -78,7 +78,7 @@ void List::pushBack(const KeyType &key, const ValueType &value)
 
 void List::pushFront(const KeyType &key, const ValueType &value)
 {
-    head = new Node(key, value, nullptr, head);
+    head = new Node(key, value, head, nullptr);
 
     if (isEmpty())
     {
@@ -315,7 +315,7 @@ void List::printList()
     cout << endl;
     while (current)
     {
-        cout << current->name << "" << current->number;
+        cout << current->name << " -- " << current->number << endl;
         current = current->next;
     }
 }

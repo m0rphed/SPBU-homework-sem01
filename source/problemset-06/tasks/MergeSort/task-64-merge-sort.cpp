@@ -79,6 +79,9 @@ void saveData(List *&list, const std::string &fileName)
 
 void split(List *&list, List *&left, List *&right)
 {
+    left = new List();
+    right = new List();
+
     Record *temp = list->getTail();
 
     for (int i = list->getLength(); i > 0; --i)
@@ -89,7 +92,7 @@ void split(List *&list, List *&left, List *&right)
         }
         else
         {
-            right->pushFront(temp->name, temp->number);
+            left->pushFront(temp->name, temp->number);
         }
 
         temp = temp->previous;
@@ -146,8 +149,8 @@ void mergeSort(List *list, const bool byName)
         return;
     }
 
-    auto *left = new List();
-    auto *right = new List();
+    List *left;
+    List *right;
 
     split(list, left, right);
 
