@@ -6,41 +6,30 @@
 
 struct SyntaxTreeNode
 {
-	int data = 0;
-	SyntaxTreeNode *left = nullptr;
-	SyntaxTreeNode *right = nullptr;
-	
-	explicit SyntaxTreeNode(const int &value);
-};
+    int data = 0;
+    SyntaxTreeNode *left = nullptr;
+    SyntaxTreeNode *right = nullptr;
 
+    SyntaxTreeNode() = default;
+
+    explicit SyntaxTreeNode(const int &value);
+};
 
 class SyntaxTree
 {
-	SyntaxTreeNode *root = nullptr;
+private:
+    SyntaxTreeNode *root = nullptr;
 
 public:
-	
-	explicit SyntaxTree(SyntaxTreeNode *newRoot)
-	{
-		root = newRoot;
-	}
-	
-	bool isEmpty();
-	
-	void deleteTree();
-	
-	void printTree();
-	
-	int evalExpression();
+    explicit SyntaxTree(const std::string &fileName);
+
+    explicit SyntaxTree(SyntaxTreeNode *newRoot);
+
+    bool isEmpty();
+
+    void printTree();
+
+    int evalExpression();
+
+    ~SyntaxTree();
 };
-
-SyntaxTreeNode *createNode(std::ifstream &input);
-
-SyntaxTree *createTree(std::ifstream &input);
-
-void deleteTraversal(SyntaxTreeNode *current);
-
-int evalByNode(SyntaxTreeNode *current);
-
-void printNode(SyntaxTreeNode *current);
-

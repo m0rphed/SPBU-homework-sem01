@@ -6,149 +6,150 @@
 
 using namespace std;
 
+// Create node using input
 SyntaxTreeNode *createNode(ifstream &input)
 {
-	const char current = input.peek();
-	auto *newNode = new SyntaxTreeNode;
-	
-	if (current == '(')
-	{
-		input.get();
-		newNode->data = input.get();
-		input.get();
-		newNode->left = createNode(input);
-		input.get();
-		newNode->right = createNode(input);
-		input.get();
-	}
-	else if ((isdigit(current)) || (current == '-'))
-	{
-		input >> newNode->data;
-	}
-	
-	return newNode;
+    // Get first operator ('+', '-', '*', '/', '(', ')')
+    const char current = input.peek();
+    auto *newNode = new SyntaxTreeNode();
+
+    if (current == '(')
+    {
+        input.get();
+        newNode->data = input.get();
+        input.get();
+        newNode->left = createNode(input);
+        input.get();
+        newNode->right = createNode(input);
+        input.get();
+    }
+    else if ((isdigit(current)) || (current == '-'))
+    {
+        input >> newNode->data;
+    }
+
+    return newNode;
 }
 
-
-bool SyntaxTree::isEmpty()
-{
-	return (this->root == nullptr);
-}
-
-
+// Delete all nodes while traversing them (recursive)
 void deleteTraversal(SyntaxTreeNode *current)
 {
-	if (current->left != nullptr)
-	{
-		deleteTraversal(current->left);
-	}
-	
-	if (current->right != nullptr)
-	{
-		deleteTraversal(current->right);
-	}
-	
-	delete current;
+    if (current->left != nullptr)
+    {
+        deleteTraversal(current->left);
+    }
+
+    if (current->right != nullptr)
+    {
+        deleteTraversal(current->right);
+    }
+
+    delete current;
 }
 
-
-void SyntaxTree::deleteTree()
-{
-	if (!this->isEmpty())
-	{
-		deleteTraversal(this->root);
-	}
-	delete root;
-	this->root = nullptr;
-}
-
-
+// Eval expression by nodes (recursive)
 int evalByNode(SyntaxTreeNode *current)
 {
-	if (current->data == '*')
-	{
-		return evalByNode(current->left) * evalByNode(current->right);
-	}
-	else if (current->data == '/')
-	{
-		return evalByNode(current->left) / evalByNode(current->right);
-	}
-	else if (current->data == '+')
-	{
-		return evalByNode(current->left) + evalByNode(current->right);
-	}
-	else if (current->data == '-')
-	{
-		return evalByNode(current->left) - evalByNode(current->right);
-	}
-	
-	return current->data;
+    if (current->data == '*')
+    {
+        return evalByNode(current->left) * evalByNode(current->right);
+    }
+    else if (current->data == '/')
+    {
+        return evalByNode(current->left) / evalByNode(current->right);
+    }
+    else if (current->data == '+')
+    {
+        return evalByNode(current->left) + evalByNode(current->right);
+    }
+    else if (current->data == '-')
+    {
+        return evalByNode(current->left) - evalByNode(current->right);
+    }
+
+    return current->data;
 }
 
-
+// Print an operator from node (recursive)
 void printNode(SyntaxTreeNode *current)
 {
-	if (current->data == '*')
-	{
-		cout << "(* ";
-	}
-	else if (current->data == '/')
-	{
-		cout << "(/ ";
-	}
-	else if (current->data == '+')
-	{
-		cout << "(+ ";
-	}
-	else if (current->data == '-')
-	{
-		cout << "(- ";
-	}
-	else
-	{
-		cout << current->data;
-		return;
-	}
-	
-	printNode(current->left);
-	cout << ' ';
-	printNode(current->right);
-	cout << ')';
+    if (current->data == '*')
+    {
+        cout << "(* ";
+    }
+    else if (current->data == '/')
+    {
+        cout << "(/ ";
+    }
+    else if (current->data == '+')
+    {
+        cout << "(+ ";
+    }
+    else if (current->data == '-')
+    {
+        cout << "(- ";
+    }
+    else
+    {
+        cout << current->data;
+        return;
+    }
+
+    printNode(current->left);
+    cout << ' ';
+    printNode(current->right);
+    cout << ')';
 }
-
-
-SyntaxTree *createTree(std::ifstream &input)
-{
-	auto *newRoot = createNode(input);
-	auto *newTree = new SyntaxTree(newRoot);
-	return newTree;
-}
-
-
-int SyntaxTree::evalExpression()
-{
-	if (isEmpty())
-	{
-		return 0;
-	}
-	
-	return evalByNode(this->root);
-}
-
-
-void SyntaxTree::printTree()
-{
-	if (this->isEmpty())
-	{
-		cout << "Tree is empty." << endl;
-		return;
-	}
-	
-	printNode(this->root);
-}
-
 
 SyntaxTreeNode::SyntaxTreeNode(const int &value)
 {
-	data = value;
+    data = value;
+}
+
+bool SyntaxTree::isEmpty()
+{
+    return (root == nullptr);
+}
+
+int SyntaxTree::evalExpression()
+{
+    if (isEmpty())
+    {
+        return 0;
+    }
+
+    return evalByNode(root);
+}
+
+void SyntaxTree::printTree()
+{
+    if (isEmpty())
+    {
+        cout << "Tree is empty." << endl;
+        return;
+    }
+
+    printNode(root);
+}
+
+SyntaxTree::SyntaxTree(const string &fileName)
+{
+    ifstream input(fileName, ios::in);
+    root = createNode(input);
+    input.close();
+}
+
+SyntaxTree::SyntaxTree(SyntaxTreeNode *newRoot)
+{
+    root = newRoot;
+}
+
+SyntaxTree::~SyntaxTree()
+{
+    if (!isEmpty())
+    {
+        deleteTraversal(root);
+    }
+
+    delete root;
 }

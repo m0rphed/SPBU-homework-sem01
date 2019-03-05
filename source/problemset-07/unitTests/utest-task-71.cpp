@@ -4,11 +4,10 @@
 #include <gtest/gtest.h> // Google Test Framework
 #include <iostream>
 
+using namespace std;
 
 TEST(problemset07, task71)
 {
-	using namespace std;
-	
 	auto *mySet = new Set();
 	
 	ASSERT_TRUE(mySet->isEmpty());
@@ -34,7 +33,6 @@ TEST(problemset07, task71)
 	
 	delete mySet;
 }
-
 
 TEST(problemset07, task71_2)
 {
