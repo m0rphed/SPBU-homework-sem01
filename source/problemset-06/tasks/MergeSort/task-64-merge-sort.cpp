@@ -8,9 +8,8 @@
 
 using namespace std;
 
-List *processData(List *list)
+List *processData(const string &fileName)
 {
-    string fileName = "data.txt";
     ifstream data(fileName, ios::in);
 
     // Check that file can be found, and throw exception if it can not
@@ -22,6 +21,9 @@ List *processData(List *list)
 
     cout << "\nStart reading your phone-book...\n" << endl;
     int records = 0;
+
+    // Create empty list
+    auto *list = new List();
 
     while (!data.eof())
     {
@@ -42,7 +44,6 @@ List *processData(List *list)
     return list;
 }
 
-
 unsigned int handleUserCommands()
 {
     unsigned int command = 0;
@@ -52,6 +53,28 @@ unsigned int handleUserCommands()
 
     cin >> command;
     return command;
+}
+
+void saveData(List *&list, const std::string &fileName)
+{
+    ofstream file(fileName, ios::out);
+
+    // Check that file can be found, and throw exception if it can not
+    if (!file.is_open())
+    {
+        cerr << "ERROR: File not found." << endl;
+        throw runtime_error(string("Failed opening: ") + fileName);
+    }
+
+    file << endl;
+
+    for (auto *temp = list->getHead(); temp->next != nullptr; temp = temp->next)
+    {
+        file << temp->name << " <=> " << temp->number << endl;
+    }
+
+    cout << "\nData successfully saved to: " << fileName << endl;
+    file.close();
 }
 
 void split(List *&list, List *&left, List *&right)
@@ -135,4 +158,31 @@ void mergeSort(List *list, const bool byName)
 
     delete left;
     delete right;
+}
+
+void controlFunction(bool isTestingMode)
+{
+    auto *list = processData("data.txt");
+
+    if (isTestingMode)
+    {
+        mergeSort(list);
+        saveData(list, "data-by-name.txt");
+    }
+    else
+    {
+        const unsigned userCommand = handleUserCommands();
+        if (userCommand == 1)
+        {
+            cout << "Sorting list by name" << endl;
+            mergeSort(list);
+            saveData(list, "data-by-name.txt");
+        }
+        else
+        {
+            cout << "Sorting list by phone number" << endl;
+            mergeSort(list, false);
+            saveData(list, "data-by-number.txt");
+        }
+    }
 }

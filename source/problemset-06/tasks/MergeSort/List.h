@@ -55,6 +55,9 @@ public:
     // Check the list for emptiness
     bool isEmpty();
 
+    // Print all elements
+    void printList();
+
     // Add new element to the end of the list
     void pushBack(const KeyType &key, const ValueType &value);
 

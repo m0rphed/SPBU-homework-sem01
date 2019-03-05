@@ -221,7 +221,7 @@ int List::getPositionByKey(const KeyType &key)
 
     while (current)
     {
-        if (key == current->key)
+        if (key == current->name)
         {
             return counter;
         }
@@ -241,7 +241,7 @@ int List::getPositionByValue(const ValueType &value) // if all values are unique
 
     while (current)
     {
-        if (value == current->value)
+        if (value == current->number)
         {
             return counter;
         }
@@ -260,7 +260,7 @@ bool List::isKeyExist(const KeyType &key)
 
     while (current)
     {
-        if (key == current->key)
+        if (key == current->name)
         {
             return true;
         }
@@ -277,7 +277,7 @@ bool List::isValueExists(const ValueType &value)
 
     while (current)
     {
-        if (value == current->value)
+        if (value == current->number)
         {
             return true;
         }
@@ -301,4 +301,21 @@ void List::deleteList()
 List::~List()
 {
     deleteList();
+}
+
+void List::printList()
+{
+    if (!head || length == 0)
+    {
+        cout << "\nList is empty." << endl;
+    }
+
+    auto *current = head;
+
+    cout << endl;
+    while (current)
+    {
+        cout << current->name << "" << current->number;
+        current = current->next;
+    }
 }
