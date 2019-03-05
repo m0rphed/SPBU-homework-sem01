@@ -1,6 +1,7 @@
 #include "task-71-userInterface.h"
-#include "Set.h"
 #include <iostream>
+
+#include "Set.h" // Using implementation of set
 
 using namespace std;
 
