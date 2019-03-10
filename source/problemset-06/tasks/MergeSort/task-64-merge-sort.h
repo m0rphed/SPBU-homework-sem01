@@ -1,14 +1,17 @@
-#include "DoublyLinkedList.h"
+#pragma once
 
-#include <iostream>
-using namespace std;
+#include "List.h"
 
-DoublyLinkedList *processData(DoublyLinkedList *list);
+// Process all data from TXT file and make a list from it
+List *processData(const std::string &fileName);
 
+// Handle commands from IO
 unsigned int handleUserCommands();
 
+void saveData(List *&list, const std::string &fileName);
+
+// Sort the list of famous hackers (by name or number)
+void mergeSort(List *list, bool byName = true);
+
+// Do the sorting and save result
 void controlFunction(bool isTestingMode = true);
-
-void mergeSortByName(DoublyLinkedList *list);
-
-void mergeSortByPhone(DoublyLinkedList *list);
