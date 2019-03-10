@@ -1,6 +1,21 @@
 #include <gtest/gtest.h> // Google Test Framework
 
-TEST(problemset07, task72)
+#include "../tasks/ExpressionParsingTree/AbstractSyntaxTree.h"
+#include "../tasks/ExpressionParsingTree/task-72-parsing-tree.h"
+
+TEST(task72, simpleTest)
 {
-	FAIL();
+    const std::string fileName = "data.txt";
+    auto *tree = new SyntaxTree(fileName);
+
+    std::cout << "\nExpression tree:" << std::endl;
+    tree->printTree();
+
+    std::cout << "\nResult: " << tree->evalExpression() << std::endl;
+
+    //ASSERT_THROW(tree->evalExpression(), std::invalid_argument);
+
+    ASSERT_EQ(4, tree->evalExpression());
+
+    delete tree;
 }

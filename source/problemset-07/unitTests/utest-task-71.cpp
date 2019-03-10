@@ -1,16 +1,13 @@
 #include "../tasks/SetOnBinTree/Set.h"
 #include "../tasks/SetOnBinTree/task-71-userInterface.h"
-
 #include <gtest/gtest.h> // Google Test Framework
 #include <iostream>
 
+using namespace std;
 
 TEST(task71, TruthyTests)
 {
-    using namespace std;
-
     auto *mySet = new Set();
-
     ASSERT_TRUE(mySet->isEmpty());
 
     for (int i = 0; i < 10; ++i)
@@ -31,10 +28,8 @@ TEST(task71, TruthyTests)
     }
 
     cout << "\nAll standard tests -- passed." << endl;
-
     delete mySet;
 }
-
 
 TEST(task71, FalsyTests)
 {
@@ -66,8 +61,7 @@ TEST(task71, FalsyTests)
     mySet->print(mySet->ascendingOrder());
     cout << endl;
     mySet->print(mySet->descendingOrder());
-
+  
     cout << "\nAll element inclusion tests -- passed." << endl;
-
     delete mySet;
 }
