@@ -18,4 +18,4 @@ struct DataInput
 	std::vector<int> capitalsPerCountry;
 };
 
-DataInput *readDataInputFromFile(const char *filename);
+DataInput *readDataInputFromFile(const char *fileName);

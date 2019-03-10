@@ -2,69 +2,73 @@
 #include <unordered_map>
 #include "graph.h"
 
+using namespace std;
+
 struct Graph
 {
-	std::unordered_map<int, Vertex *> vertices;
-	std::unordered_map<int, std::unordered_map<int, Edge *> *> edges;
+    unordered_map<int, Vertex *> vertices;
+    unordered_map<int, unordered_map<int, Edge *> *> edges;
 };
-
 
 Graph *newGraph()
 {
-	return new Graph;
+    return new Graph;
 }
 
-Vertex *createVertex(Graph *g, int index)
+Vertex *createVertex(Graph *graph, int index)
 {
-	Vertex *v = new Vertex();
-	v->index = index;
-	g->vertices[index] = v;
-	return v;
+    auto *newVertex = new Vertex();
+    newVertex->index = index;
+    graph->vertices[index] = newVertex;
+    return newVertex;
 }
 
 Vertex *getOrCreateVertex(Graph *g, int index)
 {
-	Vertex *v = g->vertices[index];
-	return (v == NULL) ? createVertex(g, index) : v;
+    Vertex *vertex = g->vertices[index];
+    return (vertex) ? createVertex(g, index) : vertex;
 }
 
 Edge *createEdge(Vertex *left, Vertex *right)
 {
-	Edge *e = new Edge();
-	e->left = left;
-	e->right = right;
-	return e;
+    Edge *newEdge = new Edge();
+    newEdge->left = left;
+    newEdge->right = right;
+    return newEdge;
 }
 
-Edge *addEdge(Graph *g, int leftVertex, int rightVertex)
+Edge *addEdge(Graph *graph, int leftVertex, int rightVertex)
 {
-	Vertex *lVertex = getOrCreateVertex(g, leftVertex);
-	Vertex *rVertex = getOrCreateVertex(g, rightVertex);
-	Edge *e = createEdge(lVertex, rVertex);
-	std::unordered_map<int, Edge *> *edgeMap = g->edges[leftVertex];
-	if (edgeMap == NULL)
-	{
-		edgeMap = new std::unordered_map<int, Edge *>();
-		g->edges[leftVertex] = edgeMap;
-	}
-	(*edgeMap)[rightVertex] = e;
-	return e;
+    Vertex *lVertex = getOrCreateVertex(graph, leftVertex);
+    Vertex *rVertex = getOrCreateVertex(graph, rightVertex);
+
+    Edge *newEdge = createEdge(lVertex, rVertex);
+    unordered_map<int, Edge *> *edgeMap = graph->edges[leftVertex];
+
+    if (edgeMap)
+    {
+        edgeMap = new unordered_map<int, Edge *>();
+        graph->edges[leftVertex] = edgeMap;
+    }
+
+    (*edgeMap)[rightVertex] = newEdge;
+    return newEdge;
 }
 
-std::vector<Edge *> GetEdges(Graph *g, int vertexIndex)
+vector<Edge *> GetEdges(Graph *g, int vertexIndex)
 {
-	Vertex *v = g->vertices[vertexIndex];
-	std::vector<Edge *> result;
-	std::unordered_map<int, Edge *> *edgeMap = g->edges[vertexIndex];
-	
-	for (auto i = edgeMap->begin(); i != edgeMap->end(); i++)
-	{
-		result.push_back(i->second);
-	}
-	return result;
+    Vertex *v = g->vertices[vertexIndex];
+    vector<Edge *> result;
+    unordered_map<int, Edge *> *edgeMap = g->edges[vertexIndex];
+
+    for (auto element = edgeMap->begin(); element != edgeMap->end(); element++)
+    {
+        result.push_back(element->second);
+    }
+    return result;
 }
 
 Vertex *getVertex(Graph *g, int vertexIndex)
 {
-	return g->vertices[vertexIndex];
+    return g->vertices[vertexIndex];
 }
