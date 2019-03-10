@@ -1,5 +1,5 @@
 #include "task-71-userInterface.h"
-#include "Set.h"
+#include "Set.h" // Using implementation of set
 #include <iostream>
 
 using namespace std;
@@ -11,7 +11,6 @@ int getValueFromKeyboard()
 	cin >> value;
 	return value;
 }
-
 
 void addValue(Set *mySet)
 {
@@ -25,7 +24,6 @@ void addValue(Set *mySet)
 	}
 }
 
-
 void removeValue(Set *mySet)
 {
 	if (!mySet->removeValue(getValueFromKeyboard()))
@@ -38,7 +36,6 @@ void removeValue(Set *mySet)
 	}
 }
 
-
 void checkValue(const Set *mySet)
 {
 	if (mySet->contains(getValueFromKeyboard()))
@@ -50,7 +47,6 @@ void checkValue(const Set *mySet)
 		cout << "No such value in the set." << endl;
 	}
 }
-
 
 void userInterface(Set *mySet)
 {

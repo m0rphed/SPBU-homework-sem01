@@ -1,4 +1,5 @@
 #include <gtest/gtest.h> // Google Test Framework
+
 #include "../tasks/ExpressionParsingTree/AbstractSyntaxTree.h"
 #include "../tasks/ExpressionParsingTree/task-72-parsing-tree.h"
 
