@@ -32,6 +32,10 @@ TEST(task81, standardTest)
     {
         ASSERT_EQ(testCase.second, testDictionary->findNode(testCase.first));
     }
+
+    // destructor will be called
+    delete testDictionary;
+
 }
 
 TEST(taask81, noSuchKeys)
@@ -54,4 +58,7 @@ TEST(taask81, noSuchKeys)
     {
         ASSERT_FALSE(testDictionary->exists(testCase));
     }
+
+    // destructor will be called
+    delete testDictionary;
 }

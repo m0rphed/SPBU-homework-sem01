@@ -55,16 +55,20 @@ private:
     // Checks if tree is empty
     bool isEmpty();
 
+    // Updates height for subtree (starting point is given node)
     void updateHeight(Node *node);
 
+    // Returns height for subtree (starting point is given node)
     int getHeight(Node *node);
 
+    // Returns balance factor (starting point is given node)
     int getBalanceFactor(Node *node);
 
-    Node *rotateRight(Node *node);
+    // Rotations:
+    Node *rotateRight(Node *node); // right
+    Node *rotateLeft(Node *node); // left
 
-    Node *rotateLeft(Node *node);
-
+    // Rebalances whole subtree (starting point is given node)
     Node *balanceSubtree(Node *node);
 
     // Finds maximum of the left subtree
