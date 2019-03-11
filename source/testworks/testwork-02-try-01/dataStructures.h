@@ -41,7 +41,7 @@ public:
 	
 	Node *getHead();
 	
-	// Shifts linked list, insert new element at the position of head
+	// Shifts linked list, insert new element at the position of root
 	void shift(const ElementType &value); // changes length
 	
 	// Inserts element to the end

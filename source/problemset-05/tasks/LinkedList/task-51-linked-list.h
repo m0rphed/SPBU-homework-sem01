@@ -17,7 +17,7 @@ namespace LinkedList
 	// Func. to gets length of list
 	int length(Node *head);
 	
-	// Shifts linked list, insert new element at the head
+	// Shifts linked list, insert new element at the root
 	void shift(Node *&head, int value);
 	
 	// Inserts element, doesn't break the order of the items in the list

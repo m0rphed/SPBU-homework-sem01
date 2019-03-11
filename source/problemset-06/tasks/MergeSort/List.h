@@ -67,7 +67,7 @@ public:
     // Removes tail element and returns its key-value pair
     std::pair<KeyType, ValueType> popTail();
 
-    // Removes head element and returns its key-value pair
+    // Removes root element and returns its key-value pair
     std::pair<KeyType, ValueType> popHead();
 
     // Add a new element after specified position

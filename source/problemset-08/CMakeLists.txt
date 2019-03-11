@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 
-# Define all homework files
-#set(TASKS_SRCS  tasks/...)
+# Define all source files
+set(TaskSrcs    tasks/DictionaryOnAVLtree/Dictionary.cpp
+                tasks/DictionaryOnAVLtree/userInterface.cpp)
 
-# Define all tests
-set(TESTS   utests/utest-task-81.cpp)
+# Define all unit tests
+set(UnitTests   utests/utest-task-81.cpp)
 
-add_executable(problemset-08 ${TASKS_SRCS} ${TESTS})
-target_link_libraries(problemset-08 gmock gtest gtest_main pthread)
+add_executable(task-8-1 ${TaskSrcs} ${UnitTests})
+target_link_libraries(task-8-1 gmock gtest gtest_main pthread)
