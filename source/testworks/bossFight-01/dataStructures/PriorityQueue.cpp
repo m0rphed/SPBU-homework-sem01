@@ -149,7 +149,7 @@ node *PriorityQueue::findHighestNode()
 //
 //bool PriorityQueue::empty()
 //{
-//	return (head == nullptr);
+//	return (root == nullptr);
 //}
 //
 //
@@ -161,9 +161,9 @@ node *PriorityQueue::findHighestNode()
 //
 //int PriorityQueue::front()
 //{
-//	if (head)
+//	if (root)
 //	{
-//		return head->value;
+//		return root->value;
 //	}
 //	else
 //	{
@@ -174,7 +174,7 @@ node *PriorityQueue::findHighestNode()
 //
 //int PriorityQueue::back()
 //{
-//	for (tail = head; tail->next != nullptr; tail = tail->next);
+//	for (tail = root; tail->next != nullptr; tail = tail->next);
 //	return tail->value;
 //}
 //
@@ -188,15 +188,15 @@ node *PriorityQueue::findHighestNode()
 //	temp->value = newValue;
 //
 //	// Inserting in the beginning of the queue
-//	if (head == nullptr || newValue < head->value)
+//	if (root == nullptr || newValue < root->value)
 //	{
-//		temp->next = head;
-//		head = temp;
+//		temp->next = root;
+//		root = temp;
 //	}
 //		// Inserting middle/end of queue
 //	else
 //	{
-//		current = head;
+//		current = root;
 //
 //		// Go through the list until the next node value
 //		// is LARGER than the current value,
@@ -217,10 +217,10 @@ node *PriorityQueue::findHighestNode()
 //{
 //	node *temp = nullptr;
 //
-//	if (head)
+//	if (root)
 //	{
-//		temp = head;
-//		head = head->next;
+//		temp = root;
+//		root = root->next;
 //
 //		delete temp;
 //		--numberOfNodes;
@@ -231,7 +231,7 @@ node *PriorityQueue::findHighestNode()
 //// Constructor
 //PriorityQueue::PriorityQueue()
 //{
-//	head = tail = nullptr;
+//	root = tail = nullptr;
 //	numberOfNodes = 0;
 //}
 //

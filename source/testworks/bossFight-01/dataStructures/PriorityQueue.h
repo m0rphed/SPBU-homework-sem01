@@ -42,14 +42,14 @@ public:
 //// Constructor
 //PriorityQueue::PriorityQueue( void )
 //{
-//	head = tail = nullptr;
+//	root = tail = nullptr;
 //	length = 0;
 //}
 //
 //
 //bool PriorityQueue::isEmpty()
 //{
-//	return (head == nullptr);
+//	return (root == nullptr);
 //}
 //
 //
@@ -61,9 +61,9 @@ public:
 //
 //int PriorityQueue::front()
 //{
-//	if (head != nullptr)
+//	if (root != nullptr)
 //	{
-//		return head->data;
+//		return root->data;
 //	}
 //	else
 //	{
@@ -74,7 +74,7 @@ public:
 //
 //int PriorityQueue::back()
 //{
-//	for (tail = head; tail->next != nullptr; tail = tail->next);
+//	for (tail = root; tail->next != nullptr; tail = tail->next);
 //	return tail->data;
 //}
 //
@@ -84,15 +84,15 @@ public:
 //	node *newNode = new node();
 //	newNode->data = value;
 //	newNode->next = nullptr;
-//	if (head == nullptr)
+//	if (root == nullptr)
 //	{
-//		head = newNode;
+//		root = newNode;
 //		tail = newNode;
 //		return;
 //	}
 //	struct QueueNode *it;
 //	struct QueueNode *it1;
-//	it = head;
+//	it = root;
 //	it1 = nullptr;
 //	while (it != nullptr)
 //	{
@@ -102,7 +102,7 @@ public:
 //				it1->next = newNode;
 //			newNode->next = it;
 //			if (it1 == nullptr)
-//				head = newNode;
+//				root = newNode;
 //			return;
 //		}
 //		it1 = it;
@@ -115,19 +115,19 @@ public:
 //
 //int PriorityQueue::dequeue()
 //{
-//	if (head == nullptr)
+//	if (root == nullptr)
 //	{
 //		cout << "Queue is EMPTY!" << endl;
 //		return -1;
 //	}
 //
-//	cout << "Deleted value was: " << head->data << " with key: " << head->key << endl;
+//	cout << "Deleted value was: " << root->data << " with key: " << root->key << endl;
 //
-//	struct QueueNode *temp = head;
+//	struct QueueNode *temp = root;
 //
-//	head = head->next;
+//	root = root->next;
 //
-//	if (head == nullptr)
+//	if (root == nullptr)
 //	{
 //		tail = nullptr;
 //	}
@@ -140,7 +140,7 @@ public:
 //
 //void PriorityQueue::print()
 //{
-//	auto *copyOfHead = head;
+//	auto *copyOfHead = root;
 //
 //	cout << "Priority Queue: ";
 //

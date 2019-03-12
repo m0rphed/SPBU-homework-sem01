@@ -144,7 +144,7 @@ pair<KeyType, ValueType> List::popHead()
         head->previous = nullptr;
 
     }
-    // actually delete head element
+    // actually delete root element
     delete oldHead;
     --length;
     return data;

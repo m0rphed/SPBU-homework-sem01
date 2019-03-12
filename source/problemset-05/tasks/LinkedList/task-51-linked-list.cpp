@@ -44,7 +44,7 @@ void LinkedList::insert(Node *&head, int data)
 		return;
 	}
 	
-	// make a copy of head
+	// make a copy of root
 	auto *current = head;
 	
 	while (current != nullptr)
@@ -88,7 +88,7 @@ void LinkedList::smartDelete(Node *&head, int data)
 		return;
 	}
 	
-	// make a copy of head
+	// make a copy of root
 	auto *current = head;
 	
 	while (current != nullptr)

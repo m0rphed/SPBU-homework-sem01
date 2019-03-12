@@ -118,7 +118,7 @@ void MyLinkedList::smartInsert(const ElementType &data)
 		return;
 	}
 	
-	// make a copy of head
+	// make a copy of root
 	auto *current = head;
 	
 	while (current)
@@ -163,7 +163,7 @@ void MyLinkedList::smartDelete(const ElementType &data)
 		return;
 	}
 	
-	// make a copy of head
+	// make a copy of root
 	auto *current = head;
 	
 	while (current)

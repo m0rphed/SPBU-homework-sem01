@@ -35,7 +35,7 @@ namespace CircularList
 		// function is private
 		void shift();
 		
-		// Returns 'true' if given element is the head
+		// Returns 'true' if given element is the root
 		bool isHead(const Node *element);
 		
 	public:

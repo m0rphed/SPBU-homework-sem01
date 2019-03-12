@@ -59,7 +59,7 @@ bool LinkedList::isHead(const Node *element)
 }
 
 
-// Shifting head
+// Shifting root
 void LinkedList::shift()
 {
 	if (this->length() == 1)
@@ -77,7 +77,7 @@ void LinkedList::shift()
 		current = current->getNext();
 	}
 	
-	cout << "\nDelete head of the list with key: " << current->getData() << endl;
+	cout << "\nDelete root of the list with key: " << current->getData() << endl;
 	
 	previous->setNext(current->getNext());
 	listHead = current->getNext();
@@ -118,7 +118,7 @@ void LinkedList::insert(const int key)
 	// We need to insert HEAD
 	if (this->length() == 0)
 	{
-		cout << "\t => New head element: " << key << endl;
+		cout << "\t => New root element: " << key << endl;
 		listHead = newElement;
 		return;
 	}
@@ -200,7 +200,7 @@ void LinkedList::print()
 		current = current->getNext();
 	}
 	
-	cout << "head" << endl;
+	cout << "root" << endl;
 }
 
 
