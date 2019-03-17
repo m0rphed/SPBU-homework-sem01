@@ -1,55 +1,50 @@
 #pragma once
 
-#include "List.h"
+#include "LinkedList.h"
 #include <string>
+
+// Define type of key
+typedef std::string KeyType;
+
+using namespace HashTableComponents;
 
 // Hash table implementation
 class HashTable
 {
+	int size = 0;
+	List **buckets = nullptr;
+
 public:
-    // Default constructor
-    HashTable() = default;
+	// Default constructor
+	HashTable() = default;
 
-    // Hash function
-    unsigned int hashFunction(const std::string &input);
-    // Creates a new hash table
-    HashTable *createHashTable(int size)
-    {
-        HashTable *table = new HashTable;
-        table->buckets = new List *[size];
-        for (int i = 0; i < size; i++)
-        {
-            table->buckets[i] = createList();
-        }
-        table->size = size;
-        return table;
-    }
+	// Deletes a hash table, causes destruction of every element
+	~HashTable();
 
-    // Deletes a hash table and all its' elements
-    void deleteHashTable(HashTable *table);
+	// Hash function
+	unsigned int hashFunction(const KeyType &input);
 
-    // Checks if a key is contained
-    bool isContained(HashTable *table, const std::string &key);
+	// Creates a new hash table
+	explicit HashTable(int size);
 
-    // Increases amount of a key
-    void increaseAmountOfKey(HashTable *table, const std::string &key);
+	// Returns amount of a keys in the hash table
+	int getAmountOfKey(const KeyType &key);
 
-    // Adds a new element into the hash table
-    void addIntoHashTable(HashTable *table, const std::string &key);
+	// Returns the maximum amount of elements in a bucket
+	int getMaxAmount();
 
-    // Returns amount of a key in the hash table
-    int amountOfKey(HashTable *table, const std::string &key);
+	// Returns the average amount of elements in a bucket
+	double getAverageAmount();
 
-    // Prints all the elements and its' amount in the hash table
-    void printAll(HashTable *table);
+	// Checks if a key is in hash table
+	bool contains(const KeyType &key);
 
-    // Returns the maximum amount of elements in a bucket
-    int maximum(HashTable *table);
+	// Increases amount of a keys in hash table
+	void increaseAmountOfKeys(const KeyType &key);
 
-    // Returns the average amount of elements in a bucket
-    double average(HashTable *table);
+	// Adds a new element into the hash table
+	void addKey(const KeyType &key);
 
-private:
-    int size = 0;
-    List **buckets = nullptr;
+	// Prints every hash table element with amount
+	void printAll();
 };

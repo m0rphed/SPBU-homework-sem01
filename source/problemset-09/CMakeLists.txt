@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Define all source files here
-set(TaskSrcs-9.1    tasks/WordFrequency/List.cpp
+set(TaskSrcs-9.1 tasks/WordFrequency/LinkedList.cpp
                     tasks/WordFrequency/HashTable.cpp
                     tasks/WordFrequency/task-91-count-word-frequency.cpp)
 
