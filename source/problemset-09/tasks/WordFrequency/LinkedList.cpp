@@ -23,11 +23,11 @@ HashTableComponents::List::~List()
 
 void HashTableComponents::List::addToList(const std::string &key)
 {
-	auto *newList = new ListNode(key);
+	auto *newNode = new ListNode(key);
 
 	if (!head)
 	{
-		head = newList;
+		head = newNode;
 	}
 
 	auto *current = head;
@@ -37,7 +37,7 @@ void HashTableComponents::List::addToList(const std::string &key)
 		current = current->next;
 	}
 
-	current->next = newList;
+	current->next = newNode;
 }
 
 bool HashTableComponents::List::isEmpty()

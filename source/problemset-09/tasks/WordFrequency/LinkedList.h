@@ -21,7 +21,7 @@ namespace HashTableComponents
 	struct List
 	{
 		ListNode *head = new ListNode();
-		int capacity = 0;
+		int capacity = 1;
 
 		// Default constructor
 		List() = default;
