@@ -28,6 +28,7 @@ void HashTableComponents::List::addToList(const std::string &key)
 	if (!head)
 	{
 		head = newNode;
+		return;
 	}
 
 	auto *current = head;
@@ -75,4 +76,10 @@ void HashTableComponents::List::printList()
 void HashTableComponents::List::increaseCapacity()
 {
 	++capacity;
+}
+
+HashTableComponents::List::List()
+{
+	this->head = new ListNode;
+	this->capacity = 1;
 }

@@ -22,6 +22,7 @@ HashTable::HashTable(unsigned int newBaseSize)
 	for (int i = 0; i < newBaseSize; ++i)
 	{
 		buckets[i] = new List();
+		buckets[i]->head = nullptr;
 	}
 
 	baseSize = newBaseSize;
@@ -289,6 +290,7 @@ HashTable::HashTable()
 	for (int i = 0; i < baseSize; ++i)
 	{
 		this->buckets[i] = new List();
+		buckets[i]->head = nullptr;
 	}
 
 	this->numberOfElements = 0;

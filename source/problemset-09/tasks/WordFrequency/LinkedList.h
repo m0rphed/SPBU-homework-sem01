@@ -20,11 +20,11 @@ namespace HashTableComponents
 
 	struct List
 	{
-		ListNode *head = new ListNode();
-		int capacity = 1;
+		ListNode *head;
+		int capacity;
 
 		// Default constructor
-		List() = default;
+		List();
 
 		// Destroys every node in linked list
 		~List();
